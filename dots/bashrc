@@ -1,0 +1,91 @@
+# .bashrc
+
+# Source global definitions
+[ -f /etc/bashrc ] && source /etc/bashrc
+[ -f /etc/bash.bashrc ] && source /etc/bash.bashrc
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+if [ -f /rc/etc/dotfiles/system.bashrc ]; then
+        source /rc/etc/dotfiles/system.bashrc
+fi
+
+# User specific aliases and functions
+if [ -e ~/.alias ]; then
+	source ~/.alias
+fi
+
+export HISTSIZE=100000
+# don't put duplicate lines in the history. See bash(1) for more options
+# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
+export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
+# ... or force ignoredups and ignorespace
+#export HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# Python virtual environment stuff
+if [ $HOSTNAME == "mail.chrisstreeter.com" ]; then
+    export WORKON_HOME="/usr/local/pythonenv"
+fi
+if [ $HOSTNAME == "mordecai.local" -o $HOSTNAME == "mordecai" ]; then
+	export WORKON_HOME="${HOME}/dev/python-environments"
+fi
+
+if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/bin" ] ; then
+    export PATH="${HOME}/bin:${PATH}"
+fi
+
+#export LANG=C
+#export LC_ALL=C
+export LC_CTYPE=en_US.UTF-8
+
+if [ "$PS1" ]; then
+    # set a prompt
+    # "user@hostname:working_dir$ "
+    #PS1='\u@\h:\w\$ '
+    # above with colors
+    PS1="\[\033[1;32m\][\u@\h]:\[\033[1;31m\]\w\[\033[1;32m\]$\[\033[0m\] "
+    
+    #PROMPT_COMMAND='echo -n -e "\e]0;${PWD##*/}\a"'
+    #PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+    PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+    PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}\007"'
+fi
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+	#PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	;;
+screen)
+	PROMPT_COMMAND='echo -n -e "\033k\033\\"'
+	;;
+*)
+	;;
+esac
+
+if [ $HOSTNAME == "mordecai.local" -o $HOSTNAME == "mordecai" ]; then
+	export EDITOR=/usr/bin/vim
+else
+	export EDITOR=vim
+fi

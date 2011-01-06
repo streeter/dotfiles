@@ -1,0 +1,75 @@
+# don't show info at startup
+startup_message off
+
+# set the default crypted password
+password RYmgxLN9F0z7E
+
+# if something goes wrong automatically detach screen
+autodetach on
+
+# change the default scrollback line count
+defscrollback 30000
+
+# no audible bells
+vbell off
+vbell_msg "[[[ ding ]]]"
+
+# tells screen that utf8 encoding should be uses (in all + new windows)
+defutf8 on
+
+# display messages for short periods of time
+msgwait 2
+
+# COLOR:  colors codes are combinations of
+# [attribute modifier] [color description],
+# eg "%{ambf}" where
+# a=attribute,  m=modifier, and
+# b=background, f=foreground.
+# the manual talks of "attribute/color modifiers".
+# see the manual, section "STRING ESCAPES".
+#
+# Color table:
+# 0 Black		. leave color unchanged
+# 1 Red			b blue
+# 2 Green		c cyan
+# 3 Brown / yellow	d default color
+# 4 Blue		g green		b bold
+# 5 Purple		k blacK		B blinking
+# 6 Cyan		m magenta	d dim
+# 7 White		r red		r reverse
+# 8 unused/illegal	w white		s standout
+# 9 transparent		y yellow	u underline
+#
+hardstatus alwayslastline
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{B}(%{W}%n*%f%t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
+#hardstatus string '%{gk}[ %{G}%H %{g}][%= %{=b kw}%?%-Lw%?%{=b kB}(%{W}%n*%f %t%?(%u)%?%{=b kB})%{=b kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
+hardstatus string '%{=b g}[ %{=b g}%H (%l) %{=b g}][%= %{= c}%?%-Lw%?%{=b B}(%{w}%n*%f %t%?(%u)%?%{=b B})%{= c}%?%+Lw%?%?%= %{=b g}][ %{=b B}%Y-%m-%d %{W}%c:%s %{=b g}]%{= d}'
+
+# Add default screens below with the format
+# screen -t NameOfScreen ScreenNumber ShellCommand
+
+###################################################
+# Key Bindings
+#
+# To get the key combo, execute 'cat > /dev/null' and
+# and enter the combo.
+
+# change the escape key from C-a to C-j
+#escape "^j^j"
+
+# unbind C-a q and C-a C-q and bind C-a q to detach
+bind ^q
+bind q
+bind q detach
+
+# refresh the current window with f5
+bindkey ^[[15;5~ redisplay
+
+# add some firefox key bindings
+bindkey ^[[5;5~ prev # Ctrl + PageUp
+bindkey ^[[6;5~ next # Ctrl + PageDown
+
+bindkey ^[[1;2D prev # Ctrl + LeftArrow
+bindkey ^[[1;2C next # Ctrl + RightArrow
+
+#shelltitle '$ |bash'

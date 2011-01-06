@@ -1,0 +1,172 @@
+" Begin .vimrc 
+
+" Enable loading filetype and indentation plugins
+filetype plugin on
+filetype indent on
+
+" Turn syntax highlighting on
+syntax on
+
+"
+" GLOBAL SETTINGS
+"
+
+" Use VIM commands
+set nocompatible
+
+" Write contents of the file, if it has been modified, on buffer exit
+set autowrite
+
+" Do not produce backup files
+set nobackup
+
+" Allow backspacing over everything
+set backspace=indent,eol,start
+
+" Insert mode completion options
+set completeopt=menu,longest,preview
+
+" Use UTF-8 as the default buffer encoding
+set enc=utf-8
+
+" Remember up to 200 'colon' commmands and search patterns
+set history=200
+
+" Enable incremental search
+set incsearch
+
+" Always show status line, even for one window
+set laststatus=2
+
+" When a bracket is inserted, briefly jump to a matching one
+set showmatch
+
+" Jump to matching bracket for 2/10th of a second (works with showmatch)
+set matchtime=2
+
+" Highlight the results of a search
+set hlsearch
+
+" Show line, column number, and relative position within a file in the status line
+set ruler
+
+" Scroll when cursor gets within 3 characters of top/bottom edge
+set scrolloff=3
+
+" Show (partial) commands (or size of selection in Visual mode) in the status line
+set showcmd
+
+" Don't request terminal version string (for xterm)
+set t_RV=
+
+" Use 8 spaces for <Tab> and :retab
+set tabstop=8
+
+" Use spaces instead of tabs
+set noexpandtab
+
+" Round indent to multiple of 'shiftwidth' for > and < commands
+set shiftround
+
+" Use 4 spaces for (auto)indent
+set shiftwidth=8
+
+" Use menu to show command-line completion (in 'full' case)
+set wildmenu
+
+" Go back to the position the cursor was on the last time this file was edited
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
+
+" Display 2 lines for the command line height
+set cmdheight=2
+
+" Display the 'more' prompt
+set more
+
+" Use a visual beep
+set visualbell
+
+" Allow up to 1000 levels of undo
+set undolevels=1000
+
+" Watch for file changes by other programs
+set autoread
+
+
+
+" Global editing settings
+set aw
+set foldenable				" Enable folding
+
+" Do not wrap if the text is a php file.
+if &filetype == 'php'
+	set nowrap
+else
+	set wrapmargin=8
+endif
+
+set autoindent
+
+if has("gui_running")
+	colorscheme torte
+
+	" Set the font to use
+	if has("gui_gtk2")
+		set guifont=Courier\ 10\ Pitch\ 9
+	elseif has("x11")
+		set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+	else
+		set guifont=Courier_New:h12:cDEFAULT
+	endif 
+
+	if $HOME == '/Users/streeter'
+		set guifont=Courier\ New\ Bold\ 11
+	endif
+endif
+
+" Setup some auto formating options
+set formatoptions=tnbl
+
+" Command aliases
+command! Q  quit
+command! W  write
+command! Wq wq
+
+" use CTRL-F for omni completion
+imap <C-F> 
+
+" page down with <Space>
+nmap <Space> <PageDown>
+
+" Fix my <Backspace> key (in Mac OS X Terminal)
+execute 'set t_kb=' . nr2char(8)
+"set t_kb=
+fixdel
+
+" Line Numbering
+set number
+set numberwidth=1
+" #222
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=None gui=NONE guifg=DarkGrey guibg=gray13
+
+" Folding highlight
+" #333
+hi Folded guibg=gray20 ctermbg=blue ctermfg=white cterm=bold
+
+hi Constant ctermfg=6
+
+" Turn on auto-completion for smarty templates
+au FileType smarty exec('set dictionary=~/.vim/syntax/smarty.vim')
+au FileType smarty set complete+=k
+
+au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+au FileType html set omnifunc=htmlcomplete#CompleteTags
+au FileType xml set omnifunc=xmlcomplete#CompleteTags
+au FileType css set omnifunc=csscomplete#CompleteCSS
+
+" set list
+
+au FileType crontab setl backupcopy=yes
+au BufEnter /tmp/crontab.* setl backupcopy=yes
+
+" End .vimrc
