@@ -1,14 +1,22 @@
 
 # ls
 if [[ FreeBSD == $(uname) || Darwin == $(uname) ]] ; then
-        alias ls='ls -GF'
-	alias ll='ls -lk'
-elif [[ SunOS == $(uname) ]] ; then
-        alias ls='ls -F'
-	alias ll='ls -l'
-else    
-        alias ls='ls -F --color'
-	alias ll='ls -lk'
+    alias ls='ls -GF'
+    alias ll='ls -lk'
+else
+    # enable color support of ls and also add handy aliases
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+        #alias dir='dir --color=auto'
+        #alias vdir='vdir --color=auto'
+
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
+    alias ls='ls -F'
+    alias ll='ls -lk'
 fi
 alias la='ll -a'
 alias l='ls'
@@ -35,9 +43,9 @@ alias screen='screen -dR'
 # Include any aliases specific to this machine
 ALIAS_DIR="${HOME}/.alias.d"
 if [ -d "${ALIAS_DIR}" ]; then
-	if [ -e "${ALIAS_DIR}/${HOSTNAME}.alias" ]; then
-		source "${ALIAS_DIR}/${HOSTNAME}.alias"
-	fi
+    if [ -e "${ALIAS_DIR}/${HOSTNAME}.alias" ]; then
+        source "${ALIAS_DIR}/${HOSTNAME}.alias"
+    fi
 fi
 
 calc(){ awk "BEGIN{ print $* }" ;}
