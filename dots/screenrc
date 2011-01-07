@@ -1,24 +1,24 @@
-# don't show info at startup
-startup_message off
 
-# set the default crypted password
-password RYmgxLN9F0z7E
+# ------------------------------------------------------------------------------
+# Settings
+# ------------------------------------------------------------------------------
+crlf off                                    # no microsoft linebreaks
+startup_message off                         # don't show info at startup
+shell bash                                  # don't start login shells
+shelltitle ""                               # no shell title by default, set in PS1
+password RYmgxLN9F0z7E                      # set the default crypted password automatically detach screen
+defscrollback 30000                         # change the default scrollback line count
+vbell on
+bell_msg "[[[ ding ]]] (%n)"
+vbell_msg "[[[ ding ]]] (%n)"
+nethack off                                 # makes error messages cryptic
+autodetach on                               # if something goes wrong
+defutf8 on                                  # tells screen that utf8 encoding should be uses (in all + new windows)
+msgwait 2                                   # display messages for short periods of time
 
-# if something goes wrong automatically detach screen
-autodetach on
-
-# change the default scrollback line count
-defscrollback 30000
-
-# no audible bells
-vbell off
-vbell_msg "[[[ ding ]]]"
-
-# tells screen that utf8 encoding should be uses (in all + new windows)
-defutf8 on
-
-# display messages for short periods of time
-msgwait 2
+# ------------------------------------------------------------------------------
+# Status and Color
+# ------------------------------------------------------------------------------
 
 # COLOR:  colors codes are combinations of
 # [attribute modifier] [color description],
@@ -48,9 +48,10 @@ hardstatus string '%{=b g}[ %{=b g}%H (%l) %{=b g}][%= %{= c}%?%-Lw%?%{=b B}(%{w
 # Add default screens below with the format
 # screen -t NameOfScreen ScreenNumber ShellCommand
 
-###################################################
+# ------------------------------------------------------------------------------
 # Key Bindings
-#
+# ------------------------------------------------------------------------------
+
 # To get the key combo, execute 'cat > /dev/null' and
 # and enter the combo.
 
@@ -72,4 +73,5 @@ bindkey ^[[6;5~ next # Ctrl + PageDown
 bindkey ^[[1;2D prev # Ctrl + LeftArrow
 bindkey ^[[1;2C next # Ctrl + RightArrow
 
-#shelltitle '$ |bash'
+# copy screen clipboard to mac clipboard
+bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
