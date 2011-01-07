@@ -1,0 +1,18 @@
+[user]    
+    name = Chris Streeter
+    email = chris@chrisstreeter.com
+[core]
+    excludesfile = ~/.gitignore
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[color]
+    ui = auto
+[color "diff"]
+    whitespace = red reverse
+[apply]
+    whitespace = fix
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
