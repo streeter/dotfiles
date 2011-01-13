@@ -91,3 +91,10 @@ if [ $HOSTNAME == "mordecai.local" -o $HOSTNAME == "mordecai" ]; then
 else
 	export EDITOR=vim
 fi
+
+
+# MacPorts Addition
+if [ -e /opt ]; then
+    export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+    export MANPATH=/opt/local/share/man:$MANPATH
+fi
