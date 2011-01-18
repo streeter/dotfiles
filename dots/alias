@@ -13,7 +13,7 @@ else
         #alias vdir='vdir --color=auto'
 
     fi
-    alias ls='ls -F'
+    alias ls='ls -F --color'
     alias ll='ls -l'
 fi
 alias ll='ls -l'
