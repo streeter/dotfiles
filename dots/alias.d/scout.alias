@@ -1,2 +1,1 @@
 alias diff='colordiff'
-alias ls='ls --color=auto'
