@@ -1,3 +1,4 @@
+~streeter/.screenrc
 
 # ------------------------------------------------------------------------------
 # Settings
@@ -9,9 +10,13 @@ shelltitle ""                               # no shell title by default, set in 
 password RYmgxLN9F0z7E                      # set the default crypted password automatically detach screen
 defscrollback 30000                         # change the default scrollback line count
 vbell on
+defmonitor on                               # turn on monitoring
+activity "<%n>"                             # let you know when stuff happens!
+silencewait 15                              # notify when window goes silent
 bell_msg "[[[ ding ]]] (%n)"
 vbell_msg "[[[ ding ]]] (%n)"
 nethack off                                 # makes error messages cryptic
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 autodetach on                               # if something goes wrong
 defutf8 on                                  # tells screen that utf8 encoding should be uses (in all + new windows)
 msgwait 2                                   # display messages for short periods of time
@@ -45,6 +50,16 @@ hardstatus alwayslastline
 #hardstatus string '%{gk}[ %{G}%H %{g}][%= %{=b kw}%?%-Lw%?%{=b kB}(%{W}%n*%f %t%?(%u)%?%{=b kB})%{=b kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
 hardstatus string '%{=b g}[ %{=b g}%H (%l) %{=b g}][%= %{= c}%?%-Lw%?%{=b B}(%{w}%n*%f %t%?(%u)%?%{=b B})%{= c}%?%+Lw%?%?%= %{=b g}][ %{=b B}%Y-%m-%d %{W}%c:%s %{=b g}]%{= d}'
 
+# allow 256 colors
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# enable bold
+attrcolor b ".I"
+
+
+# ------------------------------------------------------------------------------
+# Default screens
+# ------------------------------------------------------------------------------
 # Add default screens below with the format
 # screen -t NameOfScreen ScreenNumber ShellCommand
 
@@ -75,3 +90,16 @@ bindkey ^[[1;2C next # Ctrl + RightArrow
 
 # copy screen clipboard to mac clipboard
 bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+
+# this makes backspace sane on debian systems
+termcapinfo xterm 'bc@:bs@'
+termcapinfo xterm-color 'bc@:bs@'
+
+# tell screen that xterm can switch to dark background and has function
+# keys.
+termcapinfo xterm 'VR=\E[?5h:VN=\E[?5l'
+termcapinfo xterm 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
+termcapinfo xterm 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
+termcapinfo xterm-color 'VR=\E[?5h:VN=\E[?5l'
+termcapinfo xterm-color 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
+termcapinfo xterm-color 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'

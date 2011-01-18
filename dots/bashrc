@@ -1,26 +1,80 @@
-# .bashrc
+#!/bin/bash
+# Configure the bash environment
+#
+# Chris Streeter <http://www.chrisstreeter.com>
+
+# setup some basic variables
+: ${HOME=~}
+: ${LOGNAME=$(id -un)}
+: ${UNAME=$(uname)}
+
+# ----------------------------------------------------------------------
+# CONFIGURATION
+# ----------------------------------------------------------------------
+
+# complete hostnames from
+: ${HOSTFILE=~/.ssh/known_hosts}
+
+# ----------------------------------------------------------------------
+#  SHELL OPTIONS
+# ----------------------------------------------------------------------
 
 # Source global definitions
 [ -f /etc/bashrc ] && source /etc/bashrc
 [ -f /etc/bash.bashrc ] && source /etc/bash.bashrc
+[ -f /rc/etc/dotfiles/system.bashrc ] && source /rc/etc/dotfiles/system.bashrc
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+# notify of bg job completion immediately
+set -o notify
 
-if [ -f /rc/etc/dotfiles/system.bashrc ]; then
-        source /rc/etc/dotfiles/system.bashrc
-fi
+# fuck that you have new mail shit
+unset MAILCHECK
 
-# User specific aliases and functions
-if [ -e ~/.alias ]; then
-	source ~/.alias
-fi
+# default umask (mask out permissions on new files)
+umask 0022
+
+# ----------------------------------------------------------------------
+# PATH
+# ----------------------------------------------------------------------
+
+# we want the various sbins on the path along with /usr/local/bin
+PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+
+test -d "$HOME/bin" &&
+    PATH="$HOME/bin:$PATH"
+
+export PATH
+
+# ----------------------------------------------------------------------
+# ENVIRONMENT CONFIGURATION
+# ----------------------------------------------------------------------
+
+# detect interactive shell
+case "$-" in
+    *i*) INTERACTIVE=1 ;;
+    *)   unset INTERACTIVE ;;
+esac
+
+# detect login shell
+case "$0" in
+    -*) LOGIN=1 ;;
+    *)  unset LOGIN ;;
+esac
+
+# enable en_US locale w/ utf-8 encodings if not already configured
+: ${LANG:="en_US.UTF-8"}
+: ${LANGUAGE:="en"}
+: ${LC_CTYPE:="en_US.UTF-8"}
+: ${LC_ALL:="en_US.UTF-8"}
+export LANG LANGUAGE LC_CTYPE LC_ALL
+
+# ignore backups, CVS directories, python bytecode, vim swap files
+FIGNORE="~:CVS:#:.pyc:.swp:.swa"
 
 # don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
+#export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
 # ... or force ignoredups and ignorespace
-#export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth
 
 export HISTSIZE=100000
 export HISTFILESIZE=200000
@@ -32,69 +86,200 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# ----------------------------------------------------------------------
+# PAGER / EDITOR
+# ----------------------------------------------------------------------
+
+# See what we have to work with ...
+HAVE_VIM=$(command -v vim)
+HAVE_GVIM=$(command -v gvim)
+
+# EDITOR
+test -n "$HAVE_VIM" &&
+EDITOR=vim ||
+EDITOR=vi
+export EDITOR
+
+# PAGER
+if test -n "$(command -v less)" ; then
+    PAGER="less -FirSwX"
+    MANPAGER="less -FiRswX"
+    export LESS="-R -e"
+else
+    PAGER=more
+    MANPAGER="$PAGER"
+fi
+export PAGER MANPAGER
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+# ----------------------------------------------------------------------
+# PROMPT
+# ----------------------------------------------------------------------
 
-# Python virtual environment stuff
-if [ $HOSTNAME == "mail.chrisstreeter.com" ]; then
-    export WORKON_HOME="/usr/local/pythonenv"
-fi
-if [ $HOSTNAME == "mordecai.local" -o $HOSTNAME == "mordecai" ]; then
-	export WORKON_HOME="${HOME}/dev/python-environments"
-fi
+RED="\[\033[0;31m\]"
+BROWN="\[\033[0;33m\]"
+YELLOW="\[\033[1;32m\]"
+GREY="\[\033[0;97m\]"
+BLUE="\[\033[0;34m\]"
+PS_CLEAR="\[\033[0m\]"
+SCREEN_ESC="\[\033k\033\134\]"
 
-if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/bin" ] ; then
-    export PATH="${HOME}/bin:${PATH}"
-fi
-
-#export LANG=C
-#export LC_ALL=C
-export LC_CTYPE=en_US.UTF-8
-
-if [ "$PS1" ]; then
-    # set a prompt
-    # "user@hostname:working_dir$ "
-    #PS1='\u@\h:\w\$ '
-    # above with colors
-    PS1="\[\033[1;32m\][\u@\h]:\[\033[1;31m\]\w\[\033[1;32m\]$\[\033[0m\] "
-    
-    #PROMPT_COMMAND='echo -n -e "\e]0;${PWD##*/}\a"'
-    #PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
-    PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
-    PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}\007"'
-fi
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-	#PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
-screen)
-	PROMPT_COMMAND='echo -n -e "\033k\033\\"'
-	;;
-*)
-	;;
-esac
-
-if [ $HOSTNAME == "mordecai.local" -o $HOSTNAME == "mordecai" ]; then
-	export EDITOR=/usr/bin/vim
+if [ "$LOGNAME" = "root" ]; then
+    COLOR1="${RED}"
+    COLOR2="${BROWN}"
+    P="#"
 else
-	export EDITOR=vim
+    COLOR1="${YELLOW}"
+    COLOR2="${RED}"
+    P="\$"
 fi
 
+prompt_simple() {
+    unset PROMPT_COMMAND
+    PS1="[\u@\h:\w]\$ "
+    PS2="> "
+}
 
-# MacPorts Addition
-if [ -e /opt ]; then
-    export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-    export MANPATH=/opt/local/share/man:$MANPATH
+prompt_compact() {
+    unset PROMPT_COMMAND
+    PS1="${COLOR1}${P}${PS_CLEAR} "
+    PS2="> "
+}
+
+prompt_color() {
+    #PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
+    PS1="${COLOR1}[\u@\h]:${COLOR2}\w${COLOR1}$P${PS_CLEAR} "
+    PS2="\[[33;1m\]continue \[[0m[1m\]> "
+    
+    
+    #PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+    #PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}\007"'
+}
+
+# ----------------------------------------------------------------------
+# MACOS X / DARWIN SPECIFIC
+# ----------------------------------------------------------------------
+
+if [ "$UNAME" = Darwin ]; then
+    # put ports on the paths if /opt/local exists
+    test -x /opt/local && {
+        PORTS=/opt/local
+
+        # setup the PATH and MANPATH
+        PATH="$PORTS/bin:$PORTS/sbin:$PATH"
+        MANPATH="$PORTS/share/man:$MANPATH"
+
+        # nice little port alias
+        alias port="sudo nice -n +18 $PORTS/bin/port"
+    }
+
+    test -x /usr/pkg && {
+        PATH="/usr/pkg/sbin:/usr/pkg/bin:$PATH"
+        MANPATH="/usr/pkg/share/man:$MANPATH"
+    }
 fi
+
+# ----------------------------------------------------------------------
+# BASH COMPLETION
+# ----------------------------------------------------------------------
+
+if test -z "$BASH_COMPLETION" ; then
+    bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
+    if [ "$PS1" ] && [ $bmajor -gt 1 ] ; then
+        # search for a bash_completion file to source
+        for f in /usr/pkg/etc/back_completion \
+            /usr/local/etc/bash_completion \
+            /opt/local/etc/bash_completion \
+            /etc/bash_completion \
+            ~/.bash_completion ;
+        do
+            test -f $f && {
+                . $f
+                break
+            }
+        done
+    fi
+    unset bash bmajor bminor
+fi
+
+# override and disable tilde expansion
+_expand() {
+    return 0
+}
+
+# ----------------------------------------------------------------------
+# LS AND DIRCOLORS
+# ----------------------------------------------------------------------
+
+# we always pass these to ls(1)
+LS_COMMON="-BG"
+
+# if the dircolors utility is available, set that up to
+dircolors="$(type -P gdircolors dircolors | head -1)"
+test -n "$dircolors" && {
+    COLORS=/etc/DIR_COLORS
+    test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
+    test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
+    test ! -e "$COLORS"               && COLORS=
+    eval `$dircolors --sh $COLORS`
+}
+unset dircolors
+
+# setup the main ls alias if we've established common args
+test -n "$LS_COMMON" &&
+alias ls="command ls $LS_COMMON"
+
+# -------------------------------------------------------------------
+# USER SHELL ENVIRONMENT
+# -------------------------------------------------------------------
+
+# Use the color prompt by default when interactive
+test -n "$PS1" &&
+prompt_color
+
+# -------------------------------------------------------------------
+# MOTD / FORTUNE
+# -------------------------------------------------------------------
+
+#test -n "$INTERACTIVE" -a -n "$LOGIN" && {
+#    uname -npsr
+#    uptime
+#}
+
+# ----------------------------------------------------------------------
+# ALIASES / FUNCTIONS
+# ----------------------------------------------------------------------
+
+# User specific aliases and functions
+test -f "$HOME/.alias" &&
+    source "$HOME/.alias"
+
+# -------------------------------------------------------------------
+# MACHINE SPECIFIC BASHRC
+# -------------------------------------------------------------------
+
+BASHRC_DIR="$HOME/.bashrc.d"
+test -d "$BASHRC_DIR" &&
+test -e "$BASHRC_DIR/$HOSTNAME.bashrc" &&
+source "$BASHRC_DIR/$HOSTNAME.bashrc"
+
+# -------------------------------------------------------------------
+# USER SPECIFIC BASHRC
+# -------------------------------------------------------------------
+
+test -d "$BASHRC_DIR" &&
+test -e "$BASHRC_DIR/$USER.bashrc" &&
+source "$BASHRC_DIR/$USER.bashrc"
+
+# -------------------------------------------------------------------
+# POST CONFIGURATION HOOKS
+# -------------------------------------------------------------------
+
+# Python virtualenvwrapper Setup
+test -e "/usr/local/bin/virtualenvwrapper.sh" &&
+source /usr/local/bin/virtualenvwrapper.sh
+
+
+# vim: ts=4 sts=4 shiftwidth=4 expandtab

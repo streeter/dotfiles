@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # ls
 if [[ FreeBSD == $(uname) || Darwin == $(uname) ]] ; then
@@ -11,15 +12,20 @@ else
         #alias dir='dir --color=auto'
         #alias vdir='vdir --color=auto'
 
-        alias grep='grep --color=auto'
-        alias fgrep='fgrep --color=auto'
-        alias egrep='egrep --color=auto'
     fi
     alias ls='ls -F'
-    alias ll='ls -lk'
+    alias ll='ls -l'
 fi
+alias ll='ls -l'
 alias la='ll -a'
+alias l.="ls -d .*"
 alias l='ls'
+
+
+alias grep='grep --color=auto'
+alias cgrep='grep --color=always'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 
 alias cd..="cd .."		
