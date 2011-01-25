@@ -1,4 +1,4 @@
-~streeter/.screenrc
+# ~streeter/.screenrc
 
 # ------------------------------------------------------------------------------
 # Settings
@@ -6,7 +6,7 @@
 crlf off                                    # no microsoft linebreaks
 startup_message off                         # don't show info at startup
 shell bash                                  # don't start login shells
-shelltitle ""                               # no shell title by default, set in PS1
+shelltitle "bash"                           # no shell title by default, set in PS1
 password RYmgxLN9F0z7E                      # set the default crypted password automatically detach screen
 defscrollback 30000                         # change the default scrollback line count
 vbell on
@@ -50,9 +50,6 @@ hardstatus alwayslastline
 #hardstatus string '%{gk}[ %{G}%H %{g}][%= %{=b kw}%?%-Lw%?%{=b kB}(%{W}%n*%f %t%?(%u)%?%{=b kB})%{=b kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c ]%{W}'
 hardstatus string '%{=b g}[ %{=b g}%H (%l) %{=b g}][%= %{= c}%?%-Lw%?%{=b B}(%{w}%n*%f %t%?(%u)%?%{=b B})%{= c}%?%+Lw%?%?%= %{=b g}][ %{=b B}%Y-%m-%d %{W}%c:%s %{=b g}]%{= d}'
 
-# allow 256 colors
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
-
 # enable bold
 attrcolor b ".I"
 
@@ -89,7 +86,7 @@ bindkey ^[[1;2D prev # Ctrl + LeftArrow
 bindkey ^[[1;2C next # Ctrl + RightArrow
 
 # copy screen clipboard to mac clipboard
-bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+#bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
 
 # this makes backspace sane on debian systems
 termcapinfo xterm 'bc@:bs@'
