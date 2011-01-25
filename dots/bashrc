@@ -213,6 +213,10 @@ if test -z "$BASH_COMPLETION" ; then
     unset bash bmajor bminor
 fi
 
+if test -e "$HOME/bin/django_bash_completion"; then
+    . "$HOME/bin/django_bash_completion"
+fi
+
 # override and disable tilde expansion
 _expand() {
     return 0
