@@ -19,5 +19,7 @@
     br = branch
     co = checkout
     df = diff
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
 [push]
     default = current
