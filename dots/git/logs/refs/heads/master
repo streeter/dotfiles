@@ -1,9 +1,0 @@
-0000000000000000000000000000000000000000 247c5fe5ded2de73c62a784518d44fdb22ab7d5c streeter <chris@chrisstreeter.com> 1278904241 -0700	clone: from gitosis@chrisstreeter.com:shell-files.git
-247c5fe5ded2de73c62a784518d44fdb22ab7d5c 994813942d898d48c9e61003e7c32990d7b7b46b streeter <chris@chrisstreeter.com> 1278906822 -0700	commit: Add in all updates from the shell-files directory.
-994813942d898d48c9e61003e7c32990d7b7b46b 7cd345f7017702b8fc4a737ebcde4499fc565a0a streeter <chris@chrisstreeter.com> 1281289762 -0700	commit: Fix some aliases.
-7cd345f7017702b8fc4a737ebcde4499fc565a0a ebf71fdbda07a1d1392c7882bf42985f7b3b16ff streeter <chris@chrisstreeter.com> 1281289776 -0700	pull : Merge made by recursive.
-ebf71fdbda07a1d1392c7882bf42985f7b3b16ff aa7903aba4266d60623c4d2a07cab11decc83fa9 streeter <chris@chrisstreeter.com> 1284972092 -0700	commit: Add dev2 for rollcall
-aa7903aba4266d60623c4d2a07cab11decc83fa9 8173f0be31a7d590d5f320c8ddc8fb6cfbff0345 streeter <chris@chrisstreeter.com> 1285924826 +0800	commit: Fix slow opening in new termianls.
-8173f0be31a7d590d5f320c8ddc8fb6cfbff0345 712b7a9d4f6d50f757b0d5b7f837952849674088 streeter <chris@chrisstreeter.com> 1291568315 -0800	commit: Various environment variable settings.
-712b7a9d4f6d50f757b0d5b7f837952849674088 8d3dedd2ee512ea1f671ef6b6cb741e19bb9ccfc streeter <chris@chrisstreeter.com> 1291676218 -0800	commit: Remove some unused scripts.
-8d3dedd2ee512ea1f671ef6b6cb741e19bb9ccfc 2d34311c0c640da3a4ddab9d5fc57378a10150df streeter <chris@chrisstreeter.com> 1294337680 -0800	commit: Updated bash profile settings.
