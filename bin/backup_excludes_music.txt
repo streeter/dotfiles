@@ -1,0 +1,2 @@
+.Spotlight-*/
+.DS_Store

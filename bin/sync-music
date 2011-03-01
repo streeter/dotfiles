@@ -24,8 +24,7 @@ SRC_MUSIC_DIR="/Users/streeter/Music/iTunes/"
 DST_MUSIC_DIR="/export/music"
 
 # Setup the destination
-SERVER="cstreeter.homeip.net"
-#SERVER="scout.local"
+SERVER="scout.local"
 DST_MUSIC="streeter@$SERVER:$DST_MUSIC_DIR"
 
 function backup_with_rsync {
