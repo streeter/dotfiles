@@ -7,7 +7,7 @@ crlf off                                    # no microsoft linebreaks
 startup_message off                         # don't show info at startup
 shell bash                                  # don't start login shells
 shelltitle "bash"                           # no shell title by default, set in PS1
-password RYmgxLN9F0z7E                      # set the default crypted password automatically detach screen
+password RYmgxLN9F0z7E                      # set the default crypted password
 defscrollback 30000                         # change the default scrollback line count
 vbell on
 defmonitor on                               # turn on monitoring

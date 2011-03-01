@@ -41,7 +41,6 @@ alias rs='ssh streeter@chrisstreeter.com'
 alias ocf='ssh streeter@ocf.berkeley.edu'
 
 alias home='ssh streeter@cstreeter.homeip.net'
-alias scoutvnc='ssh -L 5903:localhost:5900 streeter@cstreeter.homeip.net'
 
 # Attach to a screen session and detach it elsewhere if need be.
 alias screen='screen -dR'
