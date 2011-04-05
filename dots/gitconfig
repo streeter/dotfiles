@@ -28,4 +28,4 @@
 [merge]
     stat = true
 [push]
-    default = tracking
+    default = current
