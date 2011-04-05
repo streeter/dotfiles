@@ -21,5 +21,11 @@
     df = diff
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     type = cat-file -t
+[branch]
+    autosetupmerge = true
+[diff]
+    renames = copies
+[merge]
+    stat = true
 [push]
-    default = current
+    default = tracking
