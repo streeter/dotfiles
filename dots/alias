@@ -54,3 +54,5 @@ if [ -d "${ALIAS_DIR}" ]; then
 fi
 
 calc(){ awk "BEGIN{ print $* }" ;}
+
+alias gs='git st'
