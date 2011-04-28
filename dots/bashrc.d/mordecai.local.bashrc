@@ -11,7 +11,7 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 ## Stuff to build android
 
 # mount the android file image
-function mountAndroid{ hdiutil attach ~/dev/android/android.sparseimage -mountpoint /Volumes/android; }
+function mountAndroid { hdiutil attach ~/dev/android/android.sparseimage -mountpoint /Volumes/android; }
 
 # set the number of open files to be 1024
 ulimit -S -n 1024
