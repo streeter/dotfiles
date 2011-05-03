@@ -1,11 +1,15 @@
 " Begin .vimrc 
 
+" Setup Pathogen
+call pathogen#runtime_append_all_bundles()
+
 " Enable loading filetype and indentation plugins
 filetype plugin on
 filetype indent on
 
 " Turn syntax highlighting on
 syntax on
+colorscheme solarized
 
 "
 " GLOBAL SETTINGS
@@ -108,7 +112,7 @@ endif
 set autoindent
 
 if has("gui_running")
-	colorscheme torte
+	set background=dark
 
 	" Set the font to use
 	if has("gui_gtk2")
