@@ -14,3 +14,4 @@ test -n "$USER_BASH_COMPLETION_DIR" && {
   fi
   unset i
 }
+

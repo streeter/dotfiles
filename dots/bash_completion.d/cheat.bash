@@ -6,3 +6,4 @@ _cheat_complete () {
   fi
 }
 complete -F _cheat_complete cheat
+

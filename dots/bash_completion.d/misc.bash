@@ -8,3 +8,4 @@ complete -o nospace -A command killall
 
 # git-track completes remote names
 complete -o default -o nospace -F _git_checkout git-track
+
