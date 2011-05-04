@@ -3,6 +3,9 @@
 #
 # Chris Streeter <http://www.chrisstreeter.com>
 
+# Debug slow startup
+#set -x
+
 # setup some basic variables
 : ${HOME=~}
 : ${LOGNAME=$(id -un)}
