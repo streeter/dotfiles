@@ -1,6 +1,6 @@
 [user]    
-    name = Chris Streeter
-    email = chris@chrisstreeter.com
+	name = Chris Streeter
+	email = chris@chrisstreeter.com
 [core]
     excludesfile = ~/.gitignore
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
