@@ -1,0 +1,4 @@
+
+Compression yes
+TCPKeepAlive yes
+ServerAliveInterval 30

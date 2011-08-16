@@ -11,6 +11,12 @@ if [ -h $HOME/bin ]; then
 fi
 lns $SCRIPT_DIR/bin $HOME/bin
 
+echo "Linking sshconfig to .ssh directory"
+if [ ! -d $HOME/.ssh ]; then
+    mkdir $HOME/.ssh
+fi
+lns $SCRIPT_DIR/sshconfig $HOME/.ssh/config
+
 echo "Linking dotfiles to the home directory:"
 for f in `ls $SCRIPT_DIR/dots`; do
     if [ -h "${HOME}/.${f}" ]; then
