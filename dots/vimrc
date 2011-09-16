@@ -9,6 +9,8 @@ filetype indent on
 
 " Turn syntax highlighting on
 syntax on
+let g:solarized_termcolors=256
+set background=dark
 colorscheme solarized
 
 "
