@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# Notify of Homebrew updates via Growl on Mac OS X
+#
+# Author: Chris Streeter http://www.chrisstreeter.com
+# Requires: Growl Notify Extra to be installed. Install with
+#   brew install growlnotify
+
+
+TERM_APP='/Applications/Terminal.app'
+BREW_EXEC='/usr/local/bin/brew'
+GROWL_NOTIFY='/usr/local/bin/growlnotify'
+GROWL_TITLE="Homebrew Update(s) Available"
+GROWL_ARGS="-n 'Homebrew' -d $GROWL_NOTIFY -a $BREW_EXEC"
+
+$BREW_EXEC update 2>&1 > /dev/null
+outdated=`$BREW_EXEC outdated | tr ' ' '\n'`
+
+if [ -z "$outdated" ] ; then
+    if [ -e $GROWL_NOTIFY ]; then
+        # No updates available
+        $GROWL_NOTIFY $GROWL_ARGS -m '' -t "No Homebrew Updates Available"
+    fi
+else
+    # We've got an outdated formula or two
+    
+    # Nofity via growl
+    if [ -e $GROWL_NOTIFY ]; then
+        lc=$((`echo "$outdated" | wc -l`))
+        outdated=`echo "$outdated" | tail -$lc`
+        message=`echo "$outdated" | head -5`
+        if [ "$outdated" != "$message" ]; then
+            message="Some of the outdated formulae are:
+$message"
+        else
+            message="The following formulae are outdated:
+$message"
+        fi
+        # Send to growlnotify
+        echo "$message" | $GROWL_NOTIFY $GROWL_ARGS -s -t $GROWL_TITLE
+    fi
+fi
