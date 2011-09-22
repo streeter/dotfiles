@@ -2,10 +2,7 @@
 # ls
 alias ls='ls -GF'
 alias ll='ls -lk'
-alias gvim='open -a vim'
 
-alias gvim='open -a /Applications/MacPorts/MacVim.app'
-
-alias rollcall='ssh dev2.rollcallz.com'
+alias gvim='open -a /Applications/MacVim.app'
 
 alias xmltidy='xmllint --format'
