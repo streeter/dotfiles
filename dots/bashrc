@@ -168,7 +168,8 @@ prompt_color() {
     #PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
     test -n "$PS1" &&
     PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}\007"'
-    if [ `type -t update_terminal_cwd` == "function" ]; then
+    fun=`type -t update_terminal_cwd`
+    if [ "$fun" == "function" ]; then
         PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
     fi
 }
