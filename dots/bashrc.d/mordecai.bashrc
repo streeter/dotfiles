@@ -20,7 +20,4 @@ function mountAndroid { hdiutil attach ~/dev/android/android.sparseimage -mountp
 ulimit -S -n 1024
 
 ## RVM
-
-echo "test"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-echo "after"
