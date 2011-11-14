@@ -18,3 +18,9 @@ function mountAndroid { hdiutil attach ~/dev/android/android.sparseimage -mountp
 
 # set the number of open files to be 1024
 ulimit -S -n 1024
+
+## RVM
+
+echo "test"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+echo "after"
