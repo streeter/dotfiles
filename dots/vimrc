@@ -65,17 +65,17 @@ set showcmd
 " Don't request terminal version string (for xterm)
 set t_RV=
 
-" Use 8 spaces for <Tab> and :retab
-set tabstop=8
+" Use 4 spaces for <Tab> and :retab
+set tabstop=4
 
 " Use spaces instead of tabs
-set noexpandtab
+set expandtab
 
 " Round indent to multiple of 'shiftwidth' for > and < commands
 set shiftround
 
 " Use 4 spaces for (auto)indent
-set shiftwidth=8
+set shiftwidth=4
 
 " Use menu to show command-line completion (in 'full' case)
 set wildmenu
