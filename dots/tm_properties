@@ -1,0 +1,12 @@
+#
+# TextMate 2 Default Properties
+#
+
+
+# Tabs
+tabSize         = 4
+softTabs        = true
+
+# Wrapping
+softWrap        = false
+wrapColumn      = 80
