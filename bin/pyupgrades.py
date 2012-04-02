@@ -3,18 +3,15 @@
 import xmlrpclib
 import pip
 import argparse
-import re
 from pkg_resources import parse_version
 
 def version_number_compare(version1, version2):
     return cmp(parse_version(version1), parse_version(version2))
-    
-    def normalize(v):
-        return [int(x) for x in re.sub(r'(\.0+)*$','', v).split(".")]
-    return cmp(normalize(version1), normalize(version2))
 
-package_format = '{dist.project_name} {dist.version}'
-display_format = '{package:40} {message}'
+def print_status(package, message):
+    package_str = '{package.project_name} {package.version}'.format(package=package)
+    print '{package:40} {message}'.format(package=package_str, message=message)
+    
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some integers.')
@@ -28,7 +25,6 @@ if __name__ == '__main__':
     
     pypi = xmlrpclib.ServerProxy(args.mirror)
     for dist in pip.get_installed_distributions():
-        package_str = package_format.format(dist=dist)
         
         available = pypi.package_releases(dist.project_name)
         if not available:
@@ -37,15 +33,15 @@ if __name__ == '__main__':
         
         upgrade_available = True
         if not available:
-            print display_format.format(package=package_str, message='no releases at pypi')
+            print_status(dist, 'no releases at pypi')
             continue
         
         comparison = version_number_compare(available[0], dist.version)
         if comparison == 0:
             if not args.all:
                 continue
-            print display_format.format(package=package_str, message='up to date')
+            print_status(dist, 'up to date')
         elif comparison < 0:
-            print display_format.format(package=package_str, message='older version on pypi')
+            print_status(dist, 'older version on pypi')
         else:
-            print display_format.format(package=package_str, message='%s available' % available[0])
+            print_status(dist, '%s available' % available[0])
