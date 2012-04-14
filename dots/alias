@@ -56,3 +56,8 @@ fi
 calc(){ awk "BEGIN{ print $* }" ;}
 
 alias gs='git st'
+
+ipython_test=`which ipython`
+if [ $? -eq 0 ]; then
+    alias python=ipython
+fi
