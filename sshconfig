@@ -2,3 +2,14 @@
 Compression yes
 TCPKeepAlive yes
 ServerAliveInterval 30
+
+# Heroku configs
+Host heroku.hubot
+  HostName heroku.com
+  IdentityFile /Users/streeter/.ssh/identity.heroku.hubot
+  IdentitiesOnly yes
+
+Host heroku.datagrams
+  HostName heroku.com
+  IdentityFile /Users/streeter/.ssh/identity.heroku.datagrams
+  IdentitiesOnly yes
