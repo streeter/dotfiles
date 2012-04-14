@@ -12,8 +12,16 @@ import os
 import readline
 import rlcompleter
 
+class irlcompleter(rlcompleter.Completer):
+    def complete(self, text, state):
+        if text == '':
+            return ['  ', None][state]
+        else:
+            return rlcompleter.Completer.complete(self, test, state)
+
 historyPath = os.path.expanduser('~/.pyhistory')
 readline.parse_and_bind('tab: complete')
+readline.set_completer(irlcompleter().complete)
 
 def save_history(historyPath=historyPath):
   import readline
