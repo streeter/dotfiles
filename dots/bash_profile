@@ -9,4 +9,7 @@ if [ -f /opt/local/environment/.bash_profile ]; then
 	source /opt/local/environment/.bash_profile
 fi
 
-source ~/.bashrc
+for file in ~/.{bashrc,secrets}; do
+    [ -r "$file" ] && source "$file"
+done
+unset file
