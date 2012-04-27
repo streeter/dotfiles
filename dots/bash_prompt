@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# ----------------------------------------------------------------------
+# PROMPT
+# ----------------------------------------------------------------------
+
+RED="\[\033[0;31m\]"
+BROWN="\[\033[0;33m\]"
+YELLOW="\[\033[1;32m\]"
+GREY="\[\033[0;97m\]"
+BLUE="\[\033[0;34m\]"
+PS_CLEAR="\[\033[0m\]"
+SCREEN_ESC="\[\033k\033\134\]"
+
+if [ "$LOGNAME" = "root" ]; then
+    COLOR1="${RED}"
+    COLOR2="${BROWN}"
+    P="#"
+else
+    COLOR1="${YELLOW}"
+    COLOR2="${RED}"
+    P="⚡"
+fi
+
+prompt_simple() {
+    unset PROMPT_COMMAND
+    PS1="[\u@\h:\w]\$ "
+    PS2="> "
+}
+
+prompt_compact() {
+    unset PROMPT_COMMAND
+    PS1="${COLOR1}${P}${PS_CLEAR} "
+    PS2="> "
+}
+
+prompt_color() {
+    #PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
+    PS1="${COLOR1}[\u]:${COLOR2}\w${COLOR1}$P${PS_CLEAR} "
+    PS2="\[[33;1m\]continue \[[0m[1m\]> "
+    
+    
+    #PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+    test -n "$PS1" &&
+    PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}\007"'
+    fun=`type -t update_terminal_cwd`
+    if [ "$fun" == "function" ]; then
+        PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
+    fi
+}

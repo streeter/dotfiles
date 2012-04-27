@@ -31,12 +31,24 @@
 set -o notify
 
 # shell opts. see bash(1) for details
-shopt -s cdspell >/dev/null 2>&1
 shopt -s extglob >/dev/null 2>&1
 shopt -s hostcomplete >/dev/null 2>&1
 shopt -s interactive_comments >/dev/null 2>&1
 shopt -u mailwarn >/dev/null 2>&1
 shopt -s no_empty_cmd_completion >/dev/null 2>&1
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell >/dev/null 2>&1
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
 
 # fuck that you have new mail shit
 unset MAILCHECK
@@ -73,7 +85,7 @@ case "$0" in
 esac
 
 # enable en_US locale w/ utf-8 encodings if not already configured
-: ${LANG:="en_US.UTF-8"}
+: ${LANG:="en_US"}
 : ${LANGUAGE:="en"}
 : ${LC_CTYPE:="en_US.UTF-8"}
 : ${LC_ALL:="en_US.UTF-8"}
@@ -82,97 +94,11 @@ export LANG LANGUAGE LC_CTYPE LC_ALL
 # ignore backups, CVS directories, python bytecode, vim swap files
 FIGNORE="~:CVS:#:.pyc:.swp:.swa"
 
-# don't put duplicate lines in the history. See bash(1) for more options
-#export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
-# ... or force ignoredups and ignorespace
-export HISTCONTROL=ignoreboth
-
-export HISTSIZE=100000
-export HISTFILESIZE=200000
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# ----------------------------------------------------------------------
-# PAGER / EDITOR
-# ----------------------------------------------------------------------
-
-# See what we have to work with ...
-HAVE_VIM=$(command -v vim)
-HAVE_GVIM=$(command -v gvim)
-
-# EDITOR
-test -n "$HAVE_VIM" &&
-EDITOR=vim ||
-EDITOR=vi
-export EDITOR
-
-# PAGER
-if test -n "$(command -v less)" ; then
-    PAGER="less -FirSwX"
-    MANPAGER="less -FiRswX"
-    export LESS="-R -e"
-else
-    PAGER=more
-    MANPAGER="$PAGER"
-fi
-export PAGER MANPAGER
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# ----------------------------------------------------------------------
-# PROMPT
-# ----------------------------------------------------------------------
 
-RED="\[\033[0;31m\]"
-BROWN="\[\033[0;33m\]"
-YELLOW="\[\033[1;32m\]"
-GREY="\[\033[0;97m\]"
-BLUE="\[\033[0;34m\]"
-PS_CLEAR="\[\033[0m\]"
-SCREEN_ESC="\[\033k\033\134\]"
-
-if [ "$LOGNAME" = "root" ]; then
-    COLOR1="${RED}"
-    COLOR2="${BROWN}"
-    P="#"
-else
-    COLOR1="${YELLOW}"
-    COLOR2="${RED}"
-    P="⚡"
-fi
-
-prompt_simple() {
-    unset PROMPT_COMMAND
-    PS1="[\u@\h:\w]\$ "
-    PS2="> "
-}
-
-prompt_compact() {
-    unset PROMPT_COMMAND
-    PS1="${COLOR1}${P}${PS_CLEAR} "
-    PS2="> "
-}
-
-prompt_color() {
-    #PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
-    PS1="${COLOR1}[\u]:${COLOR2}\w${COLOR1}$P${PS_CLEAR} "
-    PS2="\[[33;1m\]continue \[[0m[1m\]> "
-    
-    
-    #PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
-    test -n "$PS1" &&
-    PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}\007"'
-    fun=`type -t update_terminal_cwd`
-    if [ "$fun" == "function" ]; then
-        PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
-    fi
-}
 
 # ----------------------------------------------------------------------
 # MACOS X / DARWIN SPECIFIC
@@ -258,6 +184,22 @@ unset dircolors
 test -n "$LS_COMMON" &&
 alias ls="command ls $LS_COMMON"
 
+
+# -------------------------------------------------------------------
+# EXPORTS
+# -------------------------------------------------------------------
+
+test -f "$HOME/.exports" &&
+source "$HOME/.exports"
+
+
+# -------------------------------------------------------------------
+# PROMPT
+# -------------------------------------------------------------------
+
+test -f "$HOME/.bash_prompt" &&
+source "$HOME/.bash_prompt"
+
 # -------------------------------------------------------------------
 # USER SHELL ENVIRONMENT
 # -------------------------------------------------------------------
@@ -281,7 +223,10 @@ prompt_color
 
 # User specific aliases and functions
 test -f "$HOME/.alias" &&
-    source "$HOME/.alias"
+source "$HOME/.alias"
+
+test -f "$HOME/.functions" &&
+source "$HOME/.functions"
 
 # -------------------------------------------------------------------
 # MACHINE SPECIFIC BASHRC

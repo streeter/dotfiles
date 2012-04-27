@@ -24,3 +24,8 @@ for f in `ls $SCRIPT_DIR/dots`; do
     fi
     lns "${SCRIPT_DIR}/dots/$f" "${HOME}/.${f}"
 done
+
+# Setup some system defaults
+if [[ Darwin == $(uname) ]]; then
+    source $SCRIPT_DIR/defaults/osx.sh
+fi
