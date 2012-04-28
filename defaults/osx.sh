@@ -68,8 +68,8 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # Enable snap-to-grid for desktop icons
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
 
-# Empty Trash securely by default
-defaults write com.apple.finder EmptyTrashSecurely -bool true
+# Empty Trash insecurely by default
+defaults write com.apple.finder EmptyTrashSecurely -bool false
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
