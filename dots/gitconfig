@@ -7,7 +7,10 @@
     df = diff
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     type = cat-file -t
+    stashdiff = stash show -u
     undopush = push -f origin HEAD^:master
+    unstage = reset HEAD
+    uncommit = reset HEAD~1
 
 [apply]
     # Detect whitespace errors when applying a patch
@@ -32,23 +35,24 @@
     ui = auto
 
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+	current = yellow
+	local = normal
+	remote = red
 
 [color "diff"]
+    plain = normal
     #meta = yellow bold
-    old = red #bold
-    new = green #bold
-    whitespace = red reverse
-
-[color "sh"]
-    branch = yellow
+    old = red
+    new = green
+    commit = yellow
+    whitespace = normal red
 
 [color "status"]
-	added = cyan
-	changed = yellow
+    header = normal
+    updated = yellow
+	changed = cyan
 	untracked = red
+    nobranch = red
 
 [diff]
     renames = copies
