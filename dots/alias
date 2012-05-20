@@ -42,6 +42,9 @@ alias ocf='ssh streeter@ocf.berkeley.edu'
 
 alias home='ssh streeter@cstreeter.homeip.net'
 
+# JSON Tidy
+alias jsontidy='\python -m json.tool'
+
 # Attach to a screen session and detach it elsewhere if need be.
 alias screen='screen -dR'
 
