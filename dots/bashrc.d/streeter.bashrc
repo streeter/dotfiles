@@ -10,4 +10,3 @@ if [ -e ~/.ec2 ]; then
     export AWS_SECRET_ACCESS_KEY=`cat $EC2_HOME/aws_secret_access_key`
     export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.5/jars"
 fi
-

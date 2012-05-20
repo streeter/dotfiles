@@ -236,7 +236,6 @@ BASHRC_DIR="$HOME/.bashrc.d"
 test -d "$BASHRC_DIR" &&
 test -e "$BASHRC_DIR/$HOSTNAME.bashrc" &&
 source "$BASHRC_DIR/$HOSTNAME.bashrc"
-unset BASHRC_DIR
 
 # -------------------------------------------------------------------
 # USER SPECIFIC BASHRC
@@ -245,6 +244,7 @@ unset BASHRC_DIR
 test -d "$BASHRC_DIR" &&
 test -e "$BASHRC_DIR/$USER.bashrc" &&
 source "$BASHRC_DIR/$USER.bashrc"
+unset BASHRC_DIR
 
 # -------------------------------------------------------------------
 # POST CONFIGURATION HOOKS
