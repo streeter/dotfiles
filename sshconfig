@@ -13,3 +13,8 @@ Host heroku.datagrams
   HostName heroku.com
   IdentityFile /Users/streeter/.ssh/identity.heroku.datagrams
   IdentitiesOnly yes
+
+Host heroku.educreations
+  HostName heroku.com
+  IdentityFile /Users/streeter/.ssh/identity.heroku.educreations
+  IdentitiesOnly yes
