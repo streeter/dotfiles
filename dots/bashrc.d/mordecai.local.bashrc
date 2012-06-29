@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Python virtual environment stuff
-export WORKON_HOME="${HOME}/.virtualenvs"
-#export PIP_REQUIRE_VIRTUALENV=true
-export PIP_RESPECT_VIRTUALENV=true
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-
 
 ## --------------------------------------------------------
 ## Stuff to build android
@@ -18,6 +12,3 @@ function mountAndroid { hdiutil attach ~/dev/android/android.sparseimage -mountp
 
 # set the number of open files to be 1024
 ulimit -S -n 1024
-
-## RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
