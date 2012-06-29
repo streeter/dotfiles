@@ -1,23 +1,25 @@
 [alias]
-    st = status
+    st = status -sb
     ci = commit
     br = branch
     co = checkout
     clone = clone --recursive
     df = diff
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    #hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     type = cat-file -t
     stashdiff = stash show -u
     undopush = push -f origin HEAD^:master
     unstage = reset HEAD
-    uncommit = reset HEAD~1
+    uncommit = reset --soft HEAD~1
+    wdiff = diff --word-diff
 
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
 
 [branch]
-    autosetupmerge = true
+    #autosetupmerge = trus
 
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
@@ -57,6 +59,9 @@
 [diff]
     renames = copies
 
+[help]
+    autocorrect = 1
+
 [merge]
     stat = true
     # Include summaries of merged commits in newly created merge commit messages
@@ -78,3 +83,6 @@
 	pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
+[user]
+	name = Chris Streeter
+	email = chris@chrisstreeter.com

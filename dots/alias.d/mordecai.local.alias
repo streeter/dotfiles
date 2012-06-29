@@ -8,3 +8,6 @@ alias gvim='open -a /Applications/MacVim.app'
 alias xmltidy='xmllint --format'
 
 alias git=hub
+
+alias sub=subl
+alias mate=subl
