@@ -28,7 +28,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 
-alias cd..="cd .."		
+alias cd..="cd .."
 alias s="cd .."
 alias p="cd -"
 alias md="mkdir"
@@ -47,14 +47,6 @@ alias jsontidy='\python -m json.tool'
 
 # Attach to a screen session and detach it elsewhere if need be.
 alias screen='screen -dR'
-
-# Include any aliases specific to this machine
-ALIAS_DIR="${HOME}/.alias.d"
-if [ -d "${ALIAS_DIR}" ]; then
-    if [ -e "${ALIAS_DIR}/${HOSTNAME}.alias" ]; then
-        source "${ALIAS_DIR}/${HOSTNAME}.alias"
-    fi
-fi
 
 calc(){ awk "BEGIN{ print $* }" ;}
 

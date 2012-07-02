@@ -247,6 +247,24 @@ source "$BASHRC_DIR/$USER.bashrc"
 unset BASHRC_DIR
 
 # -------------------------------------------------------------------
+# MACHINE SPECIFIC ALIASES
+# -------------------------------------------------------------------
+
+ALIAS_DIR="$HOME/.alias.d"
+test -d "$ALIAS_DIR" &&
+test -e "$ALIAS_DIR/$HOSTNAME.alias" &&
+source "$ALIAS_DIR/$HOSTNAME.alias"
+
+# -------------------------------------------------------------------
+# USER SPECIFIC ALIASES
+# -------------------------------------------------------------------
+
+test -d "$ALIAS_DIR" &&
+test -e "$ALIAS_DIR/$USER.alias" &&
+source "$ALIAS_DIR/$USER.alias"
+unset ALIAS_DIR
+
+# -------------------------------------------------------------------
 # POST CONFIGURATION HOOKS
 # -------------------------------------------------------------------
 

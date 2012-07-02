@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# ls
 alias ls='ls -GF'
 alias ll='ls -lk'
 
