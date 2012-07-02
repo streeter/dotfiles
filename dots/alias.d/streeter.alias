@@ -1,13 +1,15 @@
 #!/bin/bash
 
-alias ls='ls -GF'
-alias ll='ls -lk'
-
-alias gvim='open -a /Applications/MacVim.app'
-
 alias xmltidy='xmllint --format'
 
-alias git=hub
+if [ "$UNAME" = Darwin ]; then
+    alias ls='ls -GF'
+    alias ll='ls -lk'
 
-alias sub=subl
-alias mate=subl
+    alias gvim='open -a /Applications/MacVim.app'
+
+    alias git=hub
+
+    alias sub=subl
+    alias mate='subl -w'
+fi
