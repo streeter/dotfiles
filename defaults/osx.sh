@@ -41,10 +41,19 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Allow text selection in Quick Look
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
+# Show folder contents in Quick Look
+defaults write com.apple.finder QLEnableXRayFolders -bool true
+
 # Automatically open a new Finder window when a volume is mounted
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+# Disk Utilty Debug Menu
+defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
+
+# Advanced Disk Utility mode
+defaults write com.apple.diskcopy expert-mode -bool true
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -97,14 +106,24 @@ defaults write com.apple.dock autohide -bool false
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
+# Make the Dock 2D Black
+defaults write com.apple.dock no-glass -int 1
+
+# Make the Dock appear on the left side
+defaults write com.apple.dock orientation "left"
+
 # Enable iTunes track notifications in the Dock
-defaults write com.apple.dock itunes-notifications -bool true
+#defaults write com.apple.dock itunes-notifications -bool true
 
 # Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeDebugMenu -bool true
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
 # Remove useless icons from Safari’s bookmarks bar
 defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+
+# Show Safari status bar
+defaults write com.apple.Safari ShowStatusBar -bool true
 
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
@@ -118,17 +137,26 @@ defaults write com.apple.iCal IncludeDebugMenu -bool true
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
+# Make arrows link to library instead of App Store
+defaults write com.apple.iTunes invertStoreLinks -bool true
+defaults write com.apple.iTunes show-store-link-arrows -bool false
+
 # Disable the Ping sidebar in iTunes
-defaults write com.apple.iTunes disablePingSidebar -bool true
+defaults write com.apple.iTunes disablePingSidebar -int 1
 
 # Disable all the other Ping stuff in iTunes
 defaults write com.apple.iTunes disablePing -bool true
+defaults write com.apple.iTunes hide-ping-dropdown -bool true
 
 # Make ⌘ + F focus the search input in iTunes
 defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
 
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# Adjust the Twitter app
+defaults write com.twitter.twitter-mac NormalComposeWindowLevel -bool true
+defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
 
 # Reset Launchpad
 [ -e ~/Library/Application\ Support/Dock/*.db ] && rm ~/Library/Application\ Support/Dock/*.db
