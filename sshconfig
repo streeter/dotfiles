@@ -3,15 +3,35 @@ Compression yes
 TCPKeepAlive yes
 ServerAliveInterval 30
 
+Host hal
+  HostName hal.rescomp.berkeley.edu
+  User cstreetr
+  IdentitiesOnly yes
+
+Host ocf
+  HostName ocf.berkeley.edu
+  User streeter
+#  IdentitiesOnly yes
+
+Host home
+  HostName cstreeter.homeip.net
+  User streeter
+  IdentitiesOnly yes
+
+Host rs
+  HostName chrisstreeter.com
+  User streeter
+  IdentitiesOnly yes
+
 # Heroku configs
 Host heroku.hubot
   HostName heroku.com
   IdentityFile /Users/streeter/.ssh/identity.heroku.hubot
   IdentitiesOnly yes
 
-Host heroku.datagrams
+Host heroku.personal
   HostName heroku.com
-  IdentityFile /Users/streeter/.ssh/identity.heroku.datagrams
+  IdentityFile /Users/streeter/.ssh/identity.heroku.personal
   IdentitiesOnly yes
 
 Host heroku.educreations

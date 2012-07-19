@@ -37,11 +37,6 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias c=clear
 
-alias rs='ssh streeter@chrisstreeter.com'
-alias ocf='ssh streeter@ocf.berkeley.edu'
-
-alias home='ssh streeter@cstreeter.homeip.net'
-
 # JSON Tidy
 alias jsontidy='\python -m json.tool'
 
