@@ -19,7 +19,8 @@ if [ "$LOGNAME" = "root" ]; then
 else
     COLOR1="${YELLOW}"
     COLOR2="${RED}"
-    P="⚡"
+    #P="⚡"
+    P="$"
 fi
 
 prompt_simple() {
