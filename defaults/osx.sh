@@ -1,7 +1,8 @@
 #!/bin/sh
 
-###################################################
-## Defaults to run on OS X to setup the environment
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
 
 # Show remaining battery time; hide percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "NO"
@@ -22,8 +23,45 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.apple.loginwindow TALLogoutSavesState -bool false
 defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
 
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
+
+# Set language and text formats
+defaults write NSGlobalDomain AppleLanguages -array "en"
+defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
+defaults write NSGlobalDomain AppleMetricUnits -bool false
+
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+
+###############################################################################
+# Screen                                                                      #
+###############################################################################
+
+# Require password soon after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 30
+
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "$HOME/Desktop"
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
+# Enable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool false
+
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
 
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
@@ -31,6 +69,12 @@ defaults write com.apple.finder QuitMenuItem -bool true
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 60
+
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Show all filename extensions in Finder
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -48,12 +92,6 @@ defaults write com.apple.finder QLEnableXRayFolders -bool true
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
-
-# Disk Utilty Debug Menu
-defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
-
-# Advanced Disk Utility mode
-defaults write com.apple.diskcopy expert-mode -bool true
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -80,44 +118,76 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # Empty Trash insecurely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool false
 
+# Enable AirDrop over Ethernet and on unsupported Macs running Lion
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
 # Show the ~/Library folder
 chflags nohidden ~/Library
+
+
+###############################################################################
+# Dock & hot corners                                                          #
+###############################################################################
+
+# Turn off Dock auto-hiding
+defaults write com.apple.dock autohide -bool false
+
+# Make the Dock appear on the left side
+defaults write com.apple.dock orientation "left"
+
+# Set the icon size of Dock items to 36 pixels
+defaults write com.apple.dock tilesize -int 36
+
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool true
+
+# Speed up Mission Control animations
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Do not group windows by application in Mission Control
+defaults write com.apple.dock "expose-group-by-app" -bool false
+
+# Enable the 2D Dock
+defaults write com.apple.dock no-glass -bool true
+
+# Make the Dock 2D Black
+defaults write com.apple.dock no-glass -int 1
+
+# Make Dock icons of hidden applications translucent
+defaults write com.apple.dock showhidden -bool true
+
+# Enable iTunes track notifications in the Dock
+#defaults write com.apple.dock itunes-notifications -bool true
+
+# Reset Launchpad
+find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
+
 
 # Hot corners
 # Bottom left screen corner → Mission Control
 defaults write com.apple.dock wvous-bl-corner -int 2
 defaults write com.apple.dock wvous-bl-modifier -int 0
-# Top right screen corner → Desktop
-defaults write com.apple.dock wvous-tr-corner -int 4
-defaults write com.apple.dock wvous-tr-modifier -int 0
+# Top left screen corner → Desktop
+defaults write com.apple.dock wvous-tl-corner -int 4
+defaults write com.apple.dock wvous-tl-modifier -int 0
 # Bottom left screen corner → Start screen saver
 #defaults write com.apple.dock wvous-bl-corner -int 5
 #defaults write com.apple.dock wvous-bl-modifier -int 0
 
-# Show indicator lights for open applications in the Dock
-defaults write com.apple.dock show-process-indicators -bool true
 
-# Enable the 2D Dock
-defaults write com.apple.dock no-glass -bool true
+###############################################################################
+# Safari & WebKit                                                             #
+###############################################################################
 
-# Turn off Dock auto-hiding
-defaults write com.apple.dock autohide -bool false
-
-# Make Dock icons of hidden applications translucent
-defaults write com.apple.dock showhidden -bool true
-
-# Make the Dock 2D Black
-defaults write com.apple.dock no-glass -int 1
-
-# Make the Dock appear on the left side
-defaults write com.apple.dock orientation "left"
-
-# Enable iTunes track notifications in the Dock
-#defaults write com.apple.dock itunes-notifications -bool true
+# Disable Safari’s thumbnail cache for History and Top Sites
+defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
 # Enable Safari’s debug menu
 defaults write com.apple.Safari IncludeDebugMenu -bool true
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+# Make Safari’s search banners default to Contains instead of Starts With
+defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
 # Remove useless icons from Safari’s bookmarks bar
 defaults write com.apple.Safari ProxiesInBookmarksBar "()"
@@ -128,14 +198,26 @@ defaults write com.apple.Safari ShowStatusBar -bool true
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
+# Hide Safari’s bookmarks bar by default
+defaults write com.apple.Safari ShowFavoritesBar -bool false
+
+
+###############################################################################
+# Address Book, Dashboard, iCal, iTunes, Mail, and Disk Utility               #
+###############################################################################
+
 # Enable the debug menu in Address Book
 defaults write com.apple.addressbook ABShowDebugMenu -bool true
 
 # Enable the debug menu in iCal
 defaults write com.apple.iCal IncludeDebugMenu -bool true
 
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
+# Disable send and reply animations in Mail.app
+defaults write com.apple.Mail DisableReplyAnimations -bool true
+defaults write com.apple.Mail DisableSendAnimations -bool true
+
+# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
+defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 # Make arrows link to library instead of App Store
 defaults write com.apple.iTunes invertStoreLinks -bool true
@@ -151,19 +233,63 @@ defaults write com.apple.iTunes hide-ping-dropdown -bool true
 # Make ⌘ + F focus the search input in iTunes
 defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
 
-# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+# Disk Utilty Debug Menu
+defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 
-# Adjust the Twitter app
-defaults write com.twitter.twitter-mac NormalComposeWindowLevel -bool true
-defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
+# Advanced Disk Utility mode
+defaults write com.apple.diskcopy expert-mode -bool true
 
-# Reset Launchpad
-[ -e ~/Library/Application\ Support/Dock/*.db ] && rm ~/Library/Application\ Support/Dock/*.db
+
+###############################################################################
+# Terminal                                                                    #
+###############################################################################
+
+# Only use UTF-8 in Terminal.app
+defaults write com.apple.terminal StringEncodings -array 4
+
+# Enable “focus follows mouse” for Terminal.app and all X11 apps
+# This means you can hover over a window and start typing in it without clicking first
+#defaults write com.apple.terminal FocusFollowsMouse -bool true
+#defaults write org.x.X11 wm_ffm -bool true
+
+
+###############################################################################
+# Time Machine                                                                #
+###############################################################################
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Kill affected applications
-for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" > /dev/null 2>&1; done
+
+###############################################################################
+# Twitter.app                                                                 #
+###############################################################################
+
+# Disable smart quotes as it’s annoying for code tweets
+defaults write com.twitter.twitter-mac AutomaticQuoteSubstitutionEnabled -bool false
+
+# Show the app window when clicking the menu icon
+defaults write com.twitter.twitter-mac MenuItemBehavior -int 1
+
+# Enable the hidden ‘Develop’ menu
+defaults write com.twitter.twitter-mac ShowDevelopMenu -bool true
+
+# Open links in the background
+defaults write com.twitter.twitter-mac openLinksInBackground -bool true
+
+# Allow closing the ‘new tweet’ window by pressing `Esc`
+defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
+
+# Show full names rather than Twitter handles
+defaults write com.twitter.twitter-mac ShowFullNames -bool true
+
+# The compose window shouldn't float over everything
+defaults write com.twitter.twitter-mac NormalComposeWindowLevel -bool true
+
+###############################################################################
+# Kill affected applications                                                  #
+###############################################################################
+for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer Twitter; do
+    killall "$app" > /dev/null 2>&1;
+done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
