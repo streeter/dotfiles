@@ -136,13 +136,13 @@ defaults write com.apple.dock autohide -bool false
 defaults write com.apple.dock orientation "left"
 
 # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+defaults write com.apple.dock tilesize -int 28
 
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Speed up Mission Control animations
-defaults write com.apple.dock expose-animation-duration -float 0.1
+#defaults write com.apple.dock expose-animation-duration -float 0.1
 
 # Do not group windows by application in Mission Control
 defaults write com.apple.dock "expose-group-by-app" -bool false
