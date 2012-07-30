@@ -3,6 +3,18 @@ Compression yes
 TCPKeepAlive yes
 ServerAliveInterval 30
 
+Host rowdy-icloud
+  HostName rowdy.29541183.members.btmm.icloud.com
+  User streeter
+  AddressFamily inet6
+  Protocol 2
+
+Host mordecai-icloud
+  HostName mordecai.29541183.members.btmm.icloud.com
+  User streeter
+  AddressFamily inet6
+  Protocol 2
+
 Host hal
   HostName hal.rescomp.berkeley.edu
   User cstreetr
