@@ -5,10 +5,6 @@ if [ -f /etc/profile ]; then
         source /etc/profile
 fi
 
-if [ -f /opt/local/environment/.bash_profile ]; then
-	source /opt/local/environment/.bash_profile
-fi
-
 for file in ~/.{bashrc,secrets}; do
     [ -r "$file" ] && source "$file"
 done

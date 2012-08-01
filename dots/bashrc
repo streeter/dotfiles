@@ -105,18 +105,6 @@ FIGNORE="~:CVS:#:.pyc:.swp:.swa"
 # ----------------------------------------------------------------------
 
 if [ "$UNAME" = Darwin ]; then
-    # put ports on the paths if /opt/local exists
-    test -x /opt/local && {
-        PORTS=/opt/local
-
-        # setup the PATH and MANPATH
-        PATH="$PORTS/bin:$PORTS/sbin:$PATH"
-        MANPATH="$PORTS/share/man:$MANPATH"
-
-        # nice little port alias
-        alias port="sudo nice -n +18 $PORTS/bin/port"
-    }
-
     test -x /usr/pkg && {
         PATH="/usr/pkg/sbin:/usr/pkg/bin:$PATH"
         MANPATH="/usr/pkg/share/man:$MANPATH"
@@ -133,7 +121,6 @@ if test -z "$BASH_COMPLETION" ; then
         # search for a bash_completion file to source
         for f in /usr/pkg/etc/back_completion \
             /usr/local/etc/bash_completion \
-            /opt/local/etc/bash_completion \
             /etc/bash_completion \
             ~/.bash_completion ;
         do
@@ -144,10 +131,6 @@ if test -z "$BASH_COMPLETION" ; then
         done
     fi
     unset bash bmajor bminor
-fi
-
-if test -e "$HOME/bin/django_bash_completion"; then
-    . "$HOME/bin/django_bash_completion"
 fi
 
 # override and disable tilde expansion
