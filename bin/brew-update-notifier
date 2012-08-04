@@ -24,7 +24,7 @@ if [ -z "$outdated" ] ; then
 else
     # We've got an outdated formula or two
 
-    # Nofity via growl
+    # Nofity via Notification Center
     if [ -e $TERMINAL_NOTIFIER ]; then
         lc=$((`echo "$outdated" | wc -l`))
         outdated=`echo "$outdated" | tail -$lc`
