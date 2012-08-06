@@ -1,14 +1,64 @@
+#
+# Global Git Configuration
+#
+
 [alias]
-    st = status -sb
-    ci = commit
-    br = branch
-    co = checkout
+    # Branch
+    b = branch
+
+    ## checkout/fetch/merge/push/rebase
+
+    # clone
     clone = clone --recursive
-    df = diff
+
+    # checkout
+    co = checkout
+    co0 = checkout HEAD --
+
+    # fetch
+    f = fetch
+
+    # merge
+    m = merge
+    mom = merge origin/master
+
+    # push
+    p = push
+    pa = push --all
+    pt = push --tags
+
+    # rebase
+    r = rebase
+
+    # commit
+    c = commit -v
+    cm = commit --message
+
+    # diff
+    d = diff
+    ds = diff --staged
+    dh = diff HEAD
+
+    # log
+    l   = log --topo-order --pretty=format:'%C(yellow)%h %C(cyan)%cn %C(blue)%cr%C(reset) %s'
+    ls  = log --topo-order --stat --pretty=format:'%C(bold)%C(yellow)Commit:%C(reset) %C(yellow)%H%C(red)%d%n%C(bold)%C(yellow)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)%C(yellow)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+    ld  = log --topo-order --stat --patch --full-diff --pretty=format:'%C(bold)%C(yellow)Commit:%C(reset) %C(yellow)%H%C(red)%d%n%C(bold)%C(yellow)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)%C(yellow)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+    lg  = log --topo-order --all --graph --pretty=format:'%C(yellow)%h%C(reset) %s %C(red)%d%C(reset)%n'
+    lga = log --topo-order --all --graph --pretty=format:'%C(yellow)%h %C(cyan)%cn%C(reset) %s %C(red)%d%C(reset)%n'
+    lm  = log --topo-order --pretty=format:'%s'
+    lh  = shortlog --summary --numbered
+    llf = fsck --lost-found
     hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
     #hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    type = cat-file -t
+
+    # status
+    st = status -sb
+
+    # stash
     stashdiff = stash show -u
+
+    # others
+    type = cat-file -t
     undopush = push -f origin HEAD^:master
     unstage = reset HEAD
     uncommit = reset --soft HEAD~1
@@ -27,14 +77,16 @@
 	merge = refs/heads/master
 
 [core]
-    excludesfile = ~/.gitignore
-    attributesfile = ~/.gitattributes
     # Treat certain kinds of whitespace as errors
-    whitespace = -indent-with-non-tab,cr-at-eol,space-before-tab,trailing-space
+    whitespace = fix,-indent-with-non-tab,cr-at-eol,space-before-tab,trailing-space
     pager = less -FXRS -x2
 
 [color]
-    ui = auto
+    diff = auto
+    status = auto
+    interactive = auto
+    ui = true
+    pager = true
 
 [color "branch"]
 	current = yellow

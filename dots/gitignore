@@ -1,14 +1,40 @@
-# Folder view configuration files
-.DS_Store
-Desktop.ini
+# Git global ignores
 
-# Thumbnail cache files
+# OS generated files
 ._*
-Thumbs.db
-
-# Files on external disks
+.cache
 .Spotlight-V100
 .Trashes
+.DS_Store
+desktop.ini
+ehthumbs.db
+Thumbs.db
 
-# Compiled python files
+# IDE specific
+dwsync.xml
+*.tmp
+*.wpr
+*.project
+*.cproject
+*.tmproj
+*.tmproject
+*.vi
+*.komodoproject
+.komodotools
+nbproject
+
+# Compiled source
 *.pyc
+*.pyo
+
+# Other dev-related files
+*.bak
+*.orig
+*.sass-cache
+.directory
+*~
+.svn/*
+*.swp
+svn-commit.*
+tags
+TAGS

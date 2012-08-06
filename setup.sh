@@ -27,5 +27,5 @@ done
 
 # Setup some system defaults
 if [[ Darwin == $(uname) ]]; then
-    source $SCRIPT_DIR/defaults/osx.sh
+    source $SCRIPT_DIR/deploy/osx.sh
 fi

@@ -1,7 +1,15 @@
 
+# Global Settings
+#VisualHostKey yes
+#ConnectTimeout 2
+ForwardAgent yes
+HashKnownHosts no
 Compression yes
 TCPKeepAlive yes
+ServerAliveCountMax 6
 ServerAliveInterval 30
+
+# My Hosts
 
 Host rowdy-icloud
   HostName rowdy.29541183.members.btmm.icloud.com
@@ -50,3 +58,10 @@ Host heroku.educreations
   HostName heroku.com
   IdentityFile /Users/streeter/.ssh/identity.heroku.educreations
   IdentitiesOnly yes
+
+# Default
+Host *
+    User streeter
+    StrictHostKeyChecking ask
+    ControlMaster auto
+    #ControlPath ~/.ssh/master/%r@%h:%p
