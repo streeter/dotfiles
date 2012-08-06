@@ -77,6 +77,8 @@
 	merge = refs/heads/master
 
 [core]
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
     # Treat certain kinds of whitespace as errors
     whitespace = fix,-indent-with-non-tab,cr-at-eol,space-before-tab,trailing-space
     pager = less -FXRS -x2
