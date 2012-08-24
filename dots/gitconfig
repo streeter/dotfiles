@@ -116,6 +116,9 @@
 [help]
     autocorrect = 1
 
+[init]
+    templatedir = "~/.gittemplate"
+
 [merge]
     stat = true
     # Include summaries of merged commits in newly created merge commit messages
