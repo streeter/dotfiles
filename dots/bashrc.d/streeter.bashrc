@@ -5,10 +5,12 @@ if [ -e ~/.ec2 ]; then
     #export PATH=$PATH:$EC2_HOME/bin
     export EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
     export EC2_CERT=`ls $EC2_HOME/cert-*.pem`
-    export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+    export JAVA_HOME="$(/usr/libexec/java_home)"
     export AWS_ACCESS_KEY_ID=`cat $EC2_HOME/aws_access_key_id`
     export AWS_SECRET_ACCESS_KEY=`cat $EC2_HOME/aws_secret_access_key`
-    export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.5/jars"
+    export AWS_CREDENTIAL_FILE="$EC2_HOME/aws_credential_file"
+    export AWS_IAM_HOME="$(brew --prefix aws-iam-tools)/jars"
+    export EC2_HOME="$(brew --prefix ec2-api-tools)/jars"
 fi
 
 ## Python virtual environment stuff
