@@ -2,12 +2,11 @@
 
 if [ -e ~/.ec2 ]; then
     export EC2_HOME=~/.ec2
-    #export PATH=$PATH:$EC2_HOME/bin
-    export EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
-    export EC2_CERT=`ls $EC2_HOME/cert-*.pem`
     export JAVA_HOME="$(/usr/libexec/java_home)"
     export AWS_ACCESS_KEY_ID=`cat $EC2_HOME/aws_access_key_id`
     export AWS_SECRET_ACCESS_KEY=`cat $EC2_HOME/aws_secret_access_key`
+    export AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID
+    export AWS_SECRET_KEY=$AWS_SECRET_ACCESS_KEY
     export AWS_CREDENTIAL_FILE="$EC2_HOME/aws_credential_file"
     export AWS_IAM_HOME="$(brew --prefix aws-iam-tools)/jars"
     export EC2_HOME="$(brew --prefix ec2-api-tools)/jars"
