@@ -59,11 +59,6 @@ Host rs
   IdentitiesOnly yes
 
 # Heroku configs
-Host heroku.hubot
-  HostName heroku.com
-  IdentityFile /Users/streeter/.ssh/identity.heroku.hubot
-  IdentitiesOnly yes
-
 Host heroku.personal
   HostName heroku.com
   IdentityFile /Users/streeter/.ssh/identity.heroku.personal
@@ -74,6 +69,7 @@ Host heroku.educreations
   IdentityFile /Users/streeter/.ssh/identity.heroku.educreations
   IdentitiesOnly yes
 
+# AWS Hosts
 Host *.compute-1.amazonaws.com
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null
