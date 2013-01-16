@@ -28,18 +28,33 @@ Host hal
   User cstreetr
   IdentitiesOnly yes
 
+Host irc
+  HostName irc.housing.berkeley.edu
+  User cstreetr
+  IdentitiesOnly yes
+
+
 Host ocf
   HostName ocf.berkeley.edu
   User streeter
 #  IdentitiesOnly yes
 
+Host scout
+  HostName scout.local
+  User streeter
+  IdentitiesOnly yes
+  Compression yes
+  CompressionLevel 9
+
 Host home
   HostName cstreeter.homeip.net
   User streeter
   IdentitiesOnly yes
+  Compression yes
+  CompressionLevel 9
 
 Host rs
-  HostName chrisstreeter.com
+  HostName chrisstreeter.net
   User streeter
   IdentitiesOnly yes
 
@@ -58,6 +73,10 @@ Host heroku.educreations
   HostName heroku.com
   IdentityFile /Users/streeter/.ssh/identity.heroku.educreations
   IdentitiesOnly yes
+
+Host *.compute-1.amazonaws.com
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
 
 # Default
 Host *
