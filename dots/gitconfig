@@ -110,19 +110,11 @@
 	untracked = red
     nobranch = red
 
-[diff]
-    renames = copies
-
 [help]
     autocorrect = 1
 
 [init]
     templatedir = "~/.gittemplate"
-
-[merge]
-    stat = true
-    # Include summaries of merged commits in newly created merge commit messages
-    log = true
 
 [push]
     default = current
@@ -145,3 +137,16 @@
 	email = chris@chrisstreeter.com
 [heroku]
 	account = personal
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+	tool = Kaleidoscope
+[difftool]
+	prompt = false
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
