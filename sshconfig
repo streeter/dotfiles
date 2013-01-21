@@ -47,7 +47,7 @@ Host scout
   CompressionLevel 9
 
 Host home
-  HostName cstreeter.homeip.net
+  HostName streeter.dyndns.org
   User streeter
   IdentitiesOnly yes
   Compression yes
