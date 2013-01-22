@@ -238,6 +238,9 @@ defaults write com.apple.iTunes hide-ping-dropdown -bool true
 # Make ⌘ + F focus the search input in iTunes
 defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
 
+# Disable auto-playing when importing
+defaults write com.apple.iTunes play-songs-while-importing -bool FALSE
+
 # Disk Utilty Debug Menu
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 
