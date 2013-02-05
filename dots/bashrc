@@ -254,6 +254,7 @@ unset ALIAS_DIR
 # Python virtualenvwrapper Setup
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_DOWNLOAD_CACHE=$HOME/.pip-cache
 
 if [ -e "${HOME}/.bashrc.d/virtualenvwrapper.bashrc" ]; then
     source "${HOME}/.bashrc.d/virtualenvwrapper.bashrc"
