@@ -22,6 +22,11 @@ Host mordecai-icloud
   AddressFamily inet6
   Protocol 2
 
+Host swanson
+  HostName swanson.local
+  User streeter
+  IdentitiesOnly yes
+
 Host hal
   HostName hal.rescomp.berkeley.edu
   User cstreetr
