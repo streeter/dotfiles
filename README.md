@@ -1,5 +1,8 @@
-About
------
+(dot)files
+==========
 
 My collection of dotfiles.  Install by running the
 `./setup.sh` script from inside the directory.
+
+On Mac OS, this might quit some of your open applications.
+You've been warned.
