@@ -9,7 +9,6 @@
 TERM_APP='/Applications/Terminal.app'
 BREW_EXEC='/usr/local/bin/brew'
 TERMINAL_NOTIFIER=`which terminal-notifier`
-TERMINAL_NOTIFIER='/Users/streeter/.rvm/gems/ruby-1.9.3-p194/bin/terminal-notifier'
 NOTIF_ARGS="-activate com.apple.Terminal"
 
 $BREW_EXEC update 2>&1 > /dev/null
