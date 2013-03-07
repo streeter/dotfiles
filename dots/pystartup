@@ -67,7 +67,10 @@ def my_displayhook(value):
         except ImportError:
             __builtins__._ = value
 
-        pprint.pprint(value)
+        try:
+            pprint.pprint(value)
+        except NameError:
+            print(value)
 sys.displayhook = my_displayhook
 
 
