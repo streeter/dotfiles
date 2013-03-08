@@ -6,3 +6,11 @@ My collection of dotfiles.  Install by running the
 
 On Mac OS, this might quit some of your open applications.
 You've been warned.
+
+License
+-------
+
+Licensed under the [MIT][mit] license.
+
+
+[mit]: http://opensource.org/licenses/MIT
