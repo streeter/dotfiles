@@ -9,7 +9,7 @@ fi
 # Setup Homebrew Packages                                                     #
 ###############################################################################
 
-PACKAGES="coreutils screen proctools"
+PACKAGES="coreutils proctools hub"
 brew install $PACKAGES
 
 
