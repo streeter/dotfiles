@@ -10,9 +10,12 @@ if [ "$UNAME" = Darwin ]; then
     alias ls='ls -GF'
     alias ll='ls -lk'
 
-    alias gvim='open -a /Applications/MacVim.app'
+    test -e '~/Applications/MacVim.app' &&
+    alias gvim='open -a ~/Applications/MacVim.app'
 
-    alias git=hub
+    if hash hub 2>/dev/null; then
+        alias git=hub
+    fi
 
     alias subl='subl -n'
     alias sub=subl
