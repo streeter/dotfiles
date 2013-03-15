@@ -150,3 +150,5 @@
 	prompt = false
 [merge]
 	tool = Kaleidoscope
+[credential]
+	helper = osxkeychain
