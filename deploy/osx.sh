@@ -9,7 +9,7 @@ fi
 # Setup Homebrew Packages                                                     #
 ###############################################################################
 
-PACKAGES="coreutils proctools hub"
+PACKAGES="coreutils proctools hub bash-completion htop git screen python ec2-api-tools"
 brew install $PACKAGES
 
 
