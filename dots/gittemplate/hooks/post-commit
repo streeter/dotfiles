@@ -7,7 +7,7 @@ mkdir -p $SHOT_DIR
 FILENAME=`date "+%Y-%m-%d-%H:%M:%S"`.jpg
 FILE="$SHOT_DIR/$FILENAME"
 
-if command -v imagesnap; then
-    echo "Taking picture into $FILE"
-    imagesnap -q -w 3 $FILE
-fi
+#if command -v imagesnap; then
+#    echo "Taking picture into $FILE"
+#    imagesnap -q -w 3 $FILE
+#fi
