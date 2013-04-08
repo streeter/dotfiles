@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SCRIPT_DIR=`dirname $0`
 SCRIPT_DIR=`pwd`"/${SCRIPT_DIR}"
@@ -26,6 +26,7 @@ for f in `ls $SCRIPT_DIR/dots`; do
 done
 
 # Setup some system defaults
-if [[ Darwin == $(uname) ]]; then
+unamestr=`uname`
+if [[ "$unamestr" == 'Darwin' ]]; then
     source $SCRIPT_DIR/deploy/osx.sh
 fi
