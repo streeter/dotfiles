@@ -44,7 +44,7 @@ Host ocf
 #  IdentitiesOnly yes
 
 Host scout
-  HostName scout.local
+  HostName 10.1.10.13
   User streeter
   IdentitiesOnly yes
   Compression yes
@@ -57,10 +57,11 @@ Host home
   Compression yes
   CompressionLevel 9
 
-Host rs
-  HostName chrisstreeter.net
+Host cstreeter.homeip.net
   User streeter
   IdentitiesOnly yes
+  Compression yes
+  CompressionLevel 9
 
 # Heroku configs
 Host heroku.personal
@@ -77,6 +78,9 @@ Host heroku.educreations
 Host *.compute-1.amazonaws.com
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null
+
+Host *.internal
+    HostName %h.educreations.com
 
 # Default
 Host *
