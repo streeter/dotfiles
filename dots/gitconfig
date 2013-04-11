@@ -50,6 +50,7 @@
     llf = fsck --lost-found
     hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
     #hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
 
     # status
     st = status -sb
@@ -73,8 +74,8 @@
 
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
-	remote = origin
-	merge = refs/heads/master
+    remote = origin
+    merge = refs/heads/master
 
 [core]
     excludesfile = ~/.gitignore
@@ -91,9 +92,9 @@
     pager = true
 
 [color "branch"]
-	current = yellow
-	local = normal
-	remote = red
+    current = yellow
+    local = normal
+    remote = red
 
 [color "diff"]
     plain = normal
@@ -106,8 +107,8 @@
 [color "status"]
     header = normal
     updated = yellow
-	changed = cyan
-	untracked = red
+    changed = cyan
+    untracked = red
     nobranch = red
 
 [help]
@@ -121,36 +122,40 @@
 
 # URL shorthands
 [url "git@github.com:"]
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
+    insteadOf = "gh:"
+    insteadOf = "git://github.com/"
+    insteadOf = "https://github.com/"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
-	insteadOf = "github:"
+    insteadOf = "github:"
 [url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
+    insteadOf = "gst:"
+    insteadOf = "https://gist.github.com/"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
-	insteadOf = "gist:"
+    insteadOf = "gist:"
+
 [user]
-	name = Chris Streeter
-	email = chris@chrisstreeter.com
+    name = Chris Streeter
+    email = chris@chrisstreeter.com
 [heroku]
-	account = personal
+    account = personal
 [difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
-	tool = Kaleidoscope
+    tool = Kaleidoscope
 [difftool]
-	prompt = false
+    prompt = false
 [mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
 [mergetool]
-	prompt = false
+    prompt = false
 [merge]
-	tool = Kaleidoscope
+    tool = Kaleidoscope
 [credential]
-	helper = osxkeychain
-[remote "origin"]
-    fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+    helper = osxkeychain
+#[remote "origin"]
+#    fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
