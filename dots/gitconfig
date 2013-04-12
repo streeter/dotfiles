@@ -29,6 +29,8 @@
 
     # rebase
     r = rebase
+    purr = pull --rebase
+    ready = rebase -i @{u}
 
     # commit
     c = commit -v
@@ -64,6 +66,8 @@
     unstage = reset HEAD
     uncommit = reset --soft HEAD~1
     wdiff = diff --word-diff
+    ignored = ls-files --others -i --exclude-standard
+    wipe = reset --hard HEAD
 
 [apply]
     # Detect whitespace errors when applying a patch
