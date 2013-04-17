@@ -68,6 +68,11 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 # Cleanup the "Open With" menu
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
+# Show most used commands
+mostusedf() {
+    history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head -n 20
+}
+alias mostused=mostusedf
 
 # File size
 alias fs="stat -f \"%z bytes\""
