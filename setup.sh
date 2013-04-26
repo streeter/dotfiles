@@ -25,6 +25,14 @@ for f in `ls $SCRIPT_DIR/dots`; do
     lns "${SCRIPT_DIR}/dots/$f" "${HOME}/.${f}"
 done
 
+echo "Linking virtualenv hooks to the virtualenv directory:"
+for f in `ls $SCRIPT_DIR/virtualenvs`; do
+    if [ -e "${HOME}/.virtualenvs/${f}" ]; then
+        rm "${HOME}/.virtualenvs/${f}"
+    fi
+    lns "${SCRIPT_DIR}/virtualenvs/$f" "${HOME}/.virtualenvs/${f}"
+done
+
 # Setup some system defaults
 unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
