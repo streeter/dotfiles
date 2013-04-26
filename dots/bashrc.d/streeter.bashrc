@@ -20,7 +20,7 @@ export PIP_RESPECT_VIRTUALENV=true
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 # Python de-optimization
-export PYTHONDONTWRITEBYTECODE="true"
+#export PYTHONDONTWRITEBYTECODE="true"
 
 ## RVM
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
