@@ -15,7 +15,7 @@ case \$VIRTUAL_ENV in
     *\\${VIRTUAL_ENV##*/})
         ;;
     *)
-        workon \\${VIRTUAL_ENV##*/}
+        workon ${VIRTUAL_ENV##*/}
         ;;
 esac
 EOF
