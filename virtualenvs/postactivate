@@ -7,7 +7,7 @@ if [[ ! -e "${VIRTUAL_ENV}/.project" ]]; then
 fi
 
 __env_file="$(cat "${VIRTUAL_ENV}/.project")/.env"
-if [[] ! -e "${__env_file}" ]]; then
+if [[ ! -e "${__env_file}" ]]; then
     echo "Creating ${__env_file}"
     cat > "${__env_file}" <<EOF
 #!/bin/bash
