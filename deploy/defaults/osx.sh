@@ -260,6 +260,19 @@ defaults write com.apple.terminal StringEncodings -array 4
 #defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true
 
+###############################################################################
+# Quicktime                                                                   #
+###############################################################################
+
+# Do not restore last active video
+defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
+
+###############################################################################
+# Preview                                                                     #
+###############################################################################
+
+# Do not restore last active video
+defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
 
 ###############################################################################
 # Time Machine                                                                #
