@@ -44,7 +44,7 @@ Host ocf
 #  IdentitiesOnly yes
 
 Host scout
-  HostName 10.1.10.13
+  HostName 10.1.10.10
   User streeter
   IdentitiesOnly yes
   Compression yes
