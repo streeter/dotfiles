@@ -99,7 +99,7 @@
     diff = auto
     status = auto
     interactive = auto
-    ui = true
+    ui = auto
     pager = true
 
 [color "branch"]
