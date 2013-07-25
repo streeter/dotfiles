@@ -61,7 +61,7 @@ umask 0022
 # ----------------------------------------------------------------------
 
 # we want the various sbins on the path along with /usr/local/bin
-PATH="/usr/local/share/python:/usr/local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 
 test -d "$HOME/bin" &&
     PATH="$HOME/bin:$PATH"
