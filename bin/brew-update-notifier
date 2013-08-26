@@ -9,7 +9,7 @@
 TERM_APP='/Applications/Terminal.app'
 BREW_EXEC='/usr/local/bin/brew'
 TERMINAL_NOTIFIER=`which terminal-notifier`
-NOTIF_ARGS="-activate com.apple.Terminal"
+NOTIF_ARGS="-sender com.apple.Terminal -activate com.apple.Terminal"
 
 $BREW_EXEC update 2>&1 > /dev/null
 outdated=`$BREW_EXEC outdated | tr ' ' '\n'`
