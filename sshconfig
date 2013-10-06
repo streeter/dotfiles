@@ -39,7 +39,7 @@ Host irc
 
 
 Host ocf
-  HostName ocf.berkeley.edu
+  HostName ssh.ocf.berkeley.edu
   User streeter
 #  IdentitiesOnly yes
 
