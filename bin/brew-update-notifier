@@ -6,10 +6,11 @@
 # Requires: terminal-notifier. Install with:
 #   brew install terminal-notifier
 
-PATH="/usr/local/bin:${PATH}"
+export SSH_AUTH_SOCK=$( ls /tmp/launch-*/Listeners )
 
+PATH="/usr/local/bin:${PATH}"
 TERM_APP='/Applications/Terminal.app'
-BREW_EXEC='/usr/local/bin/brew'
+BREW_EXEC=`which brew`
 TERMINAL_NOTIFIER=`which terminal-notifier`
 NOTIF_ARGS="-sender com.apple.Terminal -activate com.apple.Terminal"
 
