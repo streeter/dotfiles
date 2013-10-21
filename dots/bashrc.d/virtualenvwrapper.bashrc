@@ -11,7 +11,7 @@ if [[ $(type -t workon) != function ]]; then
     SCRIPT_NAME='virtualenvwrapper.sh'
 
     # Python virtualenvwrapper can load really slowly, so load it on demand.
-    #SCRIPT_NAME='virtualenvwrapper_lazy.sh'
+    SCRIPT_NAME='virtualenvwrapper_lazy.sh'
 
     _try_source() { [[ -f $1 ]] || return; source "$1"; return 0; }
 
