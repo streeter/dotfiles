@@ -45,7 +45,9 @@ alias screen='screen -dR'
 
 calc(){ awk "BEGIN{ print $* }" ;}
 
-alias gs='git st'
+alias g=git
+alias gs='g st'
+alias gch='g checkout'
 
 ipython_test=`which ipython`
 if [ $? -eq 0 ]; then
