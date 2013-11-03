@@ -57,8 +57,9 @@ Host home
   Compression yes
   CompressionLevel 9
 
-Host cstreeter.homeip.net
-  User streeter
+Host mac-mini
+  HostName educreations.dyndns.org
+  User jenkins
   IdentitiesOnly yes
   Compression yes
   CompressionLevel 9
