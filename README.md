@@ -7,6 +7,11 @@ My collection of dotfiles.  Install by running the
 On Mac OS, this might quit some of your open applications.
 You've been warned.
 
+TODO
+----
+
+- [ ] Swich to ZSH
+
 License
 -------
 
