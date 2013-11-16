@@ -4,9 +4,13 @@ AWS_HOME="${HOME}/.aws"
 
 if [ -e $AWS_HOME ]; then
     export AWS_HOME
-    export AWS_ACCESS_KEY_ID=`cat $AWS_HOME/aws_access_key_id`
-    export AWS_SECRET_ACCESS_KEY=`cat $AWS_HOME/aws_secret_access_key`
-    export AWS_CREDENTIAL_FILE="$AWS_HOME/aws_credential_file"
+    export AWS_CONFIG_FILE="${AWS_HOME}/config"
+
+    # Grab the last set values in the config file
+    export AWS_DEFAULT_OUTPUT=$(grep '^output' ${AWS_CONFIG_FILE} | cut -d= -f2 | tr -d ' ' | tail -1)
+    #export AWS_DEFAULT_REGION=$(grep '^region' ${AWS_CONFIG_FILE} | cut -d= -f2 | tr -d ' ' | tail -1)
+    #export AWS_ACCESS_KEY_ID=$(grep '^aws_access_key_id' ${AWS_CONFIG_FILE} | cut -d= -f2 | tr -d ' ' | tail -1)
+    #export AWS_SECRET_ACCESS_KEY=$(grep '^aws_secret_access_key' ${AWS_CONFIG_FILE} | cut -d= -f2 | tr -d ' ' | tail -1)
 fi
 
 ## Python virtual environment stuff
