@@ -1,15 +1,12 @@
 #!/bin/bash
 
-if [ -e ~/.ec2 ]; then
-    export EC2_HOME=~/.ec2
-    export JAVA_HOME="$(/usr/libexec/java_home)"
-    export AWS_ACCESS_KEY_ID=`cat $EC2_HOME/aws_access_key_id`
-    export AWS_SECRET_ACCESS_KEY=`cat $EC2_HOME/aws_secret_access_key`
-    export AWS_ACCESS_KEY=$AWS_ACCESS_KEY_ID
-    export AWS_SECRET_KEY=$AWS_SECRET_ACCESS_KEY
-    export AWS_CREDENTIAL_FILE="$EC2_HOME/aws_credential_file"
-    export AWS_IAM_HOME="/usr/local/opt/aws-iam-tools/jars"
-    export EC2_HOME="/usr/local/opt/ec2-api-tools/jars"
+AWS_HOME="${HOME}/.aws"
+
+if [ -e $AWS_HOME ]; then
+    export AWS_HOME
+    export AWS_ACCESS_KEY_ID=`cat $AWS_HOME/aws_access_key_id`
+    export AWS_SECRET_ACCESS_KEY=`cat $AWS_HOME/aws_secret_access_key`
+    export AWS_CREDENTIAL_FILE="$AWS_HOME/aws_credential_file"
 fi
 
 ## Python virtual environment stuff
