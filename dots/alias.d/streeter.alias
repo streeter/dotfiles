@@ -22,5 +22,5 @@ if [ "$UNAME" = Darwin ]; then
     alias mate=subl
 fi
 
-alias essh=ec2-ssh
-alias ehost=ec2-host
+alias essh='awsactivate educreations && ec2-ssh'
+alias ehost='awsactivate educreations && ec2-host'
