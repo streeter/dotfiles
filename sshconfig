@@ -1,14 +1,6 @@
-# Global Settings
-#VisualHostKey yes
-#ConnectTimeout 2
-ForwardAgent yes
-HashKnownHosts no
-Compression yes
-TCPKeepAlive yes
-ServerAliveCountMax 6
-ServerAliveInterval 30
-
-# My Hosts
+##
+# More specific entries at the top
+#
 
 Host rowdy-icloud
   HostName rowdy.29541183.members.btmm.icloud.com
@@ -16,76 +8,97 @@ Host rowdy-icloud
   AddressFamily inet6
   Protocol 2
 
-Host mordecai-icloud
-  HostName mordecai.29541183.members.btmm.icloud.com
+Host scout
+  HostName 10.1.10.10
   User streeter
-  AddressFamily inet6
-  Protocol 2
+  ForwardAgent yes
+  IdentitiesOnly yes
+
+Host home
+  HostName streeter.dyndns.org
+  User streeter
+  ForwardAgent yes
+  IdentitiesOnly yes
+
+# Swanson
 
 Host swanson
   HostName swanson.local
   User streeter
+  ForwardAgent yes
   IdentitiesOnly yes
 
+Host mac-mini
+  HostName educreations.dyndns.org
+  User jenkins
+  ForwardAgent yes
+  IdentitiesOnly yes
+
+
+# Cal
+#
 Host hal
   HostName hal.rescomp.berkeley.edu
   User cstreetr
+  ForwardAgent no
   IdentitiesOnly yes
 
 Host irc
   HostName irc.housing.berkeley.edu
   User cstreetr
+  ForwardAgent no
   IdentitiesOnly yes
-
 
 Host ocf
   HostName ssh.ocf.berkeley.edu
   User streeter
-#  IdentitiesOnly yes
-
-Host scout
-  HostName 10.1.10.10
-  User streeter
+  ForwardAgent no
   IdentitiesOnly yes
-  Compression yes
-  CompressionLevel 9
 
-Host home
-  HostName streeter.dyndns.org
-  User streeter
-  IdentitiesOnly yes
-  Compression yes
-  CompressionLevel 9
 
-Host mac-mini
-  HostName educreations.dyndns.org
-  User jenkins
-  IdentitiesOnly yes
-  Compression yes
-  CompressionLevel 9
-
-# Heroku configs
+# Heroku
+#
 Host heroku.personal
-  HostName heroku.com
-  IdentityFile /Users/streeter/.ssh/identity.heroku.personal
-  IdentitiesOnly yes
+  IdentityFile ~/.ssh/identity.heroku.personal
 
 Host heroku.educreations
-  HostName heroku.com
-  IdentityFile /Users/streeter/.ssh/identity.heroku.educreations
-  IdentitiesOnly yes
+  IdentityFile ~/.ssh/identity.heroku.educreations
 
-# AWS Hosts
+Host heroku.*
+  HostName heroku.com
+  IdentitiesOnly yes
+  ForwardAgent no
+
+
+# EC Internal
+#
+Host *.internal
+  HostName %h.educreations.com
+
+
+# AWS
+#
+Host *.us-west-2.compute-1.amazonaws.com
+  IdentityFile ~/.ssh/aws.personal
+
 Host *.compute-1.amazonaws.com
+  ForwardAgent yes
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/aws.educreations
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null
 
-Host *.internal
-    HostName %h.educreations.com
-
-# Default
+# General Defaults
+#
 Host *
-    User streeter
-    StrictHostKeyChecking ask
-    ControlMaster auto
-    #ControlPath ~/.ssh/master/%r@%h:%p
+  User streeter
+  StrictHostKeyChecking ask
+  Compression yes
+  #ConnectTimeout 2
+  #ControlMaster auto
+  #ControlPath ~/.ssh/master/%r@%h:%p
+  IdentityFile ~/.ssh/id_dsa
+  ServerAliveCountMax 3
+  ServerAliveInterval 15
+  TCPKeepAlive yes
+  #VisualHostKey yes
