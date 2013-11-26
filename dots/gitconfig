@@ -94,6 +94,7 @@
     # Treat certain kinds of whitespace as errors
     whitespace = fix,-indent-with-non-tab,cr-at-eol,space-before-tab,trailing-space
     pager = less -FXRS -x2
+    trustctime = false
 
 [color]
     diff = auto
