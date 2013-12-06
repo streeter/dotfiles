@@ -31,6 +31,9 @@ defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
 # Disable automatic termination of inactive apps
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
+# Disable notification of iPad not charging
+sudo defaults write com.apple.usbd NoiPadNotifications -bool YES
+
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
