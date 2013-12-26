@@ -78,7 +78,7 @@ Host *.internal
 
 # AWS
 #
-Host *.us-west-2.compute-1.amazonaws.com
+Host *.us-west-2.compute.amazonaws.com
   IdentityFile ~/.ssh/aws.personal
 
 Host *.compute-1.amazonaws.com
