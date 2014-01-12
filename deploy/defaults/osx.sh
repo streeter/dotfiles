@@ -139,7 +139,7 @@ chflags nohidden ~/Library
 ###############################################################################
 
 # Turn off Dock auto-hiding
-defaults write com.apple.dock autohide -bool false
+defaults write com.apple.dock autohide -bool true
 
 # Make the Dock appear on the left side
 defaults write com.apple.dock orientation "left"
