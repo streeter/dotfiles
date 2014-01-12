@@ -33,6 +33,10 @@ for f in `ls $SCRIPT_DIR/virtualenvs`; do
     lns "${SCRIPT_DIR}/virtualenvs/$f" "${HOME}/.virtualenvs/${f}"
 done
 
+# Install the vim bundles
+echo "Installing vim bundles with vundle..."
+vim -c "BundleInstall" -c "q" -c "q"
+
 # Setup some system defaults
 unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
