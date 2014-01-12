@@ -32,6 +32,7 @@ defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
 # Disable notification of iPad not charging
+echo "Need root to disable iPad not charging notifications..."
 sudo defaults write com.apple.usbd NoiPadNotifications -bool YES
 
 
