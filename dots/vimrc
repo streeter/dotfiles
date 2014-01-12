@@ -3,14 +3,8 @@
 " Use VIM commands; don't bother with VI compatibiilty
 set nocompatible
 
-" Setup Pathogen
-call pathogen#runtime_append_all_bundles()
-
 " Turn syntax highlighting on
 syntax enable
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
 
 " Enable loading filetype and indentation plugins
 filetype on " without this vim emits a zero exit status, later, because of :ft off
@@ -25,6 +19,12 @@ endif
 
 " Ensure ftdetect et al work by including this after the Vundle stuff
 filetype plugin indent on
+
+" Solarized color scheme
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
 
 "
 " GLOBAL SETTINGS
