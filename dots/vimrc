@@ -1,117 +1,80 @@
 " Begin .vimrc
 
+" Use VIM commands; don't bother with VI compatibiilty
+set nocompatible
+
 " Setup Pathogen
 call pathogen#runtime_append_all_bundles()
 
-" Enable loading filetype and indentation plugins
-filetype plugin on
-filetype indent on
-
 " Turn syntax highlighting on
-syntax on
+syntax enable
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
+
+" Enable loading filetype and indentation plugins
+filetype on " without this vim emits a zero exit status, later, because of :ft off
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Install Vundle bundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+  source ~/.vimrc.bundles.local
+endif
+
+" Ensure ftdetect et al work by including this after the Vundle stuff
+filetype plugin indent on
 
 "
 " GLOBAL SETTINGS
 "
 
-" Use VIM commands
-set nocompatible
+set autoindent
+set autoread            " Watch for file changes by other programs
+set autowrite           " Write contents of the file, if it has been modified, on buffer exit
+set aw
+set backspace=indent,eol,start      " Allow backspacing over everything
+set clipboard=unnamed   " Yank and paste with the system clipboard
+set cmdheight=2         " Display 2 lines for the command line height
+set completeopt=menu,longest,preview    " Insert mode completion options
+set directory-=.        " Don't store swapfiles in the current directory
+set encoding=utf-8      " Use UTF-8 as the default buffer encoding
+set expandtab           " Use spaces instead of tabs
+set foldenable          " Enable folding
+set history=200         " Remember up to 200 'colon' commmands and search patterns
+set hlsearch            " Highlight the results of a search
+set ignorecase          " Case-insensitive search
+set incsearch           " Enable incremental search
+set laststatus=2        " Always show status line, even for one window
+set list                " Show trailing whitespace
+set listchars=tab:▸\ ,trail:▫
+set matchtime=2         " Jump to matching bracket for 2/10th of a second (works with showmatch)
+set more                " Display the 'more' prompt
+set nobackup            " Do not produce backup files
+set nocursorline        " Don't highlight the current line
+set nowritebackup
+set ruler               " Show line, column number, and relative position within a file in the status line
+set scrolloff=3         " Scroll when cursor gets within 3 characters of top/bottom edge
+set shiftround          " Round indent to multiple of 'shiftwidth' for > and < commands
+set shiftwidth=4        " Use 4 spaces for (auto)indent
+set showcmd             " Show (partial) commands (or size of selection in Visual mode) in the status line
+set showmatch           " When a bracket is inserted, briefly jump to a matching one
+set smartcase           " Case-sensitive search if any caps
+set softtabstop=4       " Normal mode indentation commands use 4 spaces
+set t_RV=               " Don't request terminal version string (for xterm)
+set tabstop=4           " Use 4 spaces for <Tab> and :retab
+set undolevels=1000     " Allow up to 1000 levels of undo
+set visualbell          " Use a visual beep
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set wildmenu            " Use menu to show command-line completion (in 'full' case)
+set wildmode=longest,list,full
 
-" Write contents of the file, if it has been modified, on buffer exit
-set autowrite
-
-" Do not produce backup files
-set nobackup
-
-" Allow backspacing over everything
-set backspace=indent,eol,start
-
-" Insert mode completion options
-set completeopt=menu,longest,preview
-
-" Use UTF-8 as the default buffer encoding
-set enc=utf-8
-
-" Remember up to 200 'colon' commmands and search patterns
-set history=200
-
-" Enable incremental search
-set incsearch
-
-" Always show status line, even for one window
-set laststatus=2
-
-" When a bracket is inserted, briefly jump to a matching one
-set showmatch
-
-" Jump to matching bracket for 2/10th of a second (works with showmatch)
-set matchtime=2
-
-" Highlight the results of a search
-set hlsearch
-
-" Show line, column number, and relative position within a file in the status line
-set ruler
-
-" Scroll when cursor gets within 3 characters of top/bottom edge
-set scrolloff=3
-
-" Show (partial) commands (or size of selection in Visual mode) in the status line
-set showcmd
-
-" Don't request terminal version string (for xterm)
-set t_RV=
-
-" Use 4 spaces for <Tab> and :retab
-set tabstop=4
-
-" Use spaces instead of tabs
-set expandtab
-
-" Round indent to multiple of 'shiftwidth' for > and < commands
-set shiftround
-
-" Use 4 spaces for (auto)indent
-set shiftwidth=4
-
-" Use menu to show command-line completion (in 'full' case)
-set wildmenu
 
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
 
-" Display 2 lines for the command line height
-set cmdheight=2
-
-" Display the 'more' prompt
-set more
-
-" Use a visual beep
-set visualbell
-
-" Allow up to 1000 levels of undo
-set undolevels=1000
-
-" Watch for file changes by other programs
-set autoread
-
-
-
-" Global editing settings
-set aw
-set foldenable				" Enable folding
-
-" Do not wrap if the text is a php file.
-if &filetype == 'php'
-	set nowrap
-else
-	set wrapmargin=8
-endif
-
-set autoindent
 
 if has("gui_running")
 	set background=dark
@@ -132,6 +95,50 @@ endif
 
 " Setup some auto formating options
 set formatoptions=tnbl
+
+" Enable basic mouse behavior such as resizing buffers.
+set mouse=a
+if exists('$TMUX')  " Support resizing in tmux
+  set ttymouse=xterm2
+endif
+
+" keyboard shortcuts
+let mapleader = ','
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <leader>l :Align
+nmap <leader>a :Ack<space>
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
+nmap <leader>t :CtrlP<CR>
+nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+nmap <leader>] :TagbarToggle<CR>
+nmap <leader><space> :call whitespace#strip_trailing()<CR>
+nmap <leader>g :GitGutterToggle<CR>
+nmap <leader>c <Plug>Kwbd
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" in case you forgot to sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" plugin settings
+let g:ctrlp_match_window = 'order:ttb,max:20'
+let g:NERDSpaceDelims=1
+let g:gitgutter_enabled = 0
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --column'
+
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " Command aliases
 command! Q  quit
@@ -161,18 +168,22 @@ hi Folded guibg=gray20 ctermbg=blue ctermfg=white cterm=bold
 
 hi Constant ctermfg=6
 
-" Turn on auto-completion for smarty templates
-au FileType smarty exec('set dictionary=~/.vim/syntax/smarty.vim')
-au FileType smarty set complete+=k
-
-au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-au FileType html set omnifunc=htmlcomplete#CompleteTags
-au FileType xml set omnifunc=xmlcomplete#CompleteTags
-au FileType css set omnifunc=csscomplete#CompleteCSS
-
-" set list
 
 au FileType crontab setl backupcopy=yes
 au BufEnter /tmp/crontab.* setl backupcopy=yes
+
+" fdoc is yaml
+autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+" md is markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+" extra rails.vim help
+autocmd User Rails silent! Rnavcommand decorator      app/decorators            -glob=**/* -suffix=_decorator.rb
+autocmd User Rails silent! Rnavcommand observer       app/observers             -glob=**/* -suffix=_observer.rb
+autocmd User Rails silent! Rnavcommand feature        features                  -glob=**/* -suffix=.feature
+autocmd User Rails silent! Rnavcommand job            app/jobs                  -glob=**/* -suffix=_job.rb
+autocmd User Rails silent! Rnavcommand mediator       app/mediators             -glob=**/* -suffix=_mediator.rb
+autocmd User Rails silent! Rnavcommand stepdefinition features/step_definitions -glob=**/* -suffix=_steps.rb
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
 
 " End .vimrc
