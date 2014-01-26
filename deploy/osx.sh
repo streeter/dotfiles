@@ -9,8 +9,7 @@ fi
 # Setup Homebrew Packages                                                     #
 ###############################################################################
 
-PACKAGES="coreutils proctools hub bash-completion htop git python"
-brew install $PACKAGES
+brew bundle $SCRIPT_DIR/Brewfile
 
 
 ###############################################################################
