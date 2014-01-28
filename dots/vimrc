@@ -42,7 +42,7 @@ set directory-=.        " Don't store swapfiles in the current directory
 set encoding=utf-8      " Use UTF-8 as the default buffer encoding
 set expandtab           " Use spaces instead of tabs
 set foldenable          " Enable folding
-set history=200         " Remember up to 200 'colon' commmands and search patterns
+set history=500         " Remember up to N 'colon' commmands and search patterns
 set hlsearch            " Highlight the results of a search
 set ignorecase          " Case-insensitive search
 set incsearch           " Enable incremental search
@@ -53,6 +53,7 @@ set matchtime=2         " Jump to matching bracket for 2/10th of a second (works
 set more                " Display the 'more' prompt
 set nobackup            " Do not produce backup files
 set nocursorline        " Don't highlight the current line
+set nowrap              " Don't wrap lines
 set nowritebackup
 set ruler               " Show line, column number, and relative position within a file in the status line
 set scrolloff=3         " Scroll when cursor gets within 3 characters of top/bottom edge
@@ -76,20 +77,20 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal 
 
 
 if has("gui_running")
-	set background=dark
+  set background=dark
 
-	" Set the font to use
-	if has("gui_gtk2")
-		set guifont=Courier\ 10\ Pitch\ 9
-	elseif has("x11")
-		set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-	else
-		set guifont=Courier_New:h12:cDEFAULT
-	endif
+  " Set the font to use
+  if has("gui_gtk2")
+    set guifont=Courier\ 10\ Pitch\ 9
+  elseif has("x11")
+    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+  else
+    set guifont=Courier_New:h12:cDEFAULT
+  endif
 
-	if $HOME == '/Users/streeter'
-		set guifont=Courier\ New\ Bold\ 11
-	endif
+  if $HOME == '/Users/streeter'
+    set guifont=Courier\ New\ Bold\ 11
+  endif
 endif
 
 " Setup some auto formating options
@@ -102,11 +103,17 @@ if exists('$TMUX')  " Support resizing in tmux
 endif
 
 " keyboard shortcuts
-let mapleader = ','
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" control-P plugin shortcuts
+map <C-t> :CtrlP<CR>
+map <C-d> :NERDTreeToggle<CR>
+map <C-]> :TagbarToggle<CR>
+
+let mapleader = ','
 map <leader>l :Align
 nmap <leader>a :Ack<space>
 nmap <leader>b :CtrlPBuffer<CR>
@@ -128,7 +135,25 @@ let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 1
 let g:vim_json_syntax_conceal = 0
+
+let g:virtualenv_auto_activate = 1
+
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#empty_message = ''
+
+let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
+let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
+
+let NERDTreeIgnore=['\.vim$', '\.pyc$', '\~$']
+
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
