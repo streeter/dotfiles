@@ -41,6 +41,7 @@ cask install --appdir=/Applications macvim
 cask install --appdir=/Applications phinze-cask/f-lux
 cask install --appdir=/Applications postgres-app
 cask install --appdir=/Applications rdio
+cask install --appdir=/Applications sequel-pro
 cask install --appdir=/Applications timemachinescheduler
 cask install --appdir=/Applications vlc
 
