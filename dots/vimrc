@@ -1,10 +1,15 @@
 " Begin .vimrc
 
+"
+" Base Setup
+"
+
 " Use VIM commands; don't bother with VI compatibiilty
 set nocompatible
 
-" Turn syntax highlighting on
-syntax enable
+"
+" LAUNCH CONFIG
+"
 
 " Enable loading filetype and indentation plugins
 filetype on " without this vim emits a zero exit status, later, because of :ft off
@@ -20,64 +25,27 @@ endif
 " Ensure ftdetect et al work by including this after the Vundle stuff
 filetype plugin indent on
 
+"
+" COLORS
+"
+syntax enable               " Enable syntax processing
+
 " Solarized color scheme
-let g:solarized_termcolors=256
-set background=dark
 colorscheme solarized
+let g:solarized_termcolors=256
+set background=dark         " Tell solarized to use a dark background
 
+" colorscheme badwolf         " https://github.com/sjl/badwolf/
+let g:badwolf_tabline = 2   " Make the tab line lighter than the background.
+let g:badwolf_css_props_highlight = 1   " Turn on CSS properties highlighting
 
-"
-" GLOBAL SETTINGS
-"
+"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=None gui=NONE guifg=DarkGrey guibg=gray13
 
-set autoindent
-set autoread            " Watch for file changes by other programs
-set autowrite           " Write contents of the file, if it has been modified, on buffer exit
-set aw
-set backspace=indent,eol,start      " Allow backspacing over everything
-set clipboard=unnamed   " Yank and paste with the system clipboard
-set cmdheight=2         " Display 2 lines for the command line height
-set completeopt=menu,longest,preview    " Insert mode completion options
-set directory-=.        " Don't store swapfiles in the current directory
-set encoding=utf-8      " Use UTF-8 as the default buffer encoding
-set expandtab           " Use spaces instead of tabs
-set foldenable          " Enable folding
-set history=500         " Remember up to N 'colon' commmands and search patterns
-set hlsearch            " Highlight the results of a search
-set ignorecase          " Case-insensitive search
-set incsearch           " Enable incremental search
-set laststatus=2        " Always show status line, even for one window
-set list                " Show trailing whitespace
-set listchars=tab:▸\ ,trail:▫
-set matchtime=2         " Jump to matching bracket for 2/10th of a second (works with showmatch)
-set more                " Display the 'more' prompt
-set nobackup            " Do not produce backup files
-set nocursorline        " Don't highlight the current line
-set nowrap              " Don't wrap lines
-set nowritebackup
-set ruler               " Show line, column number, and relative position within a file in the status line
-set scrolloff=3         " Scroll when cursor gets within 3 characters of top/bottom edge
-set shiftround          " Round indent to multiple of 'shiftwidth' for > and < commands
-set shiftwidth=4        " Use 4 spaces for (auto)indent
-set showcmd             " Show (partial) commands (or size of selection in Visual mode) in the status line
-set showmatch           " When a bracket is inserted, briefly jump to a matching one
-set smartcase           " Case-sensitive search if any caps
-set softtabstop=4       " Normal mode indentation commands use 4 spaces
-set t_RV=               " Don't request terminal version string (for xterm)
-set tabstop=4           " Use 4 spaces for <Tab> and :retab
-set undolevels=1000     " Allow up to 1000 levels of undo
-set visualbell          " Use a visual beep
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set wildmenu            " Use menu to show command-line completion (in 'full' case)
-set wildmode=longest,list,full
-
-
-" Go back to the position the cursor was on the last time this file was edited
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
-
+" Folding highlight
+"hi Folded guibg=gray20 ctermbg=blue ctermfg=white cterm=bold
 
 if has("gui_running")
-  set background=dark
+  " set background=dark
 
   " Set the font to use
   if has("gui_gtk2")
@@ -93,8 +61,31 @@ if has("gui_running")
   endif
 endif
 
-" Setup some auto formating options
-set formatoptions=tnbl
+
+"
+" SPACES & TABS
+"
+set tabstop=4           " Use 4 spaces for <Tab> and :retab
+set expandtab           " Use spaces instead of tabs
+set softtabstop=4       " Number of spaces in tab when editing
+set shiftround          " Round indent to multiple of 'shiftwidth' for > and < commands
+set shiftwidth=4        " Use 4 spaces for (auto)indent
+set backspace=indent,eol,start      " Allow backspacing over everything
+set autoindent
+
+
+"
+" UI CONFIG
+"
+set number              " Show line numbers
+set numberwidth=1
+set showcmd             " Show (partial) commands (or size of selection in Visual mode) in the status line
+set cursorline          " Highlight the current line
+set wildmenu            " Visual autocomplete for command menu
+set wildmode=longest,list,full
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set visualbell          " Use a visual beep
+set showmatch           " When a bracket is inserted, briefly jump to a matching one
 
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
@@ -102,42 +93,151 @@ if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
 endif
 
-" keyboard shortcuts
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
-" control-P plugin shortcuts
-map <C-t> :CtrlP<CR>
-map <C-d> :NERDTreeToggle<CR>
-map <C-]> :TagbarToggle<CR>
+"
+" SEARCHING
+"
+set incsearch           " Enable incremental search
+set hlsearch            " Highlight the results of a search
+set ignorecase          " Case-insensitive search
+set smartcase           " Case-sensitive search if any caps
+" Turn off search highlighting
+nnoremap <leader>/      :nohlsearch<CR>
 
+
+"
+" FOLDING
+"
+set foldenable          " Enable folding
+set foldlevelstart=10   " Open most folds by default
+set foldnestmax=10      " 10 nested fold max
+
+
+"
+" GLOBAL SETTINGS
+"
+set autoread            " Watch for file changes by other programs
+set autowrite           " Write contents of the file, if it has been modified, on buffer exit
+set clipboard=unnamed   " Yank and paste with the system clipboard
+set cmdheight=2         " Display 2 lines for the command line height
+set completeopt=menu,longest,preview    " Insert mode completion options
+set directory-=.        " Don't store swapfiles in the current directory
+set encoding=utf-8      " Use UTF-8 as the default buffer encoding
+set history=500         " Remember up to N 'colon' commmands and search patterns
+set laststatus=2        " Always show status line, even for one window
+set list                " Show trailing whitespace
+set listchars=tab:▸\ ,trail:▫
+set matchtime=2         " Jump to matching bracket for 2/10th of a second (works with showmatch)
+set more                " Display the 'more' prompt
+set nobackup            " Do not produce backup files
+set nowrap              " Don't wrap lines
+set nowritebackup
+set ruler               " Show line, column number, and relative position within a file in the status line
+set scrolloff=3         " Scroll when cursor gets within 3 characters of top/bottom edge
+set t_RV=               " Don't request terminal version string (for xterm)
+set undolevels=1000     " Allow up to 1000 levels of undo
+
+" Setup some auto formating options
+set formatoptions=tcqnl
+
+
+"
+" MOVEMENT
+"
+nmap <Space> <PageDown>         " page down with <Space>
+
+" Move vertically by visual line. If there is a very long line that gets
+" visually wrapped, j won't skip over the fake part of the visual line, in
+" favor of the next real line
+nnoremap j gj
+nnoremap k gk
+
+
+"
+" LEADER SHORTCUTS
+"
 let mapleader = ','
-map <leader>l :Align
-nmap <leader>a :Ack<space>
+
+" toggle gundo
+nnoremap <leader>u :GundoToggle<CR>
+
+" Open ag.vim
+nnoremap <leader>a :Ag
+
+" CtrlP
 nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>d :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
 nmap <leader>t :CtrlP<CR>
 nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+map <C-t> :CtrlP<CR>
+
+" NERDTree
+nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
+map <C-d> :NERDTreeToggle<CR>
+
+" Tagbar
 nmap <leader>] :TagbarToggle<CR>
-nmap <leader><space> :call whitespace#strip_trailing()<CR>
+map <C-]> :TagbarToggle<CR>
+
+" GitGutter
 nmap <leader>g :GitGutterToggle<CR>
+
+" Whitespace
+nmap <leader><space> :call whitespace#strip_trailing()<CR>
+
+" Others
+nmap <leader>a :Ack<space>
 nmap <leader>c <Plug>Kwbd
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <leader>l :Align
+
+
+"
+" OTHER HELPERS
+"
+
+" Go back to the position the cursor was on the last time this file was edited
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
 
 " in case you forgot to sudo
 cmap w!! %!sudo tee > /dev/null %
 
-" plugin settings
+
+"
+" PLUGIN SETTINGS
+"
+
+"
+" CtrlP Settings
+"
 let g:ctrlp_match_window = 'order:ttb,max:20'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --column'
+
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+"
+" NERDTree
+"
 let g:NERDSpaceDelims=1
+let NERDTreeIgnore=['\.vim$', '\.pyc$', '\~$']
+
+"
+" GitGutter
+"
 let g:gitgutter_enabled = 1
-let g:vim_json_syntax_conceal = 0
 
-let g:virtualenv_auto_activate = 1
-
+"
+" Airline
+"
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
@@ -152,65 +252,41 @@ let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
 let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
 
-let NERDTreeIgnore=['\.vim$', '\.pyc$', '\~$']
+"
+" Others
+"
+let g:vim_json_syntax_conceal = 0
+let g:virtualenv_auto_activate = 1
 
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  let g:ackprg = 'ag --nogroup --column'
+"
+" Autogroups
+"
+augroup configgroup
+    " Clear all current autocmd's for the current group
+    autocmd!
 
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
+                \:call <SID>StripTrailingWhitespaces()
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd BufEnter *.sh setlocal tabstop=2
+    autocmd BufEnter *.sh setlocal shiftwidth=2
+    autocmd BufEnter *.sh setlocal softtabstop=2
 
-" Command aliases
-command! Q  quit
-command! W  write
-command! Wq wq
+    autocmd FileType crontab setl backupcopy=yes
+    autocmd BufEnter /tmp/crontab.* setl backupcopy=yes
 
-" use CTRL-F for omni completion
-imap <C-F> 
+    " md is markdown
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    " json is json
+    autocmd BufRead,BufNewFile *.json set filetype=json
+    " fdoc is yaml
+    autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
 
-" page down with <Space>
-nmap <Space> <PageDown>
+augroup END
 
-" Fix my <Backspace> key (in Mac OS X Terminal)
-execute 'set t_kb=' . nr2char(8)
-"set t_kb=
-fixdel
-
-" Line Numbering
-set number
-set numberwidth=1
-" #222
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=None gui=NONE guifg=DarkGrey guibg=gray13
-
-" Folding highlight
-" #333
-hi Folded guibg=gray20 ctermbg=blue ctermfg=white cterm=bold
-
-hi Constant ctermfg=6
-
-
-au FileType crontab setl backupcopy=yes
-au BufEnter /tmp/crontab.* setl backupcopy=yes
-
-" fdoc is yaml
-autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
-" md is markdown
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-" json is json
-autocmd BufRead,BufNewFile *.json set filetype=json
-" extra rails.vim help
-autocmd User Rails silent! Rnavcommand decorator      app/decorators            -glob=**/* -suffix=_decorator.rb
-autocmd User Rails silent! Rnavcommand observer       app/observers             -glob=**/* -suffix=_observer.rb
-autocmd User Rails silent! Rnavcommand feature        features                  -glob=**/* -suffix=.feature
-autocmd User Rails silent! Rnavcommand job            app/jobs                  -glob=**/* -suffix=_job.rb
-autocmd User Rails silent! Rnavcommand mediator       app/mediators             -glob=**/* -suffix=_mediator.rb
-autocmd User Rails silent! Rnavcommand stepdefinition features/step_definitions -glob=**/* -suffix=_steps.rb
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
 
