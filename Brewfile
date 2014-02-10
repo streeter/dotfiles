@@ -22,6 +22,7 @@ install 'brew-cask'
 # Some Mac apps
 cask install --appdir=/Applications alfred
 cask install --appdir=/Applications android-file-transfer
+cask install --appdir=/Applications android-studio
 cask install --appdir=/Applications arq
 cask install --appdir=/Applications balsamiq-mockups
 cask install --appdir=/Applications base
