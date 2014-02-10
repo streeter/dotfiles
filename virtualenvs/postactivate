@@ -1,6 +1,13 @@
 #!/bin/bash
 # This hook is run after every virtualenv is activated.
 
+# Sign python so we don't get warnings all the time
+if which -s codesign; then
+    codesign -v `which python` || codesign -s - `which python`
+fi
+
+
+
 # The following will set up a .project link so that when `workon <venv>` is
 # called, we automatically cd to that directory.
 #if [[ ! -e "${VIRTUAL_ENV}/.project" ]]; then
