@@ -1,290 +1,231 @@
-" Begin .vimrc
-
-"
-" Base Setup
-"
+" VIM
+" ===
 
 " Use VIM commands; don't bother with VI compatibiilty
 set nocompatible
 
 "
 " LAUNCH CONFIG
-"
+" =============
 
 " Enable loading filetype and indentation plugins
-filetype on " without this vim emits a zero exit status, later, because of :ft off
 filetype off
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Install Vundle bundles
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
-" Ensure ftdetect et al work by including this after the Vundle stuff
-filetype plugin indent on
-
-"
-" COLORS
-"
-syntax enable               " Enable syntax processing
-
-" Solarized color scheme
-colorscheme solarized
-let g:solarized_termcolors=256
-set background=dark         " Tell solarized to use a dark background
-
-" colorscheme badwolf         " https://github.com/sjl/badwolf/
-let g:badwolf_tabline = 2   " Make the tab line lighter than the background.
-let g:badwolf_css_props_highlight = 1   " Turn on CSS properties highlighting
-
-"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=None gui=NONE guifg=DarkGrey guibg=gray13
-
-" Folding highlight
-"hi Folded guibg=gray20 ctermbg=blue ctermfg=white cterm=bold
-
-if has("gui_running")
-  " set background=dark
-
-  " Set the font to use
-  if has("gui_gtk2")
-    set guifont=Courier\ 10\ Pitch\ 9
-  elseif has("x11")
-    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-  else
-    set guifont=Courier_New:h12:cDEFAULT
-  endif
-
-  if $HOME == '/Users/streeter'
-    set guifont=Courier\ New\ Bold\ 11
-  endif
-endif
+source ~/.vimrc.bundles
 
 
 "
-" SPACES & TABS
-"
-set tabstop=4           " Use 4 spaces for <Tab> and :retab
-set expandtab           " Use spaces instead of tabs
-set softtabstop=4       " Number of spaces in tab when editing
-set shiftround          " Round indent to multiple of 'shiftwidth' for > and < commands
-set shiftwidth=4        " Use 4 spaces for (auto)indent
-set backspace=indent,eol,start      " Allow backspacing over everything
-set autoindent
+" SYNTAX
+" ======
+syntax on
+syntax enable                               " Enable syntax processing
+set t_Co=256
 
 
 "
-" UI CONFIG
+" GENERAL CONFIG
+" ==============
+let mapleader = ','
+set autoread                                    " Watch for file changes by other programs
+set autowrite                                   " Write contents of the file, if it has been modified, on buffer exit
+set clipboard=unnamed                           " Yank and paste with the system clipboard
+set cmdheight=2                                 " Display 2 lines for the command line height
+set completeopt=menu,longest,preview            " Insert mode completion options
+set directory-=.                                " Don't store swapfiles in the current directory
+set encoding=utf-8                              " Use UTF-8 as the default buffer encoding
+set history=500                                 " Remember up to N 'colon' commmands and search patterns
+set laststatus=2                                " Always show status line, even for one window
+set list                                        " Show trailing whitespace
+set listchars=tab:▸\ ,trail:▫
+set matchtime=2                                 " Jump to matching bracket for 2/10th of a second (works with showmatch)
+set more                                        " Display the 'more' prompt
+set ruler                                       " Show line, column number, and relative position within a file in the status line
+set t_RV=                                       " Don't request terminal version string (for xterm)
+
+
 "
-set number              " Show line numbers
-set numberwidth=1
-set showcmd             " Show (partial) commands (or size of selection in Visual mode) in the status line
-set cursorline          " Highlight the current line
-set wildmenu            " Visual autocomplete for command menu
-set wildmode=longest,list,full
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set visualbell          " Use a visual beep
-set showmatch           " When a bracket is inserted, briefly jump to a matching one
+" MOUSE
+" =====
+set ttyfast                                 " Send more characters for redraws
 
 " Enable basic mouse behavior such as resizing buffers.
-set mouse=a
-if exists('$TMUX')  " Support resizing in tmux
+set mouse=a                                 " Enable mouse for use in all modes
+if exists('$TMUX')                          " Support resizing in tmux
   set ttymouse=xterm2
 endif
 
 
 "
 " SEARCHING
-"
-set incsearch           " Enable incremental search
-set hlsearch            " Highlight the results of a search
-set ignorecase          " Case-insensitive search
-set smartcase           " Case-sensitive search if any caps
+" =========
+set incsearch                               " Enable incremental search
+set hlsearch                                " Highlight the results of a search
+set ignorecase                              " Case-insensitive search
+set smartcase                               " Case-sensitive search if any caps
 " Turn off search highlighting
 nnoremap <leader>/      :nohlsearch<CR>
 
 
 "
-" FOLDING
-"
-set foldenable          " Enable folding
-set foldlevelstart=10   " Open most folds by default
-set foldnestmax=10      " 10 nested fold max
-
-
-"
-" GLOBAL SETTINGS
-"
-set autoread            " Watch for file changes by other programs
-set autowrite           " Write contents of the file, if it has been modified, on buffer exit
-set clipboard=unnamed   " Yank and paste with the system clipboard
-set cmdheight=2         " Display 2 lines for the command line height
-set completeopt=menu,longest,preview    " Insert mode completion options
-set directory-=.        " Don't store swapfiles in the current directory
-set encoding=utf-8      " Use UTF-8 as the default buffer encoding
-set history=500         " Remember up to N 'colon' commmands and search patterns
-set laststatus=2        " Always show status line, even for one window
-set list                " Show trailing whitespace
-set listchars=tab:▸\ ,trail:▫
-set matchtime=2         " Jump to matching bracket for 2/10th of a second (works with showmatch)
-set more                " Display the 'more' prompt
-set nobackup            " Do not produce backup files
-set nowrap              " Don't wrap lines
+" SWAP FILES
+" ==========
+set noswapfile
+set nobackup                                    " Do not produce backup files
 set nowritebackup
-set ruler               " Show line, column number, and relative position within a file in the status line
-set scrolloff=3         " Scroll when cursor gets within 3 characters of top/bottom edge
-set t_RV=               " Don't request terminal version string (for xterm)
-set undolevels=1000     " Allow up to 1000 levels of undo
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-" Setup some auto formating options
+
+"
+" UNDOING
+" =======
+set undolevels=1000                             " Lots of undo history
+
+" Keep undo history across sessions, by storing in file
+" Only works in MacVim (gui) mode
+if has('gui_running')
+  set undodir=~/.vim/backups
+  set undofile
+  " Hide the toolbar
+  set guioptions-=T
+endif
+
+
+"
+" INDENTATION AND DISPLAY
+" =======================
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=4                            " Use 4 spaces for (auto)indent
+set softtabstop=4                           " Number of spaces in tab when editing
+set tabstop=4                               " Use 4 spaces for <Tab> and :retab
+set expandtab                               " Use spaces instead of tabs
+set shiftround                              " Round indent to multiple of 'shiftwidth' for > and < commands
+set backspace=indent,eol,start              " Allow backspacing over everything
+
+filetype plugin on
+filetype indent on
+
+set list listchars=tab:\ \ ,trail:·         " Display tabs and trailing spaces visually
+set nowrap                                  " Don't wrap lines
+set linebreak                               " Wrap lines at convenient points
+
 set formatoptions=tcqnl
 
 
 "
-" MOVEMENT
-"
-nmap <Space> <PageDown>         " page down with <Space>
-
-" Move vertically by visual line. If there is a very long line that gets
-" visually wrapped, j won't skip over the fake part of the visual line, in
-" favor of the next real line
-nnoremap j gj
-nnoremap k gk
+" FOLDING
+" =======
+set foldmethod=indent                       " Fold based on indent
+set foldenable                              " Enable folding
+set foldlevelstart=5                        " Open most folds by default
+set foldnestmax=5                           " Maximum fold levels
 
 
 "
-" LEADER SHORTCUTS
-"
-let mapleader = ','
-
-" toggle gundo
-nnoremap <leader>u :GundoToggle<CR>
-
-" Open ag.vim
-nnoremap <leader>a :Ag
-
-" CtrlP
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>t :CtrlP<CR>
-nmap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
-map <C-t> :CtrlP<CR>
-
-" NERDTree
-nmap <leader>d :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
-map <C-d> :NERDTreeToggle<CR>
-
-" Tagbar
-nmap <leader>] :TagbarToggle<CR>
-map <C-]> :TagbarToggle<CR>
-
-" GitGutter
-nmap <leader>g :GitGutterToggle<CR>
-
-" Whitespace
-nmap <leader><space> :call whitespace#strip_trailing()<CR>
-
-" Others
-nmap <leader>a :Ack<space>
-nmap <leader>c <Plug>Kwbd
-map <leader>l :Align
+" COMPLETION
+" ==========
+set wildmode=longest,list,full
+set wildmenu                                " Enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,.*,*.obj,*~
 
 
 "
-" OTHER HELPERS
-"
-
-" Go back to the position the cursor was on the last time this file was edited
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
-
-" in case you forgot to sudo
-cmap w!! %!sudo tee > /dev/null %
+" SCROLLING
+" =========
+set scrolloff=3                             " Scroll when cursor gets within 3 characters of top/bottom edge
+set sidescrolloff=15
+set sidescroll=1
 
 
 "
-" PLUGIN SETTINGS
-"
-
-"
-" CtrlP Settings
-"
-let g:ctrlp_match_window = 'order:ttb,max:20'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  let g:ackprg = 'ag --nogroup --column'
-
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-"
-" NERDTree
-"
-let g:NERDSpaceDelims=1
-let NERDTreeIgnore=['\.vim$', '\.pyc$', '\~$']
-
-"
-" GitGutter
-"
-let g:gitgutter_enabled = 1
-
-"
-" Airline
-"
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#branch#empty_message = ''
-
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#virtualenv#enabled = 1
-let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
-let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
-let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
-
-"
-" Others
-"
-let g:vim_json_syntax_conceal = 0
-let g:virtualenv_auto_activate = 1
+" STATUS LINE
+" ===========
+"set statusline=                                 " Override default
+"set statusline+=%{fugitive#statusline()[4:-2]}  " Show fugitive git info
+"set statusline+=\ %f\ %m\ %r                    " Show filename/path
+"set statusline+=%=                              " Set right-side status info after this line
+"set statusline+=%l/%L:%v                        " Set <line number>/<total lines>:<column>
+"set statusline+=\                               " Set ending space
 
 
 "
-" Autogroups
+" COLORSCHEME
+" ===========
+
+" Solarized color scheme
+colorscheme solarized
+let g:solarized_termcolors=256
+set background=dark                         " Tell solarized to use a dark background
+
+" colorscheme badwolf                       " https://github.com/sjl/badwolf/
+let g:badwolf_tabline = 2                   " Make the tab line lighter than the background.
+let g:badwolf_css_props_highlight = 1       " Turn on CSS properties highlighting
+
+"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=None gui=NONE guifg=DarkGrey guibg=gray13
+
+" Folding highlight
+"hi Folded guibg=gray20 ctermbg=blue ctermfg=white cterm=bold
+
+
 "
-augroup configgroup
-    " Clear all current autocmd's for the current group
-    autocmd!
+" UI CONFIG
+" =========
+set number                                  " Show line numbers
+set numberwidth=1
+set showcmd                                 " Show (partial) commands (or size of selection in Visual mode) in the status line
+set showmode                                " Show current mode down on the bottom
+set cursorline                              " Highlight the current line
+set visualbell                              " Use a visual beep
+set showmatch                               " When a bracket is inserted, briefly jump to a matching one
 
-    autocmd FileType python setlocal commentstring=#\ %s
-    autocmd BufEnter Makefile setlocal noexpandtab
-    autocmd BufEnter *.sh setlocal tabstop=2
-    autocmd BufEnter *.sh setlocal shiftwidth=2
-    autocmd BufEnter *.sh setlocal softtabstop=2
+"if has("gui_running")
+"  " Set the font to use
+"  if has("gui_gtk2")
+"    set guifont=Courier\ 10\ Pitch\ 9
+"  elseif has("x11")
+"    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+"  else
+"    set guifont=Courier_New:h12:cDEFAULT
+"  endif
+"
+"  if $HOME == '/Users/streeter'
+"    set guifont=Courier\ New\ Bold\ 11
+"  endif
+"endif
 
-    autocmd FileType crontab setl backupcopy=yes
-    autocmd BufEnter /tmp/crontab.* setl backupcopy=yes
 
-    " md is markdown
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
-    " json is json
-    autocmd BufRead,BufNewFile *.json set filetype=json
-    " fdoc is yaml
-    autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+"
+" Plugin overrides
+"
+source ~/.vim/common.vim
+source ~/.vim/autocmd.vim
+source ~/.vim/plugins.vim
 
-augroup END
 
-" automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd =
+" Highlight words to avoid in tech writing
+" ========================================
+"
+"   obviously, basically, simply, of course, clearly,
+"   just, everyone knows, However, So, easy
 
+"   http://css-tricks.com/words-avoid-educational-writing/
+
+highlight TechWordsToAvoid ctermbg=red ctermfg=white
+function! MatchTechWordsToAvoid()
+    match TechWordsToAvoid /\c\<\(obviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however\|so,\|easy\)\>/
+endfunction
+autocmd FileType markdown call MatchTechWordsToAvoid()
+autocmd BufWinEnter *.md call MatchTechWordsToAvoid()
+autocmd InsertEnter *.md call MatchTechWordsToAvoid()
+autocmd InsertLeave *.md call MatchTechWordsToAvoid()
+autocmd BufWinLeave *.md call clearmatches()
+
+"
 " End .vimrc
+" ==========
