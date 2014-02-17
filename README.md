@@ -10,7 +10,7 @@ You've been warned.
 TODO
 ----
 
-- [ ] Swich to ZSH
+- Switch to ZSH
 
 License
 -------
