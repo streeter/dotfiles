@@ -38,6 +38,12 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 echo "Need root to disable iPad not charging notifications..."
 sudo defaults write com.apple.usbd NoiPadNotifications -bool YES
 
+# Use AirDrop over every interface. srsly this should be a default.
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+
+# Set a really fast key repeat.
+defaults write NSGlobalDomain KeyRepeat -int 0
+
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
