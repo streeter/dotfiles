@@ -226,7 +226,7 @@ defaults write com.apple.Safari ShowFavoritesBar -bool false
 
 
 ###############################################################################
-# Address Book, Dashboard, iCal, iTunes, Mail, and Disk Utility               #
+# iddress Book, Dashboard, iCal, iTunes, Mail, and Disk Utility               #
 ###############################################################################
 
 # Enable the debug menu in Address Book
@@ -252,6 +252,7 @@ defaults write com.apple.iTunes disablePingSidebar -int 1
 # Disable all the other Ping stuff in iTunes
 defaults write com.apple.iTunes disablePing -bool true
 defaults write com.apple.iTunes hide-ping-dropdown -bool true
+
 
 # Make ⌘ + F focus the search input in iTunes
 defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
