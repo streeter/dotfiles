@@ -1,1 +1,6 @@
 command regex rd 's/^[[:space:]]*$/po [[[UIApplication sharedApplication] keyWindow] recursiveDescription]/' 's/^(.+)$/po [%1 recursiveDescription]/'
+
+command script import /Users/streeter/dev/lldb-chisel/fblldb.py
+
+#command ivars _ivarDescription
+#command meth _methodDescription
