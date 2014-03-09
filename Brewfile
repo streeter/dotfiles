@@ -39,7 +39,6 @@ cask install --appdir=/Applications imageoptim
 cask install --appdir=/Applications keyremap4macbook
 cask install --appdir=/Applications lastfm
 cask install --appdir=/Applications macvim
-cask install --appdir=/Applications phinze-cask/f-lux
 cask install --appdir=/Applications rdio
 cask install --appdir=/Applications sequel-pro
 cask install --appdir=/Applications timemachinescheduler
