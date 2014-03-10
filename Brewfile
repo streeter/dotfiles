@@ -4,16 +4,39 @@ update
 # Upgrade any already-installed formulae
 upgrade
 
-install android-sdk
-install bash-completion
-install coreutils
+# Git
 install git
-install heroku
-install htop
 install hub
-install macvim
+install hub
+install git-extras
+
+# Misc
+install bash-completion
+install colordiff
+install coreutils
+install cowsay
+install exif
+install exiftool
+install heroku
+install heroku-toolbelt
+install htop
+install htop-osx
+install node
 install proctools
 install python
+install python3
+install terminal-notifier
+
+# Android
+install android-sdk
+install gradle
+
+# iOS
+install ios-sim
+
+# VIM
+install macvim
+install the_silver_searcher
 
 # Cask
 tap 'phinze/cask'
