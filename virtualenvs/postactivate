@@ -5,29 +5,3 @@
 if which -s codesign; then
     codesign -v `which python` || codesign -s - `which python`
 fi
-
-
-
-# The following will set up a .project link so that when `workon <venv>` is
-# called, we automatically cd to that directory.
-#if [[ ! -e "${VIRTUAL_ENV}/.project" ]]; then
-#    echo "Setting up virtualenvproject..."
-#    setvirtualenvproject
-#fi
-
-#__env_file="$(cat "${VIRTUAL_ENV}/.project")/.env"
-#if [[ ! -e "${__env_file}" ]]; then
-#    echo "Creating ${__env_file}"
-#    cat > "${__env_file}" <<EOF
-##!/bin/bash
-#case \$VIRTUAL_ENV in
-#    *\\${VIRTUAL_ENV##*/})
-#        ;;
-#    *)
-#        workon ${VIRTUAL_ENV##*/}
-#        ;;
-#esac
-#EOF
-#    autoenv_authorize_env "${__env_file}"
-#fi
-#unset __env_file
