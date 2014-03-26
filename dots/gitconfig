@@ -72,6 +72,7 @@
     undopush = push -f origin HEAD^:master
     unstage = reset HEAD
     uncommit = reset --soft HEAD~1
+    undo = uncommit
     wdiff = diff --word-diff
     ignored = ls-files --others -i --exclude-standard
     wipe = reset --hard HEAD
