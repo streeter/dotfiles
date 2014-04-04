@@ -9,8 +9,8 @@ fi
 # General UI/UX                                                               #
 ###############################################################################
 
-# Disable press-and-hold for keys in favor of key repeat.
-defaults write -g ApplePressAndHoldEnabled -bool false
+# Enable press-and-hold for keys instead of of key repeat.
+defaults write -g ApplePressAndHoldEnabled -bool true
 
 # Show remaining battery time; hide percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "NO"
@@ -39,7 +39,7 @@ echo "Need root to disable iPad not charging notifications..."
 sudo defaults write com.apple.usbd NoiPadNotifications -bool YES
 
 # Use AirDrop over every interface. srsly this should be a default.
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 # Set a really fast key repeat.
 defaults write NSGlobalDomain KeyRepeat -int 0
@@ -48,6 +48,9 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
+
+# Scroll speed
+defaults write ~/Library/Preferences/.GlobalPreferences com.apple.trackpad.scrolling 0.312
 
 # Set language and text formats
 defaults write NSGlobalDomain AppleLanguages -array "en"
@@ -139,9 +142,6 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 # Empty Trash insecurely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool false
 
-# Enable AirDrop over Ethernet and on unsupported Macs running Lion
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
@@ -150,7 +150,7 @@ chflags nohidden ~/Library
 # Dock & hot corners                                                          #
 ###############################################################################
 
-# Turn off Dock auto-hiding
+# Turn on Dock auto-hiding
 defaults write com.apple.dock autohide -bool true
 
 # Make the Dock appear on the left side
@@ -226,7 +226,7 @@ defaults write com.apple.Safari ShowFavoritesBar -bool false
 
 
 ###############################################################################
-# iddress Book, Dashboard, iCal, iTunes, Mail, and Disk Utility               #
+# Address Book, Dashboard, iCal, iTunes, Mail, and Disk Utility               #
 ###############################################################################
 
 # Enable the debug menu in Address Book
@@ -302,6 +302,21 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 
 ###############################################################################
+# Tweetbot
+###############################################################################
+
+defaults write com.tapbots.TweetbotMac ShowTheTweetbots -bool true
+defaults write com.tapbots.TweetbotMac TextAutoCorrect -bool YES
+defaults write com.tapbots.TweetbotMac TextAutomaticQuoteSubstitution -bool YES
+defaults write com.tapbots.TweetbotMac TextAutomaticTextReplacement -bool YES
+defaults write com.tapbots.TweetbotMac TextContinuousSpellChecking -bool YES
+defaults write com.tapbots.TweetbotMac displayNameType -int 3
+defaults write com.tapbots.TweetbotMac fontSize -int 13
+defaults write com.tapbots.TweetbotMac quoteFormatType -int 1
+defaults write com.tapbots.TweetbotMac openURLInBackground -bool YES
+
+
+###############################################################################
 # Twitter.app                                                                 #
 ###############################################################################
 
@@ -329,7 +344,7 @@ defaults write com.twitter.twitter-mac NormalComposeWindowLevel -bool true
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
-for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer Twitter; do
+for app in Finder Dock iCal Address\ Book SystemUIServer Twitter; do
     killall "$app" > /dev/null 2>&1;
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
