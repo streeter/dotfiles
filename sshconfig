@@ -83,10 +83,12 @@ Host *.us-west-2.compute.amazonaws.com
 
 Host *.compute-1.amazonaws.com
   ForwardAgent yes
-  IdentitiesOnly yes
   IdentityFile ~/.ssh/aws.educreations
+
+Host *.amazonaws.com
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null
+  IdentitiesOnly yes
 
 # General Defaults
 #
