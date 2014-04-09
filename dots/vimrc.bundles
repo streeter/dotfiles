@@ -42,7 +42,7 @@ Bundle 'vim-scripts/taglist.vim'
 " Colors
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'sjl/badwolf'
-Bundle 'skammer/vim-css-color'
+" Bundle 'ap/vim-css-color'
 
 " Python
 Bundle 'vim-scripts/pythoncomplete'
