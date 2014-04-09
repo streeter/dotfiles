@@ -72,7 +72,6 @@ cask install --appdir=/Applications gitx
 cask install --appdir=/Applications hipchat
 cask install --appdir=/Applications imageoptim
 cask install --appdir=/Applications keyremap4macbook
-cask install --appdir=/Applications lastfm
 cask install --appdir=/Applications macvim
 cask install --appdir=/Applications rdio
 cask install --appdir=/Applications sequel-pro
