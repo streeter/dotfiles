@@ -24,7 +24,7 @@ endif
 " NERDTree
 "
 let g:NERDSpaceDelims=1
-let NERDTreeIgnore=['\.vim$', '\.pyc$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\~$']
 
 "
 " Git Gutter
