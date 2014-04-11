@@ -284,6 +284,28 @@ defaults write com.apple.terminal StringEncodings -array 4
 #defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true
 
+
+###############################################################################
+# Xcode                                                                       #
+###############################################################################
+
+defaults write com.apple.dt.Xcode AlwaysShowTabBar -bool false
+defaults write com.apple.dt.Xcode AssistantEditorsLayout -int 0
+defaults write com.apple.dt.Xcode DVTConvertExistingFilesLineEndings -bool true
+defaults write com.apple.dt.Xcode DVTFindBarIgnoreCase -bool true
+defaults write com.apple.dt.Xcode DVTTextAlignConsecutiveSlashSlashComments -bool true
+defaults write com.apple.dt.Xcode DVTTextEditorTrimWhitespaceOnlyLines -bool true
+defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 100
+defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true
+defaults write com.apple.dt.Xcode DVTTextShowPageGuide -bool true
+defaults write com.apple.dt.Xcode IDEDisableGitSupportForNewProjects -bool true
+defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool true
+
+defaults write com.apple.dt.Xcode OMOpenInDashDisabled -bool false
+defaults write com.apple.dt.Xcode OMOpenInDashStyle -int 2
+
+defaults write com.apple.iphonesimulator SBFakeCarrier "Streeter"
+
 ###############################################################################
 # Quicktime                                                                   #
 ###############################################################################
