@@ -9,8 +9,12 @@ fi
 # General UI/UX                                                               #
 ###############################################################################
 
-# Enable press-and-hold for keys instead of of key repeat.
-defaults write -g ApplePressAndHoldEnabled -bool true
+# Disable press-and-hold for alternate keys so we can use key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Set a really fast key repeat.
+defaults write NSGlobalDomain InitialKeyRepeat -int 4
+defaults write NSGlobalDomain KeyRepeat -int 0
 
 # Show remaining battery time; hide percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "NO"
@@ -41,9 +45,6 @@ sudo defaults write com.apple.usbd NoiPadNotifications -bool YES
 # Use AirDrop over every interface. srsly this should be a default.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Set a really fast key repeat.
-defaults write NSGlobalDomain KeyRepeat -int 0
-
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -59,6 +60,8 @@ defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
 defaults write NSGlobalDomain AppleMetricUnits -bool false
 
 # Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 
@@ -78,6 +81,8 @@ defaults write com.apple.screencapture type -string "png"
 
 # Enable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool false
+
+defaults write com.apple.ScreenSharing debug -bool true
 
 
 ###############################################################################
