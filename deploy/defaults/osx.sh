@@ -13,7 +13,7 @@ fi
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a really fast key repeat.
-defaults write NSGlobalDomain InitialKeyRepeat -int 4
+#defaults write NSGlobalDomain InitialKeyRepeat -int 4
 defaults write NSGlobalDomain KeyRepeat -int 0
 
 # Show remaining battery time; hide percentage
