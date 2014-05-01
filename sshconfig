@@ -15,7 +15,7 @@ Host scout
   IdentitiesOnly yes
 
 Host home
-  HostName streeter.dyndns.org
+  HostName home.streeter.co
   User streeter
   ForwardAgent yes
   IdentitiesOnly yes
@@ -29,7 +29,7 @@ Host swanson
   IdentitiesOnly yes
 
 Host mac-mini
-  HostName educreations.dyndns.org
+  HostName home.streeter.co
   User jenkins
   ForwardAgent yes
   IdentitiesOnly yes
