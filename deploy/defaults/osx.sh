@@ -109,7 +109,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
 
 # Allow text selection in Quick Look
-defaults write com.apple.finder QLEnableTextSelection -bool true
+# Do not enable this. It causes images to stop working.
+# http://apple.stackexchange.com/a/140802
+#defaults write com.apple.finder QLEnableTextSelection -bool true
 
 # Show folder contents in Quick Look
 defaults write com.apple.finder QLEnableXRayFolders -bool true
