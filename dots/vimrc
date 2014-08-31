@@ -141,7 +141,7 @@ set wildchar=<Tab> wildmenu wildmode=list,full
 " =========
 set scrolloff=3                             " Scroll when cursor gets within 3 characters of top/bottom edge
 set sidescrolloff=15
-set sidescroll=1
+set sidescroll=2
 
 
 "
