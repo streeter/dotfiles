@@ -2,6 +2,8 @@
 # Configure the bash environment
 #
 # Chris Streeter <http://www.chrisstreeter.com>
+#
+# vim: ts=4 sts=4 shiftwidth=4 expandtab
 
 # Debug slow startup
 #set -x
@@ -269,8 +271,6 @@ AUTOENV_ACTIVATE='/usr/local/Cellar/autoenv/0.1.0/activate.sh'
 test -e $AUTOENV_ACTIVATE &&
 source $AUTOENV_ACTIVATE
 unset AUTOENV_ACTIVATE
-
-# vim: ts=4 sts=4 shiftwidth=4 expandtab
 
 # added by travis gem
 source /Users/streeter/.travis/travis.sh
