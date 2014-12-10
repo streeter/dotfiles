@@ -31,6 +31,8 @@ EOF`
     }
 fi
 
+unset AWS_HOME
+
 ## Python virtual environment stuff
 export PROJECT_HOME="${HOME}/dev"
 #export PIP_REQUIRE_VIRTUALENV=true
@@ -40,5 +42,15 @@ export PROJECT_HOME="${HOME}/dev"
 
 ## RVM
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    # Load RVM into a shell session *as a function*
     source "$HOME/.rvm/scripts/rvm"
+
+    # Add RVM to PATH for scripting
+    export PATH="$PATH:$HOME/.rvm/bin"
 fi
+
+POSTGRESAPP="/Applications/Postgres.app/Contents/Versions/9.3/bin"
+if [ -e $POSTGRESAPP ]; then
+    export PATH=$PATH:$POSTGRESAPP
+fi
+unset POSTGRESAPP
