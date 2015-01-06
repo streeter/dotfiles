@@ -246,6 +246,7 @@ unset ALIAS_DIR
 # -------------------------------------------------------------------
 
 # Python virtualenvwrapper Setup
+export VIRTUAL_ENV_DISABLE_PROMPT=true
 export WORKON_HOME="${HOME}/.virtualenvs"
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_DOWNLOAD_CACHE=$HOME/.pip-cache

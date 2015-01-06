@@ -31,6 +31,15 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# Virtualenv
+parse_virtualenv () {
+    if test -z "$VIRTUAL_ENV"; then
+        echo -n ""
+    else
+        basename "$VIRTUAL_ENV" | sed -e 's/\(.*\)/ (\1)/'
+    fi
+}
+
 prompt_simple() {
     unset PROMPT_COMMAND
     PS1="[\u@\h:\w]\$ "
@@ -44,7 +53,7 @@ prompt_compact() {
 }
 
 prompt_color() {
-    PS1="\n${NORMAL}${COLOR1}➜ ${COLOR2}\w${COLOR1}\$(parse_git_branch) ${NORMAL}"
+    PS1="\n${NORMAL}${COLOR1}➜ ${COLOR2}\w${CYAN}\$(parse_virtualenv)${YELLOW}\$(parse_git_branch) ${NORMAL}"
     PS2="${WHITE}continue> ${NORMAL}"
 
     test -n "$PS1" &&
