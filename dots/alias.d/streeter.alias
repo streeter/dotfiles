@@ -20,6 +20,10 @@ if [ "$UNAME" = Darwin ]; then
     alias subl='subl -n'
     alias sub=subl
     alias mate=subl
+
+    ## Educreations Apps
+    alias ios='cd ~/dev/edu/ios'
+    alias www='cd ~/dev/edu/www'
 fi
 
 alias essh='awsactivate educreations && ec2-ssh'
