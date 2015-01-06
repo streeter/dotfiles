@@ -65,8 +65,7 @@ umask 0022
 # we want the various sbins on the path along with /usr/local/bin
 PATH="/usr/local/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 
-test -d "$HOME/bin" &&
-    PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin:$PATH"
 
 test -d "/usr/local/share/npm/bin" &&
     PATH="$PATH:/usr/local/share/npm/bin"
@@ -146,9 +145,7 @@ _expand() {
 # ----------------------------------------------------------------------
 # PYTHON STARTUP / AUTO-COMPLETION
 # ----------------------------------------------------------------------
-if test -e "$HOME/.pystartup"; then
-    export PYTHONSTARTUP="$HOME/.pystartup"
-fi
+export PYTHONSTARTUP="$HOME/.pystartup"
 
 # ----------------------------------------------------------------------
 # LS AND DIRCOLORS
@@ -177,7 +174,6 @@ alias ls="command ls $LS_COMMON"
 # EXPORTS
 # -------------------------------------------------------------------
 
-test -f "$HOME/.exports" &&
 source "$HOME/.exports"
 
 
@@ -185,7 +181,6 @@ source "$HOME/.exports"
 # PROMPT
 # -------------------------------------------------------------------
 
-test -f "$HOME/.bash_prompt" &&
 source "$HOME/.bash_prompt"
 
 # -------------------------------------------------------------------
@@ -210,10 +205,8 @@ prompt_color
 # ----------------------------------------------------------------------
 
 # User specific aliases and functions
-test -f "$HOME/.alias" &&
 source "$HOME/.alias"
 
-test -f "$HOME/.functions" &&
 source "$HOME/.functions"
 
 # -------------------------------------------------------------------
@@ -221,7 +214,6 @@ source "$HOME/.functions"
 # -------------------------------------------------------------------
 
 BASHRC_DIR="$HOME/.bashrc.d"
-test -d "$BASHRC_DIR" &&
 test -e "$BASHRC_DIR/$HOSTNAME.bashrc" &&
 source "$BASHRC_DIR/$HOSTNAME.bashrc"
 
@@ -229,7 +221,6 @@ source "$BASHRC_DIR/$HOSTNAME.bashrc"
 # USER SPECIFIC BASHRC
 # -------------------------------------------------------------------
 
-test -d "$BASHRC_DIR" &&
 test -e "$BASHRC_DIR/$USER.bashrc" &&
 source "$BASHRC_DIR/$USER.bashrc"
 unset BASHRC_DIR
@@ -239,7 +230,6 @@ unset BASHRC_DIR
 # -------------------------------------------------------------------
 
 ALIAS_DIR="$HOME/.alias.d"
-test -d "$ALIAS_DIR" &&
 test -e "$ALIAS_DIR/$HOSTNAME.alias" &&
 source "$ALIAS_DIR/$HOSTNAME.alias"
 
@@ -247,7 +237,6 @@ source "$ALIAS_DIR/$HOSTNAME.alias"
 # USER SPECIFIC ALIASES
 # -------------------------------------------------------------------
 
-test -d "$ALIAS_DIR" &&
 test -e "$ALIAS_DIR/$USER.alias" &&
 source "$ALIAS_DIR/$USER.alias"
 unset ALIAS_DIR
