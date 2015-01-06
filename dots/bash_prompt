@@ -4,17 +4,20 @@
 # PROMPT
 # ----------------------------------------------------------------------
 
-RED="\[\033[0;31m\]"
-BROWN="\[\033[0;33m\]"
-YELLOW="\[\033[1;32m\]"
-GREY="\[\033[0;97m\]"
-BLUE="\[\033[0;34m\]"
-PS_CLEAR="\[\033[0m\]"
+BOLD="\[$(tput bold)\]"
+RED="\[$(tput setaf 1)\]"
+GREEN="\[$(tput setaf 2)\]"
+YELLOW="\[$(tput setaf 3)\]"
+BLUE="\[$(tput setaf 4)\]"
+MAGENTA="\[$(tput setaf 5)\]"
+CYAN="\[$(tput setaf 6)\]"
+WHITE="\[$(tput setaf 7)\]"
+NORMAL="\[$(tput sgr0)\]"
 SCREEN_ESC="\[\033k\033\134\]"
 
 if [ "$LOGNAME" = "root" ]; then
     COLOR1="${RED}"
-    COLOR2="${BROWN}"
+    COLOR2="${WHITE}"
     P="#"
 else
     COLOR1="${YELLOW}"
@@ -22,6 +25,11 @@ else
     #P="⚡"
     P="$"
 fi
+
+# Get the Git branch
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
 
 prompt_simple() {
     unset PROMPT_COMMAND
@@ -31,17 +39,14 @@ prompt_simple() {
 
 prompt_compact() {
     unset PROMPT_COMMAND
-    PS1="${COLOR1}${P}${PS_CLEAR} "
+    PS1="${COLOR1}${P}${NORMAL} "
     PS2="> "
 }
 
 prompt_color() {
-    #PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
-    PS1="${COLOR1}[\u]:${COLOR2}\w${COLOR1}$P${PS_CLEAR} "
-    PS2="\[[33;1m\]continue \[[0m[1m\]> "
-    
-    
-    #PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+    PS1="\n${NORMAL}${COLOR1}➜ ${COLOR2}\w${COLOR1}\$(parse_git_branch) ${NORMAL}"
+    PS2="${WHITE}continue> ${NORMAL}"
+
     test -n "$PS1" &&
     PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}\007"'
     fun=`type -t update_terminal_cwd`
