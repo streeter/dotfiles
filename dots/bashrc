@@ -58,6 +58,10 @@ unset MAILCHECK
 # default umask (mask out permissions on new files)
 umask 0022
 
+# search forward and backwards with the up and down arrows
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+
 # ----------------------------------------------------------------------
 # PATH
 # ----------------------------------------------------------------------
