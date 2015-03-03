@@ -22,7 +22,7 @@
     m = merge
     mom = merge origin/master
 
-    finish = !f(){ git checkout master && git merge --no-ff "$1" && git push origin master && git branch -d "$1"; };f
+    finish = !git checkout master && git merge --no-ff $1 && git push origin master && git branch -d $1
 
     # push
     p = push
