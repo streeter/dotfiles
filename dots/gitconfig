@@ -22,6 +22,8 @@
     m = merge
     mom = merge origin/master
 
+    finish = !f(){ git checkout master && git merge --no-ff "$1" && git push origin master && git branch -d "$1"; };f
+
     # push
     p = push
     pa = push --all
