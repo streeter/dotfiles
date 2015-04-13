@@ -51,7 +51,7 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 ###############################################################################
 
 # Scroll speed
-defaults write ~/Library/Preferences/.GlobalPreferences com.apple.trackpad.scrolling 0.312
+#defaults write ~/Library/Preferences/.GlobalPreferences com.apple.trackpad.scrolling 0.312
 
 # Set language and text formats
 defaults write NSGlobalDomain AppleLanguages -array "en"
@@ -163,7 +163,7 @@ defaults write com.apple.dock autohide -bool true
 # Make the Dock appear on the left side
 defaults write com.apple.dock orientation "left"
 
-# Set the icon size of Dock items to 36 pixels
+# Set the icon size of Dock items to 28 pixels
 defaults write com.apple.dock tilesize -int 28
 
 # Show indicator lights for open applications in the Dock
@@ -176,10 +176,10 @@ defaults write com.apple.dock show-process-indicators -bool true
 defaults write com.apple.dock "expose-group-by-app" -bool false
 
 # Enable the 2D Dock
-defaults write com.apple.dock no-glass -bool true
+#defaults write com.apple.dock no-glass -bool true
 
 # Make the Dock 2D Black
-defaults write com.apple.dock no-glass -int 1
+#defaults write com.apple.dock no-glass -int 1
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
@@ -188,7 +188,7 @@ defaults write com.apple.dock showhidden -bool true
 #defaults write com.apple.dock itunes-notifications -bool true
 
 # Reset Launchpad
-find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
+#find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
 
 
 # Hot corners
@@ -212,7 +212,7 @@ defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
 # Enable Safari’s debug menu
 defaults write com.apple.Safari IncludeDebugMenu -bool true
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+#defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 
@@ -319,7 +319,7 @@ defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
 # Preview                                                                     #
 ###############################################################################
 
-# Do not restore last active video
+# Do not restore last active document
 defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
 
 ###############################################################################
