@@ -1,0 +1,16 @@
+awscli
+BeautifulSoup
+boto
+cookiecutter
+honcho
+ipython
+mock
+Pillow
+piprot
+psutil
+requests
+virtualenv
+virtualenvwrapper
+wheel
+
+-e git+git@github.com:educreations/ec2-ssh.git@master#egg=ec2-ssh
