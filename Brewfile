@@ -3,11 +3,16 @@ brew 'git'
 brew 'hub'
 brew 'git-extras'
 
+# Setup some taps
+tap 'caskroom/cask'
+tap 'homebrew/completions'
+tap 'homebrew/dupes'
+
 # Misc
 brew 'autoconf'
 brew 'autoenv'
 brew 'automake'
-brew 'bash-completion'
+brew 'Caskroom/cask/r'
 brew 'colordiff'
 brew 'coreutils'
 brew 'cowsay'
@@ -32,14 +37,18 @@ brew 'pidof'
 brew 'proctools'
 brew 'python'
 brew 'python3'
-brew 'r'
 brew 'ruby'
-brew 'screen'
 brew 'terminal-notifier'
 brew 'tmux'
-brew 'vagrant-completion'
 brew 'wget'
 brew 'youtube-dl'
+
+# Completions
+brew 'bash-completion'
+brew 'vagrant-completion'
+
+# Java
+brew 'Caskroom/cask/java'
 
 # Services
 brew 'memcached'
@@ -68,12 +77,10 @@ brew 'yasm'
 brew 'imagemagick'
 brew 'ffmpeg', args: ['with-speex']
 
-
 # Override some system packages
-tap 'homebrew/dupes'
 brew 'grep'
 brew 'less'
-
+brew 'screen'
 
 # Android
 brew 'android-sdk'
@@ -88,10 +95,6 @@ brew 'xctool'
 # VIM
 brew 'macvim'
 brew 'the_silver_searcher'
-
-# Cask
-#tap 'caskroom/cask'
-#brew 'brew-cask'
 
 # Quick Look Plugins
 #cask install qlcolorcode
