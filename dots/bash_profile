@@ -2,7 +2,7 @@
 # .bash_profile
 
 if [ -f /etc/profile ]; then
-        source /etc/profile
+    source /etc/profile
 fi
 
 for file in ~/.{bashrc,secrets}; do
