@@ -43,40 +43,40 @@ tap 'phinze/cask'
 install 'brew-cask'
 
 # Quick Look Plugins
-cask install qlcolorcode
-cask install qlstephen
-cask install qlmarkdown
-cask install quicklook-json
-cask install qlprettypatch
-cask install quicklook-csv
-cask install betterzipql
-cask install webp-quicklook
-cask install suspicious-package
-cask install ipaql
+#cask install qlcolorcode
+#cask install qlstephen
+#cask install qlmarkdown
+#cask install quicklook-json
+#cask install qlprettypatch
+#cask install quicklook-csv
+#cask install betterzipql
+#cask install webp-quicklook
+#cask install suspicious-package
+#cask install ipaql
 
 # Some Mac apps
-cask install --appdir=/Applications alfred
-cask install --appdir=/Applications android-file-transfer
-cask install --appdir=/Applications android-studio
-cask install --appdir=/Applications arq
-cask install --appdir=/Applications balsamiq-mockups
-cask install --appdir=/Applications base
-cask install --appdir=/Applications calibre
-cask install --appdir=/Applications chromecast
-cask install --appdir=/Applications coconutbattery
-cask install --appdir=/Applications color-oracle
-cask install --appdir=/Applications crashlytics
-cask install --appdir=/Applications divvy
-cask install --appdir=/Applications dropbox
-cask install --appdir=/Applications gitx
-cask install --appdir=/Applications hipchat
-cask install --appdir=/Applications imageoptim
-cask install --appdir=/Applications keyremap4macbook
-cask install --appdir=/Applications macvim
-cask install --appdir=/Applications rdio
-cask install --appdir=/Applications sequel-pro
-cask install --appdir=/Applications timemachinescheduler
-cask install --appdir=/Applications vlc
+#cask install --appdir=/Applications alfred
+#cask install --appdir=/Applications android-file-transfer
+#cask install --appdir=/Applications android-studio
+#cask install --appdir=/Applications arq
+#cask install --appdir=/Applications balsamiq-mockups
+#cask install --appdir=/Applications base
+#cask install --appdir=/Applications calibre
+#cask install --appdir=/Applications chromecast
+#cask install --appdir=/Applications coconutbattery
+#cask install --appdir=/Applications color-oracle
+#cask install --appdir=/Applications crashlytics
+#cask install --appdir=/Applications divvy
+#cask install --appdir=/Applications dropbox
+#cask install --appdir=/Applications gitx
+#cask install --appdir=/Applications hipchat
+#cask install --appdir=/Applications imageoptim
+#cask install --appdir=/Applications keyremap4macbook
+#cask install --appdir=/Applications macvim
+#cask install --appdir=/Applications rdio
+#cask install --appdir=/Applications sequel-pro
+#cask install --appdir=/Applications timemachinescheduler
+#cask install --appdir=/Applications vlc
 
 # Alternate versions
 tap homebrew/versions
