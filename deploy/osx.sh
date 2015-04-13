@@ -9,7 +9,28 @@ fi
 # Setup Homebrew Packages                                                     #
 ###############################################################################
 
-brew bundle $SCRIPT_DIR/Brewfile
+brew update
+
+brew upgrade
+
+brew tap Homebrew/brewdler
+
+brew brewdle --file=$SCRIPT_DIR/Brewfile
+
+brew cleanup
+
+# Allow htop to see all processes
+sudo chown root:wheel `brew --prefix htop`/bin/htop
+sudo chmod u+s `brew --prefix htop`/bin/htop
+
+
+###############################################################################
+# Setup Python Packages                                                       #
+###############################################################################
+
+mkdir ~/.wheels
+
+pip install -r $SCRIPT_DIR/deploy/requirements.txt
 
 
 ###############################################################################
