@@ -49,11 +49,6 @@ alias g=git
 alias gs='g st'
 alias gch='g checkout'
 
-ipython_test=`which ipython`
-if [ $? -eq 0 ]; then
-    alias python=ipython
-fi
-
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
@@ -98,4 +93,32 @@ alias spoton="sudo mdutil -a -i on"
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 10'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+
+
+: ${UNAME=$(uname)}
+
+alias xmltidy='xmllint --format'
+
+if [ "$UNAME" = Darwin ]; then
+    alias ls='ls -GF'
+    alias ll='ls -lk'
+
+    test -e '/Applications/MacVim.app' &&
+    alias gvim='open -a /Applications/MacVim.app'
+
+    if hash hub 2>/dev/null; then
+        alias git=hub
+    fi
+
+    alias subl='subl -n'
+    alias sub=subl
+    alias mate=subl
+
+    ## Educreations Apps
+    alias ios='cd ~/dev/edu/ios'
+    alias www='cd ~/dev/edu/www'
+fi
+
+alias essh='awsactivate educreations && ec2-ssh'
+alias ehost='awsactivate educreations && ec2-host'
