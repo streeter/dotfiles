@@ -1,46 +1,97 @@
-# Make sure we’re using the latest Homebrew
-update
-
-# Upgrade any already-installed formulae
-upgrade
-
 # Git
-install git
-install hub
-install hub
-install git-extras
+brew 'git'
+brew 'hub'
+brew 'git-extras'
 
 # Misc
-install bash-completion
-install colordiff
-install coreutils
-install cowsay
-install exif
-install exiftool
-install heroku
-install heroku-toolbelt
-install htop
-install htop-osx
-install node
-install proctools
-install python
-install python3
-install terminal-notifier
+brew 'autoconf'
+brew 'autoenv'
+brew 'automake'
+brew 'bash-completion'
+brew 'colordiff'
+brew 'coreutils'
+brew 'cowsay'
+brew 'ctags'
+brew 'curl'
+brew 'fish'
+brew 'geoip'
+brew 'git-cal'
+brew 'go'
+brew 'google-app-engine'
+brew 'heroku'
+brew 'heroku-toolbelt'
+brew 'htop'
+brew 'htop-osx'
+brew 'jq'
+brew 'lua'
+brew 'markdown'
+brew 'mercurial'
+brew 'mtr'
+brew 'nmap'
+brew 'pidof'
+brew 'proctools'
+brew 'python'
+brew 'python3'
+brew 'r'
+brew 'ruby'
+brew 'screen'
+brew 'terminal-notifier'
+brew 'tmux'
+brew 'vagrant-completion'
+brew 'wget'
+brew 'youtube-dl'
+
+# Services
+brew 'memcached'
+brew 'mysql'
+brew 'node'
+brew 'rabbitmq'
+brew 'redis'
+brew 'solr'
+brew 'zeromq'
+
+# Images / Video
+brew 'exif'
+brew 'exiftool'
+brew 'imagesnap'
+brew 'jpeg'
+brew 'libjpeg'
+brew 'libmagic'
+brew 'libtiff'
+brew 'pngcrush'
+brew 'speex'
+brew 'webp'
+brew 'x264'
+brew 'yasm'
+
+# Do these after the others
+brew 'imagemagick'
+brew 'ffmpeg', args: ['with-speex']
+
+
+# Override some system packages
+tap 'homebrew/dupes'
+brew 'grep'
+brew 'less'
+
 
 # Android
-install android-sdk
-install gradle
+brew 'android-sdk'
+brew 'gradle'
 
 # iOS
-install ios-sim
+brew 'chisel'
+brew 'class-dump'
+brew 'ios-sim'
+brew 'xctool'
 
 # VIM
-install macvim
-install the_silver_searcher
+brew 'macvim'
+brew 'the_silver_searcher'
 
 # Cask
-tap 'phinze/cask'
-install 'brew-cask'
+#tap 'caskroom/cask'
+#brew 'brew-cask'
 
 # Quick Look Plugins
 #cask install qlcolorcode
@@ -79,7 +130,4 @@ install 'brew-cask'
 #cask install --appdir=/Applications vlc
 
 # Alternate versions
-tap homebrew/versions
-
-# Remove outdated versions from the cellar
-cleanup
+tap 'homebrew/versions'
