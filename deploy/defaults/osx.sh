@@ -233,6 +233,14 @@ defaults write com.apple.Safari ShowFavoritesBar -bool false
 
 
 ###############################################################################
+# Chrome
+###############################################################################
+
+# Disable swipe to go back or forward
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+
+
+###############################################################################
 # Address Book, Dashboard, iCal, iTunes, Mail, and Disk Utility               #
 ###############################################################################
 
