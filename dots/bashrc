@@ -290,11 +290,5 @@ if [ -e "${HOME}/.bashrc.d/virtualenvwrapper.bashrc" ]; then
     source "${HOME}/.bashrc.d/virtualenvwrapper.bashrc"
 fi
 
-# Autoenv
-AUTOENV_ACTIVATE='/usr/local/Cellar/autoenv/0.1.0/activate.sh'
-test -e $AUTOENV_ACTIVATE &&
-source $AUTOENV_ACTIVATE
-unset AUTOENV_ACTIVATE
-
 # added by travis gem
 source "${HOME}/.travis/travis.sh"
