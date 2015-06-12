@@ -309,7 +309,7 @@ defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 100
 defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true
 defaults write com.apple.dt.Xcode DVTTextShowPageGuide -bool true
 defaults write com.apple.dt.Xcode IDEDisableGitSupportForNewProjects -bool true
-defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool true
+defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool false
 
 defaults write com.apple.dt.Xcode OMOpenInDashDisabled -bool false
 defaults write com.apple.dt.Xcode OMOpenInDashStyle -int 2
