@@ -6,7 +6,7 @@
 # Requires: terminal-notifier. Install with:
 #   brew install terminal-notifier
 
-export SSH_AUTH_SOCK=$( ls /tmp/launch-*/Listeners )
+declare -x SSH_AUTH_SOCK=$( find /tmp/launch-*/Listeners -user streeter -type s | head -1 )
 
 PATH="/usr/local/bin:${PATH}"
 TERM_APP='/Applications/Terminal.app'
