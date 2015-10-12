@@ -90,6 +90,10 @@ Host *.amazonaws.com
   UserKnownHostsFile=/dev/null
   IdentitiesOnly yes
 
+Host github.com
+  User streeter
+  IdentityFile ~/.ssh/id_rsa
+
 # General Defaults
 #
 Host *
