@@ -7,3 +7,6 @@
 
 # Handle binary property lists
 *.plist diff=plist
+
+# Handle .strings files
+*.strings diff=localizablestrings
