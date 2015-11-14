@@ -164,6 +164,8 @@
     prompt = false
 [diff "spaceman-diff"]
     command = /Users/streeter/bin/spaceman-diff
+[diff "plist"]
+	textconv = plutil -convert xml1 -o -
 [difftool "Kaleidoscope"]
     cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]

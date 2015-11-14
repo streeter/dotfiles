@@ -4,3 +4,6 @@
 *.jpg  diff=spaceman-diff
 *.jpeg diff=spaceman-diff
 *.gif  diff=spaceman-diff
+
+# Handle binary property lists
+*.plist diff=plist
