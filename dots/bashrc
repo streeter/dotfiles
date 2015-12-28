@@ -286,8 +286,10 @@ export WORKON_HOME="${HOME}/.virtualenvs"
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
 
-if [ -e "${HOME}/.bashrc.d/virtualenvwrapper.bashrc" ]; then
-    source "${HOME}/.bashrc.d/virtualenvwrapper.bashrc"
+if [ -d "${HOME}/.bashrc.d" ]; then
+    for f in ${HOME}/.bashrc.d/*.bashrc; do
+        source "$f"
+    done
 fi
 
 # added by travis gem
