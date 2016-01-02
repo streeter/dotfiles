@@ -68,6 +68,12 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# Disable infrared receiver
+defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -int 0
+
+# Disable AirDrop
+defaults write com.apple.NetworkBrowser DisableAirDrop -bool YES
+
 
 ###############################################################################
 # Screen                                                                      #
