@@ -181,3 +181,5 @@
     helper = osxkeychain
 #[remote "origin"]
 #    fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+[stash]
+	showPatch = true
