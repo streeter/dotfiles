@@ -327,9 +327,12 @@ defaults write com.apple.dt.Xcode DVTTextEditorTrimWhitespaceOnlyLines -bool tru
 defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 100
 defaults write com.apple.dt.Xcode DVTTextShowLineNumbers -bool true
 defaults write com.apple.dt.Xcode DVTTextShowPageGuide -bool true
+defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
+defaults write com.apple.dt.Xcode IDECodeCompletionFuzzyMode 3
 defaults write com.apple.dt.Xcode IDEDisableGitSupportForNewProjects -bool true
-defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool false
+defaults write com.apple.dt.Xcode IDEWorkaroundForRadar6288283 3
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration YES
+defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool false
 
 defaults write com.apple.dt.Xcode OMOpenInDashDisabled -bool false
 defaults write com.apple.dt.Xcode OMOpenInDashStyle -int 2
