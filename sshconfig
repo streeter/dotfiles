@@ -2,22 +2,17 @@
 # More specific entries at the top
 #
 
-Host rowdy-icloud
-  HostName rowdy.29541183.members.btmm.icloud.com
-  User streeter
-  AddressFamily inet6
-  Protocol 2
-
-Host scout
-  HostName 10.1.10.10
-  User streeter
-  ForwardAgent yes
-  IdentitiesOnly yes
-
 Host home
   HostName home.streeter.co
   User streeter
   ForwardAgent yes
+  IdentitiesOnly yes
+
+Host miwokadmin
+  HostName home.streeter.co
+  User root
+  LocalForward 5000 localhost:5000
+  ForwardAgent no
   IdentitiesOnly yes
 
 # Swanson
@@ -25,12 +20,6 @@ Host home
 Host swanson
   HostName swanson.local
   User streeter
-  ForwardAgent yes
-  IdentitiesOnly yes
-
-Host mac-mini
-  HostName home.streeter.co
-  User jenkins
   ForwardAgent yes
   IdentitiesOnly yes
 
