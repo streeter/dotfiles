@@ -346,6 +346,14 @@ defaults write com.apple.iphonesimulator SBFakeCarrier "Streeter"
 # Do not restore last active video
 defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
 
+
+###############################################################################
+# Photos / Image Capture                                                      #
+###############################################################################
+
+# Never auto-launch photos or image capture for new devices
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
+
 ###############################################################################
 # Preview                                                                     #
 ###############################################################################
