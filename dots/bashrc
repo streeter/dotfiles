@@ -101,15 +101,28 @@ if [ -e $AWS_HOME ]; then
 
     awsactivate () {
         echo "Activating the AWS environment for $1..."
+        export AWS_DEFAULT_PROFILE="${1}"
+
         for key in "AWS_ACCESS_KEY_ID" "AWS_SECRET_ACCESS_KEY" "REGION"; do
             value=`\\python <<EOF
 import ConfigParser
 import os
 
-config = ConfigParser.RawConfigParser()
-config.read(os.environ['AWS_CONFIG_FILE'])
+config_file = os.environ['AWS_CONFIG_FILE']
+cred_file = os.path.join(os.path.dirname(config_file), 'credentials')
 
-print config.get('profile ${1}', '${key}'.lower())
+config = ConfigParser.RawConfigParser()
+config.read(config_file)
+
+creds = ConfigParser.RawConfigParser()
+creds.read(cred_file)
+
+key = '${key}'.lower()
+
+try:
+    print creds.get('${1}', key)
+except ConfigParser.NoOptionError:
+    print config.get('profile ${1}', key)
 EOF`
             export $key="${value}"
         done
