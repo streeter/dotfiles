@@ -74,7 +74,7 @@ PATH="$HOME/bin:$PATH"
 test -d "/usr/local/share/npm/bin" &&
     PATH="$PATH:/usr/local/share/npm/bin"
 
-POSTGRESAPP="/Applications/Postgres.app/Contents/Versions/9.3/bin"
+POSTGRESAPP="/Applications/Postgres.app/Contents/Versions/latest/bin"
 if [ -e $POSTGRESAPP ]; then
     PATH="$PATH:$POSTGRESAPP"
 fi
