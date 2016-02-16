@@ -183,3 +183,6 @@
 #    fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 [stash]
 	showPatch = true
+[pager]
+	diff = diff-so-fancy | less --tabs=1,5 -RFX
+	show = diff-so-fancy | less --tabs=1,5 -RFX
