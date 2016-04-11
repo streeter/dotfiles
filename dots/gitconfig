@@ -156,6 +156,7 @@
     name = Chris Streeter
     email = chris@chrisstreeter.com
     username = streeter
+    useconfigonly = true
 [heroku]
     account = personal
 [diff]
