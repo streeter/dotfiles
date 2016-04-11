@@ -48,8 +48,18 @@ brew 'youtube-dl'
 
 # Completions
 brew 'bash-completion'
-brew 'vagrant-completion'
+brew 'brew-cask-completion'
+brew 'bundler-completion'
+brew 'django-completion'
+brew 'fabric-completion'
+brew 'gem-completion'
+brew 'grunt-completion'
+brew 'open-completion'
+brew 'pip-completion'
+brew 'rake-completion'
+brew 'ruby-completion'
 brew 'tmuxinator-completion'
+brew 'vagrant-completion'
 
 # Java
 brew 'Caskroom/cask/java'
