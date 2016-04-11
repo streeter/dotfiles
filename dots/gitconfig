@@ -185,5 +185,7 @@
 [stash]
 	showPatch = true
 [pager]
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
-	show = diff-so-fancy | less --tabs=1,5 -RFX
+    diff = diff-so-fancy | less --tabs=1,5 -RFX --pattern='^(added|deleted|modified): '
+    show = diff-so-fancy | less --tabs=1,5 -RFX --pattern='^(added|deleted|modified): '
+[commit]
+	gpgsign = true
