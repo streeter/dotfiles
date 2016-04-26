@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Disable Homebrew analytics
+# https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Analytics.md
+export HOMEBREW_NO_ANALYTICS=1
