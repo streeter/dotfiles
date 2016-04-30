@@ -15,6 +15,11 @@ Host miwokadmin
   ForwardAgent no
   IdentitiesOnly yes
 
+Host chrisstreeter.com
+  HostName chrisstreeter.com
+  User streeter
+  ForwardAgent yes
+
 # Swanson
 
 Host swanson
