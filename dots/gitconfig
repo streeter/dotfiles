@@ -3,8 +3,13 @@
 #
 
 [alias]
-    # Branch
-    b = branch
+    # Pluralize
+    branches = branch -a
+    tags = tag
+    stashes = stash list
+    unmerged = diff --name-only --diff-filter=U
+    remotes = remote -v
+
 
     ## checkout/fetch/merge/push/rebase
 
@@ -13,30 +18,12 @@
 
     # checkout
     co = checkout
-    co0 = checkout HEAD --
 
-    # fetch
-    f = fetch
-
-    # merge
-    m = merge
-    mom = merge origin/master
-
+    # Merge
     finish = !git checkout master && git merge --no-ff $1 && git push origin master && git branch -d $1
 
-    # push
-    p = push
-    pa = push --all
-    pt = push --tags
-
     # rebase
-    r = rebase
     purr = pull --rebase
-    ready = rebase -i @{u}
-
-    # commit
-    c = commit -v
-    cm = commit --message
 
     # diff
     d = diff
@@ -44,14 +31,6 @@
     dh = diff HEAD
 
     # log
-    l   = log --decorate --topo-order --pretty=format:'%C(yellow)%h %C(cyan)%cn %C(blue)%cr%C(reset) %s'
-    ls  = log --decorate --topo-order --stat --pretty=format:'%C(bold)%C(yellow)Commit:%C(reset) %C(yellow)%H%C(red)%d%n%C(bold)%C(yellow)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)%C(yellow)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
-    ld  = log --decorate --topo-order --stat --patch --full-diff --pretty=format:'%C(bold)%C(yellow)Commit:%C(reset) %C(yellow)%H%C(red)%d%n%C(bold)%C(yellow)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)%C(yellow)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
-    lg  = log --decorate --topo-order --all --graph --pretty=format:'%C(yellow)%h%C(reset) %s %C(red)%d%C(reset)%n'
-    lga = log --decorate --topo-order --all --graph --pretty=format:'%C(yellow)%h %C(cyan)%cn%C(reset) %s %C(red)%d%C(reset)%n'
-    lm  = log --decorate --topo-order --pretty=format:'%s'
-    lh  = shortlog --summary --numbered
-    llf = fsck --lost-found
     hist = log --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
     #hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
@@ -70,14 +49,12 @@
     stashdiff = stash show -u
 
     # others
-    type = cat-file -t
-    undopush = push -f origin HEAD^:master
-    unstage = reset HEAD
-    uncommit = reset --soft HEAD~1
+    unstage = reset -q HEAD --
+    uncommit = reset --mixed HEAD~
     undo = uncommit
     wdiff = diff --word-diff
+
     ignored = ls-files --others -i --exclude-standard
-    wipe = reset --hard HEAD
 
 [apply]
     # Detect whitespace errors when applying a patch
