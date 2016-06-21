@@ -124,12 +124,13 @@
     account = personal
 [diff]
     tool = Kaleidoscope
+#   compactionHeuristic = true
 [difftool]
     prompt = false
 [diff "spaceman-diff"]
     command = /usr/local/bin/spaceman-diff
 [diff "plist"]
-	textconv = plutil -convert xml1 -o -
+    textconv = plutil -convert xml1 -o -
 [diff "localizablestrings"]
     textconv = "iconv -f utf-16 -t utf-8"
 [difftool "Kaleidoscope"]
@@ -146,8 +147,8 @@
 #[remote "origin"]
 #    fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 [stash]
-	showPatch = true
+    showPatch = true
 [commit]
-	gpgsign = true
+    gpgsign = true
 [interactive]
     #diffFilter = diff-highlight
