@@ -25,11 +25,6 @@
     # rebase
     purr = pull --rebase
 
-    # diff
-    d = diff
-    ds = diff --staged
-    dh = diff HEAD
-
     # log
     hist = log --decorate --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
     #hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
@@ -60,20 +55,14 @@
     # Detect whitespace errors when applying a patch
     whitespace = fix
 
-[branch]
-    #autosetupmerge = trus
-
 # Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
-    remote = origin
-    merge = refs/heads/master
 
 [core]
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
     # Treat certain kinds of whitespace as errors
     whitespace = fix,-indent-with-non-tab,cr-at-eol,space-before-tab,trailing-space
-    pager = less -FXRS -x2
+    pager = diff-so-fancy | less --tabs=4 -RFX
     trustctime = false
 
 [color]
@@ -95,6 +84,12 @@
     new = green
     commit = yellow
     whitespace = normal red
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 
 [color "status"]
     header = normal
@@ -119,15 +114,6 @@
     #insteadOf = "https://github.com/"
     pushInsteadOf = "github:"
     pushInsteadOf = "git://github.com/"
-[url "git://github.com/"]
-    insteadOf = "github:"
-[url "git@gist.github.com:"]
-    insteadOf = "gst:"
-    insteadOf = "https://gist.github.com/"
-    pushInsteadOf = "gist:"
-    pushInsteadOf = "git://gist.github.com/"
-[url "git://gist.github.com/"]
-    insteadOf = "gist:"
 
 [user]
     name = Chris Streeter
@@ -161,8 +147,7 @@
 #    fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 [stash]
 	showPatch = true
-[pager]
-    diff = diff-so-fancy | less --tabs=1,5 -RFX --pattern='^(added|deleted|modified): '
-    show = diff-so-fancy | less --tabs=1,5 -RFX --pattern='^(added|deleted|modified): '
 [commit]
 	gpgsign = true
+[interactive]
+    #diffFilter = diff-highlight

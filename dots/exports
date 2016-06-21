@@ -36,11 +36,15 @@ export LESS_TERMCAP_md="$ORANGE"
 # don't put duplicate lines in the history. See bash(1) for more options
 #export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
 # ... or force ignoredups and ignorespace or ignoreboth
-export HISTCONTROL=ignoredups
+export HISTCONTROL="erasedups:ignoreboth"
 
 # Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd;exit:date"
+export HISTIGNORE="&:[ ]*:ls:pwd;exit:date:bg:fg:history:clear"
 
-export HISTSIZE=200000
+export HISTSIZE=500000
 export HISTFILESIZE=$HISTSIZE
 
+# Use standard ISO 8601 timestamp
+# %F equivalent to %Y-%m-%d
+# %T equivalent to %H:%M:%S (24-hours format)
+HISTTIMEFORMAT='%F %T '
