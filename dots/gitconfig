@@ -10,6 +10,8 @@
     unmerged = diff --name-only --diff-filter=U
     remotes = remote -v
 
+    dmb = delete-merged-branches
+
 
     ## checkout/fetch/merge/push/rebase
 
