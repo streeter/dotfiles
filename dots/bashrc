@@ -276,6 +276,9 @@ alias ls="command ls $LS_COMMON"
 
 source "$HOME/.exports"
 
+test -f "$HOME/.exports.private" &&
+source "$HOME/.exports.private"
+
 
 # -------------------------------------------------------------------
 # PROMPT
