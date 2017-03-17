@@ -22,7 +22,7 @@
     co = checkout
 
     # Merge
-    finish = !git checkout master && git merge --no-ff $1 && git push origin master && git branch -d $1
+    finish = !git checkout master && git merge --no-ff $1 && git push origin master && git branch -d
 
     # rebase
     purr = pull --rebase
