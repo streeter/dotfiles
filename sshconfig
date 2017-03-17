@@ -97,8 +97,12 @@ Host *
   #ConnectTimeout 2
   #ControlMaster auto
   #ControlPath ~/.ssh/master/%r@%h:%p
-  IdentityFile ~/.ssh/id_dsa
+  IdentityFile ~/.ssh/id_rsa
   ServerAliveCountMax 3
   ServerAliveInterval 15
   TCPKeepAlive yes
   #VisualHostKey yes
+
+  # Needed for macOS 10.12.2+
+  UseKeychain yes
+  AddKeysToAgent yes
