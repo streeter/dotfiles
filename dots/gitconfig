@@ -11,6 +11,7 @@
     remotes = remote -v
 
     dmb = delete-merged-branches
+    prune = fetch --prune
 
 
     ## checkout/fetch/merge/push/rebase
@@ -108,6 +109,13 @@
 
 [push]
     default = current
+    followTags = true
+
+[status]
+    showUntrackedFiles = all
+
+[transfer]
+    fsckobjects = true
 
 # URL shorthands
 [url "git@github.com:"]
