@@ -343,6 +343,3 @@ if [ -d "${HOME}/.bashrc.d" ]; then
         source "$f"
     done
 fi
-
-# added by travis gem
-source "${HOME}/.travis/travis.sh"
