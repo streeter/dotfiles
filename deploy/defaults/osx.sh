@@ -175,6 +175,7 @@ defaults write com.apple.dock mineffect "scale"
 defaults write com.apple.dock orientation "left"
 defaults write com.apple.dock largesize -int 25
 defaults write com.apple.dock tilesize -int 35
+defaults write com.apple.dock mru-spaces -bool false
 defaults write com.apple.dock "show-process-indicators" -bool true
 
 # Do not group windows by application in Mission Control
