@@ -70,7 +70,6 @@ brew 'ruby-completion'
 cask "java" unless system "/usr/libexec/java_home --failfast"
 
 # Services
-brew 'memcached'
 brew 'mysql@5.6'
 brew 'node'
 brew 'redis'
@@ -125,6 +124,7 @@ cask 'quicklookapk'
 cask 'suspicious-package'
 
 # Some Mac apps
+cask '1password'
 cask 'adium'
 cask 'adobe-creative-cloud'
 cask 'adobe-digital-editions'
@@ -168,7 +168,6 @@ cask 'sketch'
 cask 'slack'
 # cask 'caskroom/versions/slack-beta'
 cask 'spotify'
-cask 'the-unarchiver'
 cask 'transmission'
 cask 'transmit'
 cask 'vanilla'
