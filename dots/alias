@@ -117,8 +117,10 @@ if [ "$UNAME" = Darwin ]; then
 
     ## Educreations Apps
     alias ios='cd ~/dev/edu/ios'
-    alias www='cd ~/dev/edu/www'
+    alias www='workon www'
 fi
 
 alias essh='awsactivate educreations && ec2-ssh'
 alias ehost='awsactivate educreations && ec2-host'
+
+alias lsvirtualenv='lsvirtualenv -b'
