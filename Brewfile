@@ -1,33 +1,34 @@
+cask_args appdir: "/Applications"
+
 # Git
 brew 'git'
 brew 'hub'
+brew 'git-cal'
 brew 'git-extras'
 
 # Setup some taps
 tap 'caskroom/cask'
-tap 'homebrew/completions'
-tap 'homebrew/dupes'
 
 # Misc
+brew 'apktool'
+brew 'app-engine-python'
 brew 'autoconf'
 brew 'autoenv'
 brew 'automake'
-brew 'Caskroom/cask/r'
+brew 'bcrypt'
+brew 'certbot'
 brew 'colordiff'
 brew 'coreutils'
 brew 'cowsay'
 brew 'ctags'
-brew 'curl'
 brew 'diff-so-fancy'
-brew 'fish'
+brew 'fdupes'
 brew 'geoip'
 brew 'geos'
-brew 'git-cal'
 brew 'go'
-brew 'google-app-engine'
+brew 'gpg-agent'
+brew 'gpgme'
 brew 'heroku'
-brew 'heroku-toolbelt'
-brew 'htop'
 brew 'htop-osx'
 brew 'jq'
 brew 'lua'
@@ -35,19 +36,25 @@ brew 'markdown'
 brew 'mercurial'
 brew 'mtr'
 brew 'nmap'
+brew 'openssl'
 brew 'pidof'
 brew 'proctools'
 brew 'python'
 brew 'python3'
-brew 'reattach-to-user-namespace'
+brew 'readline'
 brew 'ruby'
+brew 'ruby-build'
+brew 'spaceman-diff'
+brew 'sqlite'
+brew 'sshuttle'
 brew 'terminal-notifier'
-brew 'tmux'
-brew 'wget'
+brew 'tree'
+brew 'yarn'
 brew 'youtube-dl'
 
 # Completions
 brew 'bash-completion'
+brew 'docker-completion'
 brew 'brew-cask-completion'
 brew 'bundler-completion'
 brew 'django-completion'
@@ -58,24 +65,21 @@ brew 'open-completion'
 brew 'pip-completion'
 brew 'rake-completion'
 brew 'ruby-completion'
-brew 'tmuxinator-completion'
-brew 'vagrant-completion'
 
 # Java
-brew 'Caskroom/cask/java'
+cask "java" unless system "/usr/libexec/java_home --failfast"
 
 # Services
 brew 'memcached'
-brew 'mysql'
+brew 'mysql@5.6'
 brew 'node'
-brew 'rabbitmq'
 brew 'redis'
-brew 'solr'
-brew 'zeromq'
 
-# Images / Video
+# Audio / Images / Video
 brew 'exif'
 brew 'exiftool'
+brew 'faac'
+brew 'flac'
 brew 'imagesnap'
 brew 'jpeg'
 brew 'libjpeg'
@@ -92,18 +96,15 @@ brew 'imagemagick'
 brew 'ffmpeg', args: ['with-speex']
 
 # Override some system packages
+brew 'bash'
+brew 'curl'
 brew 'grep'
 brew 'less'
 brew 'screen'
-
-# Android
-brew 'android-sdk'
-brew 'gradle'
+brew 'wget'
 
 # iOS
 brew 'chisel'
-brew 'class-dump'
-brew 'ios-sim'
 brew 'xctool'
 
 # VIM
@@ -111,40 +112,71 @@ brew 'macvim'
 brew 'the_silver_searcher'
 
 # Quick Look Plugins
-#cask install qlcolorcode
-#cask install qlstephen
-#cask install qlmarkdown
-#cask install quicklook-json
-#cask install qlprettypatch
-#cask install quicklook-csv
-#cask install betterzipql
-#cask install webp-quicklook
-#cask install suspicious-package
-#cask install ipaql
+cask 'betterzipql'
+cask 'qlcolorcode'
+cask 'qlmarkdown'
+cask 'qlprettypatch'
+cask 'qlstephen'
+cask 'quicklook-csv'
+cask 'receiptquicklook'
+cask 'jupyter-notebook-ql'
+cask 'quicklook-json'
+cask 'quicklookapk'
+cask 'suspicious-package'
 
 # Some Mac apps
-#cask install --appdir=/Applications alfred
-#cask install --appdir=/Applications android-file-transfer
-#cask install --appdir=/Applications android-studio
-#cask install --appdir=/Applications arq
-#cask install --appdir=/Applications balsamiq-mockups
-#cask install --appdir=/Applications base
-#cask install --appdir=/Applications calibre
-#cask install --appdir=/Applications chromecast
-#cask install --appdir=/Applications coconutbattery
-#cask install --appdir=/Applications color-oracle
-#cask install --appdir=/Applications crashlytics
-#cask install --appdir=/Applications divvy
-#cask install --appdir=/Applications dropbox
-#cask install --appdir=/Applications gitx
-#cask install --appdir=/Applications hipchat
-#cask install --appdir=/Applications imageoptim
-#cask install --appdir=/Applications keyremap4macbook
-#cask install --appdir=/Applications macvim
-#cask install --appdir=/Applications rdio
-#cask install --appdir=/Applications sequel-pro
-#cask install --appdir=/Applications timemachinescheduler
-#cask install --appdir=/Applications vlc
+cask 'adium'
+cask 'adobe-creative-cloud'
+cask 'adobe-digital-editions'
+cask 'android-file-transfer'
+cask 'android-platform-tools'
+cask 'android-sdk'
+cask 'android-studio'
+cask 'arq'
+cask 'atom'
+cask 'aware'
+cask 'balsamiq-mockups'
+cask 'base'
+cask 'calibre'
+cask 'caskroom/versions/google-chrome-beta'
+cask 'caskroom/versions/sublime-text-dev'
+cask 'coconutbattery'
+cask 'coderunner'
+cask 'color-oracle'
+cask 'dash'
+cask 'deploymate'
+cask 'divvy'
+cask 'docker'
+cask 'firefox'
+cask 'flux'
+cask 'google-drive'
+cask 'handbrake'
+cask 'hipchat'
+cask 'iterm2'
+cask 'kaleidoscope'
+cask 'karabiner-elements'
+cask 'kindle'
+cask 'licecap'
+cask 'messenger'
+cask 'music-manager'
+cask 'netspot'
+cask 'omnigraffle'
+cask 'omnioutliner'
+cask 'postgres'
+cask 'sketch'
+cask 'slack'
+# cask 'caskroom/versions/slack-beta'
+cask 'spotify'
+cask 'the-unarchiver'
+cask 'transmission'
+cask 'transmit'
+cask 'vanilla'
+cask 'virtualbox'
+cask 'virtualbox-extension-pack'
+cask 'vlc'
+cask 'whatsapp'
+cask 'wwdc'
 
-# Alternate versions
-tap 'homebrew/versions'
+# Others
+# - Sonos: http://www.sonos.com/en-us/controller-app
+

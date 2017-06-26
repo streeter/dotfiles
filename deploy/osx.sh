@@ -5,8 +5,6 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
   exit 1
 fi
 
-gem install tmuxinator
-
 ###############################################################################
 # Setup Homebrew Packages                                                     #
 ###############################################################################
@@ -15,9 +13,9 @@ brew update
 
 brew upgrade
 
-brew tap Homebrew/brewdler
+brew tap Homebrew/bundle
 
-brew brewdle --file=$SCRIPT_DIR/Brewfile
+brew bundle --file=$SCRIPT_DIR/Brewfile
 
 brew cleanup
 
