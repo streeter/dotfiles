@@ -48,3 +48,10 @@ export HISTFILESIZE=$HISTSIZE
 # %F equivalent to %Y-%m-%d
 # %T equivalent to %H:%M:%S (24-hours format)
 HISTTIMEFORMAT='%F %T '
+
+
+# ----------------------------------------------------------------------
+# Other
+# ----------------------------------------------------------------------
+
+export EC2_SSH_USER=`whoami`

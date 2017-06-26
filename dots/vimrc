@@ -162,7 +162,7 @@ set sidescroll=2
 " Solarized color scheme
 colorscheme solarized
 let g:solarized_termcolors=256
-set background=dark                         " Tell solarized to use a dark background
+set background=light                        " Tell solarized to use a light background
 
 " colorscheme badwolf                       " https://github.com/sjl/badwolf/
 let g:badwolf_tabline = 2                   " Make the tab line lighter than the background.
