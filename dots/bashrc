@@ -5,8 +5,16 @@
 #
 # vim: ts=4 sts=4 shiftwidth=4 expandtab
 
-# Debug slow startup
-#set -x
+# Debug slow startups
+_STARTUP_PROFILING=''
+if [ ! -z "${_STARTUP_PROFILING}" ]; then
+    echo "Turning on startup profiling"
+    # Make sure to use the GNU versions of the utils
+    exec 3>&2 2> >(tee /tmp/sample-time.$$.log |
+                    /usr/local/bin/gsed -u 's/^.*$/now/' |
+                    /usr/local/bin/gdate -f - +%s.%N >/tmp/sample-time.$$.tim)
+    set -x
+fi
 
 # setup some basic variables
 : ${HOME=~}
@@ -343,3 +351,24 @@ if [ -d "${HOME}/.bashrc.d" ]; then
         source "$f"
     done
 fi
+
+
+# Turn off profiling
+if [ ! -z "${_STARTUP_PROFILING}" ]; then
+    set +x
+    exec 2>&3 3>&-
+    echo "Startup profiling turned off"
+
+    paste  <(
+        while read tim ;do
+            [ -z "$last" ] && last=${tim//.} && first=${tim//.}
+            crt=000000000$((${tim//.}-10#0$last))
+            ctot=000000000$((${tim//.}-10#0$first))
+            printf "%12.9f %12.9f\n" ${crt:0:${#crt}-9}.${crt:${#crt}-9} \
+                                     ${ctot:0:${#ctot}-9}.${ctot:${#ctot}-9}
+            last=${tim//.}
+          done < /tmp/sample-time.$$.tim
+      ) /tmp/sample-time.$$.log > /tmp/sample-time.$$.output
+    echo "Profiling output written to: /tmp/sample-time.$$.output"
+fi
+unset _STARTUP_PROFILING

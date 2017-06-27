@@ -3,7 +3,6 @@
 # Setup autoenv
 ####################
 
-if [[ $(type -t brew) == file ]]; then
-    test -e $(brew --prefix autoenv)/activate.sh &&
-    source $(brew --prefix autoenv)/activate.sh
+if [ -d /usr/local/opt/autoenv -a -e /usr/local/opt/autoenv/activate.sh ]; then
+    source /usr/local/opt/autoenv/activate.sh
 fi
