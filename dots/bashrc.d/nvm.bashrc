@@ -14,6 +14,4 @@ if [ -s "$NVM_DIR/bash_completion" ]; then
 fi
 
 # Load AVN
-if [ -s "$HOME/.avn/bin/avn.sh" ]; then
-    source "$HOME/.avn/bin/avn.sh" # load avn
-fi
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh"
