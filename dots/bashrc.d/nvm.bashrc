@@ -4,9 +4,13 @@
 ###################
 
 # Setup NVM
-if [ -d /usr/local/opt/nvm -a -e /usr/local/opt/nvm/nvm.sh ]; then
-    export NVM_DIR="$HOME/.nvm"
-    source "/usr/local/opt/nvm/nvm.sh"
+export NVM_DIR="$HOME/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+    source "$NVM_DIR/nvm.sh"
+fi
+
+if [ -s "$NVM_DIR/bash_completion" ]; then
+    source "$NVM_DIR/bash_completion"
 fi
 
 # Load AVN
