@@ -124,3 +124,5 @@ alias essh='awsactivate educreations && ec2-ssh'
 alias ehost='awsactivate educreations && ec2-host'
 
 alias lsvirtualenv='lsvirtualenv -b'
+
+alias icat=imgcat
