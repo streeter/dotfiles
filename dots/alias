@@ -111,7 +111,12 @@ if [ "$UNAME" = Darwin ]; then
         alias git=hub
     fi
 
-    alias subl='subl -n'
+    function project_aware_subl {
+        project_file=$(ls *.sublime-project 2>/dev/null | head -n 1)
+        subl -n ${project_file:-${*:-.}}
+    }
+
+    alias subl="project_aware_subl"
     alias sub=subl
     alias mate=subl
 
