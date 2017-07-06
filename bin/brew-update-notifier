@@ -10,24 +10,25 @@ PATH="/usr/local/bin:${PATH}"
 TERM_APP='/Applications/Terminal.app'
 BREW_EXEC=`which brew`
 TERMINAL_NOTIFIER=`which terminal-notifier`
-NOTIF_ARGS="-sender com.apple.Terminal -activate com.apple.Terminal -timeout 10"
+NOTIF_ARGS="-sender com.apple.Terminal"
 
 $BREW_EXEC update 2>&1 > /dev/null
 outdated=`$BREW_EXEC outdated | xargs echo -n`
 
-title="No Homebrew Updates Available"
-message="No updates available yet for any homebrew packages."
+TITLE="No Homebrew Updates Available"
+MESSAGE="No updates available yet for any homebrew packages."
 
 if [ ! -z "$outdated" ] ; then
     # We've got an outdated formula or two
-    title="Homebrew Update(s) Available For"
-    message="$outdated"
+    NOTIF_ARGS="$NOTIF_ARGS -activate com.apple.Terminal -timeout 10"
+    TITLE="Homebrew Update(s) Available For"
+    MESSAGE="$outdated"
 fi
 
 # Notify via Notification Center
 if [ -e $TERMINAL_NOTIFIER ]; then
     # Send to the Nofication Center
     $TERMINAL_NOTIFIER $NOTIF_ARGS \
-        -title "$title" \
-        -message "$message" 2>&1 > /dev/null
+        -title "$TITLE" \
+        -message "$MESSAGE" 2>&1 > /dev/null
 fi
