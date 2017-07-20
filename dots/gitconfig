@@ -65,8 +65,10 @@
     attributesfile = ~/.gitattributes
     # Treat certain kinds of whitespace as errors
     whitespace = fix,-indent-with-non-tab,cr-at-eol,space-before-tab,trailing-space
-    pager = diff-so-fancy | less --tabs=4 -RFX
     trustctime = false
+
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
 
 [color]
     diff = auto
@@ -87,12 +89,14 @@
     new = green
     commit = yellow
     whitespace = normal red
+    frag = magenta bold
+
 
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 
 [color "status"]
     header = normal
