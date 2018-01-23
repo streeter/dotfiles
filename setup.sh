@@ -5,26 +5,6 @@ SCRIPT_DIR=`pwd`"/${SCRIPT_DIR}"
 
 PATH="${SCRIPT_DIR}/bin:${PATH}"
 
-echo "Linking bin to home directory:"
-if [ -h $HOME/bin ]; then
-    rm $HOME/bin
-fi
-ln -s $SCRIPT_DIR/bin $HOME/bin
-
-echo "Linking sshconfig to .ssh directory"
-if [ ! -d $HOME/.ssh ]; then
-    mkdir $HOME/.ssh
-fi
-ln -s ${SCRIPT_DIR}/sshconfig $HOME/.ssh/config
-
-echo "Linking dotfiles to the home directory:"
-for f in `ls ${SCRIPT_DIR}/dots`; do
-    if [ -h "${HOME}/.${f}" ]; then
-        rm "${HOME}/.${f}"
-    fi
-    ln -s "${SCRIPT_DIR}/dots/$f" "${HOME}/.${f}"
-done
-
 echo "Linking virtualenv hooks to the virtualenv directory:"
 
 if [ ! -d "${HOME}/.virtualenvs" ]; then

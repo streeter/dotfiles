@@ -1,2 +1,0 @@
-# Show python help
-alias ph !help(%1)

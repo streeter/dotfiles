@@ -39,3 +39,19 @@ pip install -r $SCRIPT_DIR/deploy/requirements.txt
 
 test -e "$SCRIPT_DIR/deploy/defaults/osx.sh" &&
 source "$SCRIPT_DIR/deploy/defaults/osx.sh"
+
+
+###############################################################################
+# Copy other items                                                            #
+###############################################################################
+
+echo "There are some other things to set up. Copy:"
+echo "~/.atom"
+echo "~/.exports.private"
+echo "~/.github-hooks-token"
+echo "~/.gnupg"
+echo "~/.heroku"
+echo "~/.secrets"
+echo "~/.travis"
+echo "~/.ssh"
+echo "~/.spotify-ripper"
